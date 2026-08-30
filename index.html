@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevOpsX Learning – Learn AI. Build Skills. Shape Your Future.</title>
+    <meta name="description" content="DevOpsX Learning is the #1 platform to learn AI online — top-quality books, expert-led courses, hands-on projects and resources to build a successful AI career." />
+    <meta name="keywords" content="AI, Machine Learning, Deep Learning, NLP, Computer Vision, Generative AI, Courses, Books, LMS" />
+    <meta name="author" content="DevOpsX Learning Team" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="DevOpsX Learning – Learn AI. Build Skills. Shape Your Future." />
+    <meta property="og:description" content="Access 500+ expert-led AI courses, books and hands-on projects. Certificates included." />
+    <meta property="og:type" content="website" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Apply saved theme class before React mounts to avoid flash -->
+    <script>
+      (function () {
+        var saved = localStorage.getItem('devopsx_theme');
+        var isDark = saved === 'dark';
+        document.documentElement.classList.toggle('dark', isDark);
+        document.documentElement.classList.toggle('light', !isDark);
+      })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
