@@ -89,18 +89,9 @@ function AiHeadArt() {
 // ── The 3D book standing on a pedestal ──
 function HeroBook() {
   return (
-    <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center' }}>
+    <div className="hero-book-wrapper">
       {/* Pedestal */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '400px',
-          height: '78px',
-        }}
-      >
+      <div className="hero-pedestal">
         {/* Cylinder side */}
         <div
           style={{
@@ -123,7 +114,7 @@ function HeroBook() {
           style={{
             position: 'absolute', left: '50%', top: '13px',
             transform: 'translateX(-50%)',
-            width: '250px', height: '24px', borderRadius: '50%',
+            width: '65%', height: '24px', borderRadius: '50%',
             background: 'radial-gradient(ellipse, rgba(76,66,160,.30) 0%, transparent 72%)',
             filter: 'blur(4px)',
           }}
@@ -133,7 +124,7 @@ function HeroBook() {
           style={{
             position: 'absolute', left: '50%', bottom: '-14px',
             transform: 'translateX(-50%)',
-            width: '420px', height: '28px', borderRadius: '50%',
+            width: '100%', height: '28px', borderRadius: '50%',
             background: 'radial-gradient(ellipse, rgba(79,70,229,.16) 0%, transparent 70%)',
             filter: 'blur(7px)',
           }}
@@ -144,109 +135,111 @@ function HeroBook() {
       <motion.div
         animate={{ y: [0, -5, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        style={{ position: 'relative', marginBottom: '42px', filter: 'drop-shadow(14px 22px 34px rgba(30,27,75,.34))' }}
+        style={{ position: 'relative', marginBottom: '36px', filter: 'drop-shadow(14px 22px 34px rgba(30,27,75,.34))', width: '100%', display: 'flex', justifyContent: 'center' }}
       >
-        {/* Page block edge (right side, gives the 3D thickness) */}
-        <div
-          style={{
-            position: 'absolute', top: '6px', bottom: '6px', right: '-11px',
-            width: '14px', borderRadius: '0 4px 4px 0',
-            background: 'linear-gradient(90deg, #cbd5e1 0%, #f1f5f9 45%, #cbd5e1 100%)',
-            transform: 'skewY(-2deg)',
-          }}
-        />
-
-        {/* Front cover */}
-        <div
-          style={{
-            position: 'relative',
-            width: '276px',
-            aspectRatio: '276 / 402',
-            borderRadius: '4px 7px 7px 4px',
-            background: 'linear-gradient(160deg, #131c33 0%, #0a1024 55%, #060a18 100%)',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            padding: '28px 23px 20px',
-            boxSizing: 'border-box',
-            border: '1px solid rgba(148,163,184,.16)',
-          }}
-        >
-          {/* Spine */}
+        <div className="hero-book-card">
+          {/* Page block edge (right side, gives the 3D thickness) */}
           <div
             style={{
-              position: 'absolute', left: 0, top: 0, bottom: 0, width: '9px',
-              background: 'linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(255,255,255,.06) 55%, transparent 100%)',
-            }}
-          />
-          {/* Sheen */}
-          <div
-            style={{
-              position: 'absolute', inset: 0, pointerEvents: 'none',
-              background: 'linear-gradient(105deg, rgba(255,255,255,.10) 0%, transparent 26%, transparent 78%, rgba(255,255,255,.05) 100%)',
+              position: 'absolute', top: '6px', bottom: '6px', right: '-11px',
+              width: '14px', borderRadius: '0 4px 4px 0',
+              background: 'linear-gradient(90deg, #cbd5e1 0%, #f1f5f9 45%, #cbd5e1 100%)',
+              transform: 'skewY(-2deg)',
             }}
           />
 
-          {/* Title */}
-          <div style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
-            <div
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.32rem',
-                fontWeight: 800,
-                lineHeight: 1.16,
-                letterSpacing: '0.005em',
-                color: '#ffffff',
-                textTransform: 'uppercase',
-              }}
-            >
-              Artificial<br />Intelligence
-            </div>
-            <div
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.06rem',
-                fontWeight: 800,
-                letterSpacing: '0.02em',
-                color: '#ffffff',
-                textTransform: 'uppercase',
-                marginTop: '2px',
-              }}
-            >
-              For Beginners
-            </div>
-            <div
-              style={{
-                fontSize: '0.62rem',
-                fontWeight: 600,
-                letterSpacing: '0.16em',
-                color: '#fcd34d',
-                marginTop: '7px',
-                textTransform: 'uppercase',
-              }}
-            >
-              Learn · Build · Innovate
-            </div>
-          </div>
-
-          {/* Artwork */}
-          <div style={{ width: '84%', marginTop: '10px', position: 'relative', zIndex: 1, flex: 1, display: 'flex', alignItems: 'center' }}>
-            <AiHeadArt />
-          </div>
-
-          {/* Author */}
+          {/* Front cover */}
           <div
             style={{
-              fontSize: '0.745rem',
-              fontWeight: 500,
-              color: 'rgba(226,232,240,.85)',
-              letterSpacing: '0.03em',
               position: 'relative',
-              zIndex: 1,
+              width: '100%',
+              aspectRatio: '276 / 402',
+              borderRadius: '4px 7px 7px 4px',
+              background: 'linear-gradient(160deg, #131c33 0%, #0a1024 55%, #060a18 100%)',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              padding: 'clamp(18px, 4vw, 28px) clamp(14px, 3vw, 23px) clamp(14px, 3vw, 20px)',
+              boxSizing: 'border-box',
+              border: '1px solid rgba(148,163,184,.16)',
             }}
           >
-            Shailendra Kumar
+            {/* Spine */}
+            <div
+              style={{
+                position: 'absolute', left: 0, top: 0, bottom: 0, width: '9px',
+                background: 'linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(255,255,255,.06) 55%, transparent 100%)',
+              }}
+            />
+            {/* Sheen */}
+            <div
+              style={{
+                position: 'absolute', inset: 0, pointerEvents: 'none',
+                background: 'linear-gradient(105deg, rgba(255,255,255,.10) 0%, transparent 26%, transparent 78%, rgba(255,255,255,.05) 100%)',
+              }}
+            />
+
+            {/* Title */}
+            <div style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+              <div
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(1rem, 2.5vw, 1.32rem)',
+                  fontWeight: 800,
+                  lineHeight: 1.16,
+                  letterSpacing: '0.005em',
+                  color: '#ffffff',
+                  textTransform: 'uppercase',
+                }}
+              >
+                Artificial<br />Intelligence
+              </div>
+              <div
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(0.8rem, 2vw, 1.06rem)',
+                  fontWeight: 800,
+                  letterSpacing: '0.02em',
+                  color: '#ffffff',
+                  textTransform: 'uppercase',
+                  marginTop: '2px',
+                }}
+              >
+                For Beginners
+              </div>
+              <div
+                style={{
+                  fontSize: 'clamp(0.5rem, 1.2vw, 0.62rem)',
+                  fontWeight: 600,
+                  letterSpacing: '0.16em',
+                  color: '#fcd34d',
+                  marginTop: '6px',
+                  textTransform: 'uppercase',
+                }}
+              >
+                Learn · Build · Innovate
+              </div>
+            </div>
+
+            {/* Artwork */}
+            <div style={{ width: '84%', marginTop: '6px', position: 'relative', zIndex: 1, flex: 1, display: 'flex', alignItems: 'center' }}>
+              <AiHeadArt />
+            </div>
+
+            {/* Author */}
+            <div
+              style={{
+                fontSize: 'clamp(0.6rem, 1.4vw, 0.745rem)',
+                fontWeight: 500,
+                color: 'rgba(226,232,240,.85)',
+                letterSpacing: '0.03em',
+                position: 'relative',
+                zIndex: 1,
+              }}
+            >
+              Shailendra Kumar
+            </div>
           </div>
         </div>
       </motion.div>
@@ -258,8 +251,8 @@ export default function Hero() {
   const { isDark } = useTheme();
 
   const cardBg = isDark ? 'rgba(15,25,41,0.92)' : '#ffffff';
-  const cardBorder = isDark ? 'rgba(255,255,255,0.09)' : 'rgba(15,23,42,0.09)';
-  const iconTile = isDark ? 'rgba(99,102,241,0.16)' : '#f1f0fe';
+  const cardBorder = isDark ? 'rgba(255,255,255,.08)' : 'rgba(15,23,42,.08)';
+  const iconTile = isDark ? 'rgba(99,102,241,.18)' : '#eeecfd';
   const iconColor = isDark ? '#a5b4fc' : '#4f46e5';
 
   return (
@@ -268,30 +261,29 @@ export default function Hero() {
       style={{
         position: 'relative',
         width: '100%',
-        overflow: 'hidden',
-        background: isDark
-          ? 'radial-gradient(ellipse 90% 55% at 50% -10%, rgba(99,102,241,.14) 0%, transparent 62%), #060b18'
-          : 'radial-gradient(ellipse 90% 55% at 50% -12%, rgba(99,102,241,.06) 0%, transparent 60%), #ffffff',
         boxSizing: 'border-box',
-        padding: '40px 32px 48px',
+        padding: '38px 32px 52px',
+        overflowX: 'clip',
       }}
     >
-      {/* Dotted decoration, top-right */}
+      {/* Background radial glow */}
       <div
-        aria-hidden="true"
         style={{
-          position: 'absolute', top: '54px', right: '38px',
-          width: '130px', height: '80px', pointerEvents: 'none',
-          backgroundImage: `radial-gradient(${isDark ? 'rgba(148,163,184,.28)' : 'rgba(99,102,241,.22)'} 1.4px, transparent 1.4px)`,
-          backgroundSize: '13px 13px',
-          maskImage: 'linear-gradient(to bottom left, #000, transparent 75%)',
-          WebkitMaskImage: 'linear-gradient(to bottom left, #000, transparent 75%)',
+          position: 'absolute',
+          top: '-10%', left: '50%',
+          transform: 'translateX(-50%)',
+          width: '90%', maxWidth: '1200px', height: '80%',
+          background: isDark
+            ? 'radial-gradient(ellipse 65% 50% at 50% 20%, rgba(99,102,241,.18) 0%, transparent 70%)'
+            : 'radial-gradient(ellipse 65% 50% at 50% 20%, rgba(79,70,229,.09) 0%, transparent 70%)',
+          pointerEvents: 'none',
+          zIndex: 1,
         }}
       />
 
       <div className="hero-grid">
         {/* ── LEFT: copy ── */}
-        <motion.div variants={containerVar} initial="hidden" animate="visible">
+        <motion.div className="hero-copy" variants={containerVar} initial="hidden" animate="visible">
           {/* Badge */}
           <motion.div variants={itemVar}>
             <span
@@ -557,6 +549,32 @@ export default function Hero() {
           gap: 26px;
           align-items: center;
         }
+
+        .hero-book-wrapper {
+          position: relative;
+          width: 100%;
+          max-width: 360px;
+          display: flex;
+          justify-content: center;
+          margin: 0 auto;
+        }
+
+        .hero-pedestal {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100%;
+          max-width: 360px;
+          height: 78px;
+        }
+
+        .hero-book-card {
+          position: relative;
+          width: 276px;
+          max-width: 70vw;
+        }
+
         @media (max-width: 1180px) {
           .hero-grid { grid-template-columns: minmax(0, 1fr) 260px; }
           .hero-features {
@@ -566,44 +584,59 @@ export default function Hero() {
           }
           .hero-features > * { flex: 1 1 220px; }
         }
+
         @media (max-width: 900px) {
-          .hero-section { padding: 24px 16px 36px !important; }
-          .hero-grid { grid-template-columns: 1fr; gap: 24px; }
-          .hero-features {
-            grid-column: 1 / -1;
-            flex-direction: row !important;
-            flex-wrap: wrap;
+          .hero-section { padding: 20px 16px 32px !important; }
+          .hero-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 28px !important;
           }
-          .hero-features > * { flex: 1 1 200px; }
+          .hero-copy {
+            order: 1 !important;
+            width: 100% !important;
+          }
+          .hero-book {
+            order: 2 !important;
+            width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+            margin: 10px 0 !important;
+          }
+          .hero-book-wrapper {
+            max-width: 250px !important;
+          }
+          .hero-book-card {
+            width: 190px !important;
+            max-width: 60vw !important;
+          }
+          .hero-pedestal {
+            max-width: 260px !important;
+          }
+          .hero-features {
+            order: 3 !important;
+            width: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 10px !important;
+          }
+          .hero-features > * { flex: 1 1 100% !important; }
           .hero-stats { flex-wrap: wrap !important; gap: 0 !important; width: 100% !important; }
           .hero-stats > * { flex: 1 1 45% !important; border-left: none !important; padding: 10px !important; }
-          .hero-book {
-            display: flex !important;
-            transform: scale(0.8);
-            transform-origin: top center;
-            margin-top: 12px;
-            margin-bottom: -40px;
-          }
         }
-        @media (max-width: 560px) {
-          .hero-book {
-            display: flex !important;
-            transform: scale(0.68);
-            transform-origin: top center;
-            margin-top: 6px;
-            margin-bottom: -40px;
-          }
-          .hero-features { display: flex !important; flex-direction: column !important; gap: 10px; width: 100%; }
-          .hero-features > * { flex: 1 1 100%; }
+
+        @media (max-width: 480px) {
+          .hero-section { padding: 16px 12px 28px !important; }
           .hero-stats > * { flex: 1 1 100% !important; border-bottom: 1px solid rgba(255,255,255,.06) !important; }
           .hero-stats > *:last-child { border-bottom: none !important; }
-        }
-        @media (max-width: 380px) {
-          .hero-section { padding: 16px 12px 28px !important; }
-          .hero-book {
-            transform: scale(0.62);
-            margin-top: 4px;
-            margin-bottom: -55px;
+          .hero-book-wrapper {
+            max-width: 220px !important;
+          }
+          .hero-book-card {
+            width: 170px !important;
+          }
+          .hero-pedestal {
+            max-width: 230px !important;
           }
         }
       `}</style>
