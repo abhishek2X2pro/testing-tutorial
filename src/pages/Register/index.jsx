@@ -115,10 +115,10 @@ export default function Register() {
 
   return (
     <PageWrapper>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', width: '100%', display: 'flex', gap: '24px', alignItems: 'start' }}>
+      <div className="auth-layout" style={{ maxWidth: '1280px', margin: '0 auto', width: '100%', display: 'flex', gap: '24px', alignItems: 'start' }}>
 
         {/* LEFT SIDEBAR */}
-        <div style={{ width: '200px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <div className="auth-sidebar" style={{ width: '200px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
           {SIDEBAR_MENU.map((item) => {
             const Icon = item.icon;
             return (
@@ -184,7 +184,7 @@ export default function Register() {
           <p style={{ color: 'var(--text-muted)', fontSize: '0.86rem', margin: '0 0 8px' }}>Join AI Learning and start your AI learning journey today.</p>
 
           {/* Main Card (Split 2 Columns) */}
-          <div style={{ ...card, padding: '0', display: 'grid', gridTemplateColumns: '1fr 420px', overflow: 'hidden' }}>
+          <div className="auth-card-split" style={{ ...card, padding: '0', display: 'grid', gridTemplateColumns: '1fr 420px', overflow: 'hidden' }}>
 
             {/* Left Column — Feature Highlights */}
             <div style={{

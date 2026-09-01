@@ -638,3 +638,431 @@ html.light .hero-bg {
               radial-gradient(ellipse 50% 35% at 80% 90%, rgba(14,165,233,.08) 0%, transparent 60%),
               var(--bg-primary);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE FIXES — Complete Audit Pass
+   All breakpoints: 320px, 360px, 375px, 390px, 414px, 768px
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─────────────────── Navbar Mobile Fixes ─────────────────── */
+@media (max-width: 768px) {
+  /* Navbar: reduce padding on mobile */
+  header[style*="position: fixed"] {
+    padding: 0 12px !important;
+    gap: 8px !important;
+  }
+
+  /* On mobile: hide Browse button text to reduce clutter */
+  .navbar-browse-btn span,
+  header .hidden.sm\:flex {
+    display: none !important;
+  }
+
+  /* Theme toggle: hide text label on mobile, keep icon */
+  header button[title*="Mode"] span {
+    display: none !important;
+  }
+  header button[title*="Mode"] {
+    padding: 6px 8px !important;
+    gap: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  header[style*="position: fixed"] {
+    padding: 0 8px !important;
+    gap: 6px !important;
+  }
+}
+
+/* ─────────────────── Page Container Mobile Fixes ─────────────────── */
+/* Main page wrapper — reduce padding on mobile */
+@media (max-width: 768px) {
+  /* Generic page padding fix */
+  div[style*="padding: 24px 28px"],
+  div[style*="padding: '24px 28px'"] {
+    padding: 16px 16px 48px !important;
+  }
+}
+
+/* ─────────────────── Dashboard Mobile Fixes ─────────────────── */
+.dashboard-main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(320px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .dashboard-main-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Dashboard recommended grid */
+.dashboard-rec-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .dashboard-rec-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-rec-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─────────────────── MyLearning Mobile Fixes ─────────────────── */
+.my-learning-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(300px, 340px);
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .my-learning-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─────────────────── Checkout Mobile Fixes ─────────────────── */
+.checkout-main-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(310px, 350px);
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .checkout-main-grid {
+    grid-template-columns: 1fr !important;
+  }
+  /* Unstick the order summary on mobile */
+  .checkout-order-summary {
+    position: relative !important;
+    top: auto !important;
+  }
+}
+
+/* Cart table scrollable on mobile */
+.cart-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+  /* Feature strip — 1 column on small screens */
+  .checkout-feature-strip-3 {
+    grid-template-columns: 1fr !important;
+  }
+  .checkout-feature-strip-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-feature-strip-4 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─────────────────── AllCourses Mobile Fixes ─────────────────── */
+@media (max-width: 640px) {
+  .courses-header-controls {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  .courses-search-wrapper {
+    width: 100% !important;
+  }
+  .courses-search-input {
+    width: 100% !important;
+  }
+  .courses-sort-select {
+    width: 100% !important;
+  }
+}
+
+/* Category pills — horizontal scroll on mobile */
+.category-pills-bar {
+  overflow-x: auto;
+  flex-wrap: nowrap !important;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 8px !important;
+  margin-bottom: 20px !important;
+}
+.category-pills-bar::-webkit-scrollbar { display: none; }
+
+/* ─────────────────── ChatWidget Mobile Fix ─────────────────── */
+/* Move chat widget higher on mobile so it doesn't block CTAs */
+@media (max-width: 768px) {
+  .chat-widget-btn {
+    right: 16px !important;
+    bottom: 20px !important;
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .chat-widget-popup {
+    right: 16px !important;
+    bottom: 76px !important;
+    width: calc(100vw - 32px) !important;
+    max-width: 320px !important;
+  }
+}
+
+/* ─────────────────── Hero Section Mobile ─────────────────── */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 24px 16px 36px !important;
+  }
+  /* Stats strip — 2x2 grid on mobile */
+  .hero-stats {
+    flex-wrap: wrap !important;
+    gap: 0 !important;
+    width: 100% !important;
+  }
+  .hero-stats > * {
+    flex: 1 1 45% !important;
+    border-left: none !important;
+    padding: 10px 10px !important;
+  }
+  /* CTA buttons stack on very small screens */
+}
+
+@media (max-width: 480px) {
+  .hero-stats > * {
+    flex: 1 1 100% !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
+  }
+  .hero-stats > *:last-child {
+    border-bottom: none !important;
+  }
+}
+
+/* ─────────────────── HomeSections Mobile ─────────────────── */
+@media (max-width: 768px) {
+  /* HomeSection wrapper padding */
+  section[style*="padding: '30px 32px'"],
+  section[style*="padding: 30px 32px"],
+  section[style*="padding: '24px 32px 26px'"],
+  section[style*="padding: 24px 32px 26px"] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* TrustedBy padding */
+  .trusted-by-section {
+    padding: 20px 16px !important;
+  }
+}
+
+/* ─────────────────── Footer Mobile Fixes ─────────────────── */
+@media (max-width: 480px) {
+  footer > div {
+    padding: 24px 16px 20px !important;
+  }
+  .footer-copy {
+    white-space: normal !important;
+    margin-top: 20px !important;
+  }
+}
+
+/* ─────────────────── General Grid Responsive ─────────────────── */
+/* 3-col grids → 2-col on tablet, 1-col on mobile */
+@media (max-width: 640px) {
+  .grid-cols-3-responsive {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 380px) {
+  .grid-cols-3-responsive {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* 4-col grids → 2-col on tablet, 1-col on mobile */
+@media (max-width: 768px) {
+  .grid-cols-4-responsive {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 480px) {
+  .grid-cols-4-responsive {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─────────────────── Page Padding Utility ─────────────────── */
+.page-container {
+  padding: 24px 28px 64px;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 16px 16px 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-container {
+    padding: 12px 12px 40px;
+  }
+}
+
+/* ─────────────────── Overflow safety ─────────────────── */
+/* Prevent horizontal overflow from any child */
+.overflow-x-safe {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Table responsive wrapper */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+/* ─────────────────── Touch target sizes ─────────────────── */
+@media (max-width: 768px) {
+  /* Minimum 44px touch targets for interactive elements */
+  button, a[role="button"], [role="button"] {
+    min-height: 36px;
+  }
+}
+
+/* ─────────────────── Mobile-specific heading sizes ─────────────────── */
+@media (max-width: 480px) {
+  h1[style*="font-size: 1.75rem"] {
+    font-size: 1.4rem !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL MOBILE SAFE PADDING — Applied to all section-level
+   containers so no page overflows horizontally on mobile.
+   Uses max() to cap padding without overriding intentional
+   card/inner-element paddings.
+   ═══════════════════════════════════════════════════════════ */
+
+/* Global overflow protection */
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Cap horizontal padding on any inline-styled section-level divs on mobile */
+@media (max-width: 640px) {
+  /* Section-level padding override for subscription and similar pages */
+  section[style*="padding: '56px 32px'"],
+  section[style*="padding: '64px 32px'"],
+  section[style*="padding: '36px 32px'"],
+  section[style*="padding: '24px 32px'"] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Div-level padding override for subscription sections */
+  div[style*="padding: '56px 32px'"],
+  div[style*="padding: '64px 32px'"],
+  div[style*="padding: '36px 32px'"] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* More aggressive override for very small screens */
+  section, main {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+/* ─────────────────── Login / Register Mobile ─────────────────── */
+@media (max-width: 900px) {
+  .auth-sidebar {
+    display: none !important;
+  }
+  .auth-card-split {
+    grid-template-columns: 1fr !important;
+  }
+  .auth-card-split > :first-child {
+    display: none !important; /* Hide left marketing panel on mobile to keep auth form clean & focused */
+  }
+}
+
+@media (max-width: 500px) {
+  .auth-card {
+    margin: 0 12px;
+    border-radius: 16px !important;
+  }
+}
+
+/* ─────────────────── Subscription Page Mobile ─────────────────── */
+@media (max-width: 768px) {
+  /* Subscription plans grid */
+  .subscription-plans-grid {
+    grid-template-columns: 1fr !important;
+  }
+  /* Subscription comparison table */
+  .subscription-compare {
+    overflow-x: auto !important;
+  }
+}
+
+/* ─────────────────── Profile Page Mobile ─────────────────── */
+@media (max-width: 768px) {
+  .profile-layout-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─────────────────── Settings Page Mobile ─────────────────── */
+@media (max-width: 768px) {
+  .settings-layout {
+    flex-direction: column !important;
+  }
+  .settings-sidebar {
+    width: 100% !important;
+    min-width: unset !important;
+  }
+  .settings-inner-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─────────────────── OrderDetails/Orders Mobile ──────────────── */
+@media (max-width: 768px) {
+  .orders-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─────────────────── CourseDetails Mobile ──────────────────────── */
+@media (max-width: 900px) {
+  .course-details-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─────────────────── TextBooks Mobile ─────────────────────────── */
+@media (max-width: 640px) {
+  .textbooks-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 360px) {
+  .textbooks-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

@@ -102,10 +102,10 @@ export default function Login() {
 
   return (
     <PageWrapper>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', width: '100%', display: 'flex', gap: '24px', alignItems: 'start' }}>
+      <div className="auth-layout" style={{ maxWidth: '1280px', margin: '0 auto', width: '100%', display: 'flex', gap: '24px', alignItems: 'start' }}>
 
         {/* LEFT SIDEBAR */}
-        <div style={{ width: '200px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <div className="auth-sidebar" style={{ width: '200px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
           {SIDEBAR_MENU.map((item) => {
             const Icon = item.icon;
             return (
@@ -171,7 +171,7 @@ export default function Login() {
           <p style={{ color: 'var(--text-muted)', fontSize: '0.86rem', margin: '0 0 8px' }}>Login to your account and continue your learning journey.</p>
 
           {/* Main Card (Split 2 Columns) */}
-          <div style={{ ...card, padding: '0', display: 'grid', gridTemplateColumns: '1fr 400px', overflow: 'hidden' }}>
+          <div className="auth-card-split" style={{ ...card, padding: '0', display: 'grid', gridTemplateColumns: '1fr 400px', overflow: 'hidden' }}>
 
             {/* Left Column — Learn Smarter + Professional Mockup */}
             <div style={{

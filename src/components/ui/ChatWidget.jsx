@@ -22,6 +22,7 @@ export default function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.96 }}
             transition={{ duration: 0.18, ease: 'easeOut' }}
+            className="chat-widget-popup"
             style={{
               position: 'fixed',
               right: '28px',
@@ -87,6 +88,7 @@ export default function ChatWidget() {
         aria-label={open ? 'Close support' : 'Open support'}
         whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.95 }}
+        className="chat-widget-btn"
         style={{
           position: 'fixed',
           right: '28px',

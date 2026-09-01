@@ -140,7 +140,7 @@ export default function MyLearning() {
   });
 
   return (
-    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh', padding: '24px 28px 64px' }}>
+    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh' }} className="page-container">
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
 
         {/* ── BREADCRUMB ── */}
@@ -271,6 +271,7 @@ export default function MyLearning() {
 
         {/* ── 2-COLUMN MAIN CONTENT GRID (LEFT: COURSES | RIGHT: PROGRESS & RECOMMENDED) ── */}
         <div
+          className="my-learning-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'minmax(0, 1.8fr) minmax(300px, 340px)',
@@ -291,10 +292,10 @@ export default function MyLearning() {
                   background: cardBg,
                   border: `1px solid ${border}`,
                   borderRadius: '16px',
-                  padding: '20px',
+                  padding: '16px',
                   display: 'flex',
-                  alignItems: 'center',
-                  gap: '20px',
+                  alignItems: 'flex-start',
+                  gap: '16px',
                   flexWrap: 'wrap',
                   boxShadow: isDark ? '0 2px 10px rgba(0,0,0,.25)' : '0 2px 12px rgba(99,102,241,.05)',
                   transition: 'transform .15s, border-color .15s',
@@ -334,7 +335,7 @@ export default function MyLearning() {
                 </div>
 
                 {/* Info & Progress */}
-                <div style={{ flex: 1, minWidth: '240px' }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <h3
                     style={{
                       fontSize: '0.98rem',

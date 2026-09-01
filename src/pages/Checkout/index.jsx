@@ -142,7 +142,7 @@ export default function Checkout() {
 
   return (
     <div style={{ background: 'var(--bg-primary)', minHeight: '100vh' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px 28px 48px' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }} className="page-container">
 
         {/* ── BREADCRUMB ── */}
         <div
@@ -225,6 +225,7 @@ export default function Checkout() {
 
         {/* ── MAIN CONTENT (LEFT: CART TABLE + STRIPS | RIGHT: ORDER SUMMARY) ── */}
         <div
+          className="checkout-main-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: '1fr minmax(310px, 350px)',
@@ -242,9 +243,11 @@ export default function Checkout() {
                 background: 'var(--bg-card)',
                 border: `1px solid ${border}`,
                 borderRadius: '16px',
-                overflow: 'hidden',
+                overflow: 'visible',
               }}
             >
+              {/* Scrollable wrapper on mobile */}
+              <div className="cart-table-wrapper" style={{ borderRadius: '16px', overflow: 'hidden' }}>
               {/* Table Header Bar */}
               <div
                 style={{
@@ -257,6 +260,7 @@ export default function Checkout() {
                   fontSize: '0.78rem',
                   fontWeight: 700,
                   color: 'var(--text-secondary)',
+                  minWidth: '580px',
                 }}
               >
                 <div>
@@ -298,6 +302,7 @@ export default function Checkout() {
                       padding: '18px 20px',
                       borderBottom: `1px solid ${border}`,
                       transition: 'background .15s',
+                      minWidth: '580px',
                     }}
                   >
                     {/* Checkbox */}
@@ -456,10 +461,12 @@ export default function Checkout() {
                   </div>
                 ))
               )}
+              </div> {/* end cart-table-wrapper */}
             </div>
 
             {/* FEATURE STRIP 1: BELOW CART TABLE (100% Original, Secure Payment, Hassle-free Returns) */}
             <div
+              className="checkout-feature-strip-3"
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(3, 1fr)',
@@ -509,6 +516,7 @@ export default function Checkout() {
 
             {/* TRUST FOOTER STRIP 2: DIRECTLY BELOW (NO VERTICAL GAP) */}
             <div
+              className="checkout-feature-strip-4"
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(4, 1fr)',
@@ -571,7 +579,7 @@ export default function Checkout() {
           </div>
 
           {/* RIGHT COLUMN: ORDER SUMMARY + COUPON BOX */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', position: 'sticky', top: '80px' }}>
+          <div className="checkout-order-summary" style={{ display: 'flex', flexDirection: 'column', gap: '16px', position: 'sticky', top: '80px' }}>
 
             {/* ORDER SUMMARY CARD */}
             <div

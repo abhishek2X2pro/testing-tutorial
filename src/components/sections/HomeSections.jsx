@@ -42,7 +42,7 @@ function HomeSection({ children, bg = 'transparent', style = {} }) {
       style={{
         width: '100%',
         boxSizing: 'border-box',
-        padding: '30px 32px',
+        padding: 'clamp(20px, 4vw, 30px) clamp(16px, 4vw, 32px)',
         background: bg,
         overflowX: 'clip',
         ...style,
@@ -208,7 +208,7 @@ export function TrustedBy() {
     <section
       style={{
         width: '100%',
-        padding: '24px 32px 26px',
+        padding: 'clamp(16px, 3vw, 24px) clamp(16px, 4vw, 32px) clamp(18px, 3vw, 26px)',
         borderTop: isDark ? '1px solid rgba(255,255,255,.06)' : '1px solid rgba(15,23,42,.06)',
         borderBottom: isDark ? '1px solid rgba(255,255,255,.06)' : '1px solid rgba(15,23,42,.06)',
         background: isDark ? 'rgba(255,255,255,.015)' : '#fcfcfe',

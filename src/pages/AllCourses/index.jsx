@@ -119,7 +119,7 @@ export default function AllCourses() {
   }, [filteredCourses, page]);
 
   return (
-    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh', padding: '24px 28px 64px' }}>
+    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh' }} className="page-container">
       <div style={{ maxWidth: '1380px', margin: '0 auto' }}>
 
         {/* ── BREADCRUMB ── */}
@@ -175,8 +175,8 @@ export default function AllCourses() {
           </div>
 
           {/* Search Input & Sort Dropdown */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-            <div style={{ position: 'relative', width: '260px' }}>
+          <div className="courses-header-controls" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+            <div className="courses-search-wrapper" style={{ position: 'relative', width: '260px' }}>
               <input
                 type="text"
                 value={search}
@@ -185,6 +185,7 @@ export default function AllCourses() {
                   setPage(1);
                 }}
                 placeholder="Search courses..."
+                className="courses-search-input"
                 style={{
                   width: '100%',
                   padding: '9px 12px 9px 36px',
@@ -206,6 +207,7 @@ export default function AllCourses() {
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value)}
+              className="courses-sort-select"
               style={{
                 padding: '9px 14px',
                 borderRadius: '8px',
@@ -229,6 +231,7 @@ export default function AllCourses() {
 
         {/* ── TOP CATEGORY PILLS BAR ── */}
         <div
+          className="category-pills-bar"
           style={{
             display: 'flex',
             alignItems: 'center',

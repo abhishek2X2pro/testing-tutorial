@@ -112,10 +112,10 @@ export default function Navbar() {
           top: 0, left: 0, right: 0,
           zIndex: 40,
           height: 'var(--navbar-height)',
-          padding: '0 32px',
+          padding: '0 clamp(8px, 3vw, 32px)',
           display: 'flex',
           alignItems: 'center',
-          gap: '20px',
+          gap: 'clamp(6px, 1.5vw, 20px)',
           background: isDark
             ? (scrolled ? 'rgba(6,11,24,0.97)' : 'rgba(6,11,24,0.92)')
             : (scrolled ? 'rgba(255,255,255,0.98)' : '#ffffff'),
@@ -262,7 +262,7 @@ export default function Navbar() {
         </div>
 
         {/* ── Right cluster ── */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginLeft: 'auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(6px, 1vw, 12px)', marginLeft: 'auto' }}>
 
           {/* Theme Toggle Pill */}
           <button
@@ -270,8 +270,8 @@ export default function Navbar() {
             aria-label="Toggle theme"
             title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             style={{
-              display: 'flex', alignItems: 'center', gap: '6px',
-              padding: '6px 12px', borderRadius: '999px',
+              display: 'flex', alignItems: 'center', gap: '4px',
+              padding: '6px 8px', borderRadius: '999px',
               background: isDark
                 ? 'linear-gradient(135deg, rgba(251,191,36,.12), rgba(251,191,36,.06))'
                 : 'linear-gradient(135deg, rgba(59,130,246,.12), rgba(6,182,212,.07))',
@@ -281,8 +281,8 @@ export default function Navbar() {
             }}
           >
             {isDark
-              ? <><Sun size={14} color="#fbbf24" /><span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#fbbf24' }}>Light</span></>
-              : <><Moon size={14} color="#3b82f6" /><span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#3b82f6' }}>Dark</span></>}
+              ? <><Sun size={14} color="#fbbf24" /><span className="hidden sm:block" style={{ fontSize: '0.72rem', fontWeight: 700, color: '#fbbf24' }}>Light</span></>
+              : <><Moon size={14} color="#3b82f6" /><span className="hidden sm:block" style={{ fontSize: '0.72rem', fontWeight: 700, color: '#3b82f6' }}>Dark</span></>}
           </button>
 
           {/* Cart Icon */}
@@ -572,22 +572,43 @@ export default function Navbar() {
             </form>
 
             {navLinks.map((item) => (
-              <Link
-                key={item.label}
-                to={item.to}
-                style={{
-                  padding: '10px 12px', borderRadius: '9px',
-                  fontSize: '0.9rem',
-                  fontWeight: isActive(item.to) ? 700 : 500,
-                  color: isActive(item.to) ? accent : 'var(--text-secondary)',
-                  background: isActive(item.to)
-                    ? (isDark ? 'rgba(99,102,241,.14)' : 'rgba(79,70,229,.07)')
-                    : 'transparent',
-                  textDecoration: 'none',
-                }}
-              >
-                {item.label}
-              </Link>
+              <div key={item.label}>
+                <Link
+                  to={item.to}
+                  style={{
+                    display: 'block',
+                    padding: '10px 12px', borderRadius: '9px',
+                    fontSize: '0.9rem',
+                    fontWeight: isActive(item.to) ? 700 : 500,
+                    color: isActive(item.to) ? accent : 'var(--text-secondary)',
+                    background: isActive(item.to)
+                      ? (isDark ? 'rgba(99,102,241,.14)' : 'rgba(79,70,229,.07)')
+                      : 'transparent',
+                    textDecoration: 'none',
+                  }}
+                >
+                  {item.label}
+                </Link>
+                {item.children && (
+                  <div style={{ paddingLeft: '16px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.label}
+                        to={child.to}
+                        style={{
+                          display: 'block',
+                          padding: '7px 12px', borderRadius: '8px',
+                          fontSize: '0.82rem', fontWeight: 500,
+                          color: 'var(--text-muted)',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </motion.div>
         )}

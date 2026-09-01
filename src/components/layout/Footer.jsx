@@ -70,7 +70,7 @@ export default function Footer() {
           maxWidth: '1120px',
           margin: '0 auto',
           boxSizing: 'border-box',
-          padding: '34px 32px 30px',
+          padding: 'clamp(24px, 4vw, 34px) clamp(16px, 4vw, 32px) clamp(20px, 3vw, 30px)',
         }}
       >
         <div className="footer-grid">
@@ -207,7 +207,12 @@ export default function Footer() {
           .footer-copy { white-space: normal !important; }
         }
         @media (max-width: 620px) {
-          .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
+          .footer-grid > :first-child { grid-column: 1 / -1; }
+        }
+        @media (max-width: 380px) {
+          .footer-grid { grid-template-columns: 1fr; }
+          .footer-copy { white-space: normal !important; margin-top: 16px !important; }
         }
       `}</style>
     </footer>

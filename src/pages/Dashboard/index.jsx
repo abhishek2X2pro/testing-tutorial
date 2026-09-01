@@ -177,7 +177,7 @@ export default function Dashboard() {
   const scrollRecRight = () => recScrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
 
   return (
-    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh', padding: '24px 28px 64px' }}>
+    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh' }} className="page-container">
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
 
         {/* ── HEADER GREETING & STREAK / POINTS BADGES ── */}
@@ -287,6 +287,7 @@ export default function Dashboard() {
 
         {/* ── MAIN DASHBOARD GRID (LEFT: 65% | RIGHT: 35%) ── */}
         <div
+          className="dashboard-main-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'minmax(0, 1.8fr) minmax(320px, 1fr)',
@@ -333,8 +334,8 @@ export default function Dashboard() {
                 <div
                   style={{
                     position: 'relative',
-                    width: '130px',
-                    height: '130px',
+                    width: 'clamp(80px, 20vw, 130px)',
+                    height: 'clamp(80px, 20vw, 130px)',
                     borderRadius: '14px',
                     overflow: 'hidden',
                     flexShrink: 0,
@@ -371,7 +372,7 @@ export default function Dashboard() {
                 </div>
 
                 {/* Info & Progress */}
-                <div style={{ flex: 1, minWidth: '220px' }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <h3
                     style={{
                       fontFamily: 'var(--font-display)',
@@ -794,6 +795,7 @@ export default function Dashboard() {
           {/* Full-width 4-card Grid */}
           <div
             ref={recScrollRef}
+            className="dashboard-rec-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(4, 1fr)',

@@ -113,7 +113,7 @@ export default function Certificates() {
   };
 
   return (
-    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh', padding: '24px 28px 64px' }}>
+    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh' }} className="page-container">
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
 
         {/* ── BREADCRUMB ── */}

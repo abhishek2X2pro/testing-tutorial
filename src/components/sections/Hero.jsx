@@ -558,7 +558,7 @@ export default function Hero() {
           align-items: center;
         }
         @media (max-width: 1180px) {
-          .hero-grid { grid-template-columns: minmax(0, 1fr) 300px; }
+          .hero-grid { grid-template-columns: minmax(0, 1fr) 260px; }
           .hero-features {
             grid-column: 1 / -1;
             flex-direction: row !important;
@@ -566,16 +566,45 @@ export default function Hero() {
           }
           .hero-features > * { flex: 1 1 220px; }
         }
-        @media (max-width: 1020px) {
-          .hero-stats { flex-wrap: wrap; gap: 12px 0; width: 100% !important; }
-          .hero-stats > * { flex: 1 1 46% !important; border-left: none !important; }
-        }
         @media (max-width: 900px) {
-          .hero-section { padding: 30px 20px 40px; }
-          .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+          .hero-section { padding: 24px 16px 36px !important; }
+          .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+          .hero-features {
+            grid-column: 1 / -1;
+            flex-direction: row !important;
+            flex-wrap: wrap;
+          }
+          .hero-features > * { flex: 1 1 200px; }
+          .hero-stats { flex-wrap: wrap !important; gap: 0 !important; width: 100% !important; }
+          .hero-stats > * { flex: 1 1 45% !important; border-left: none !important; padding: 10px !important; }
+          .hero-book {
+            display: flex !important;
+            transform: scale(0.8);
+            transform-origin: top center;
+            margin-top: 12px;
+            margin-bottom: -40px;
+          }
         }
         @media (max-width: 560px) {
-          .hero-book { display: none; }
+          .hero-book {
+            display: flex !important;
+            transform: scale(0.68);
+            transform-origin: top center;
+            margin-top: 6px;
+            margin-bottom: -40px;
+          }
+          .hero-features { display: flex !important; flex-direction: column !important; gap: 10px; width: 100%; }
+          .hero-features > * { flex: 1 1 100%; }
+          .hero-stats > * { flex: 1 1 100% !important; border-bottom: 1px solid rgba(255,255,255,.06) !important; }
+          .hero-stats > *:last-child { border-bottom: none !important; }
+        }
+        @media (max-width: 380px) {
+          .hero-section { padding: 16px 12px 28px !important; }
+          .hero-book {
+            transform: scale(0.62);
+            margin-top: 4px;
+            margin-bottom: -55px;
+          }
         }
       `}</style>
     </section>
