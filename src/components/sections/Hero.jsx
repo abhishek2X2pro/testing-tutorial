@@ -133,6 +133,7 @@ function HeroBook() {
 
       {/* Book */}
       <motion.div
+        className="hero-book-float"
         animate={{ y: [0, -5, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
         style={{ position: 'relative', marginBottom: '36px', filter: 'drop-shadow(14px 22px 34px rgba(30,27,75,.34))', width: '100%', display: 'flex', justifyContent: 'center' }}
@@ -284,9 +285,12 @@ export default function Hero() {
       <div className="hero-grid">
         {/* ── LEFT: copy ── */}
         <motion.div className="hero-copy" variants={containerVar} initial="hidden" animate="visible">
+          {/* Intro block — on mobile this sits beside the book */}
+          <motion.div className="hero-intro" variants={containerVar}>
           {/* Badge */}
           <motion.div variants={itemVar}>
             <span
+              className="hero-badge"
               style={{
                 display: 'inline-flex', alignItems: 'center',
                 padding: '6px 13px', borderRadius: '7px',
@@ -302,6 +306,7 @@ export default function Hero() {
           {/* Headline */}
           <motion.h1
             variants={itemVar}
+            className="hero-title"
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: 'clamp(2.1rem, 4.7vw, 3.75rem)',
@@ -329,6 +334,7 @@ export default function Hero() {
           {/* Subtitle */}
           <motion.p
             variants={itemVar}
+            className="hero-subtitle"
             style={{
               color: 'var(--text-secondary)',
               fontSize: '0.94rem',
@@ -340,7 +346,10 @@ export default function Hero() {
             Access top-quality books, expert-led courses, hands-on projects,
             and resources to master AI and build a successful career.
           </motion.p>
+          </motion.div>
 
+          {/* Actions block — stats, CTAs, trust line (full width on mobile) */}
+          <motion.div className="hero-actions" variants={containerVar}>
           {/* Stats card */}
           <motion.div
             variants={itemVar}
@@ -474,6 +483,7 @@ export default function Hero() {
               </span>
             ))}
           </motion.div>
+          </motion.div>
         </motion.div>
 
         {/* ── CENTER: book ── */}
@@ -585,59 +595,78 @@ export default function Hero() {
           .hero-features > * { flex: 1 1 220px; }
         }
 
+        /* ── Mobile / small tablet: book sits BESIDE the headline ── */
         @media (max-width: 900px) {
-          .hero-section { padding: 20px 16px 32px !important; }
+          .hero-section { padding: 18px 14px 30px !important; }
+
           .hero-grid {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 28px !important;
+            display: grid !important;
+            grid-template-columns: minmax(0, 1fr) minmax(140px, 44%);
+            grid-template-areas:
+              "intro   book"
+              "actions actions"
+              "feats   feats";
+            column-gap: 14px;
+            row-gap: 22px;
+            align-items: start;
           }
-          .hero-copy {
-            order: 1 !important;
-            width: 100% !important;
-          }
+
+          /* let .hero-intro / .hero-actions become grid items themselves */
+          .hero-copy { display: contents !important; }
+          .hero-intro { grid-area: intro; min-width: 0; }
+          .hero-actions { grid-area: actions; min-width: 0; }
+
           .hero-book {
-            order: 2 !important;
+            grid-area: book;
+            align-self: center;
             width: 100% !important;
-            display: flex !important;
-            justify-content: center !important;
-            margin: 10px 0 !important;
+            margin: 0 !important;
           }
-          .hero-book-wrapper {
-            max-width: 250px !important;
+          .hero-features { grid-area: feats; }
+
+          .hero-badge { font-size: 0.66rem !important; padding: 5px 10px !important; }
+          .hero-title {
+            font-size: clamp(1.32rem, 5.6vw, 2.15rem) !important;
+            margin-top: 14px !important;
           }
-          .hero-book-card {
-            width: 190px !important;
-            max-width: 60vw !important;
+          .hero-subtitle {
+            font-size: 0.82rem !important;
+            line-height: 1.6 !important;
+            margin-top: 12px !important;
           }
+
+          .hero-book-wrapper { max-width: min(100%, 280px) !important; }
+          .hero-book-card { width: 100% !important; max-width: 240px !important; }
+          .hero-book-float { margin-bottom: 24px !important; }
           .hero-pedestal {
-            max-width: 260px !important;
+            width: 112% !important;
+            max-width: none !important;
+            height: 58px !important;
           }
+
           .hero-features {
-            order: 3 !important;
             width: 100% !important;
             display: flex !important;
-            flex-direction: column !important;
+            flex-direction: row !important;
+            flex-wrap: wrap !important;
             gap: 10px !important;
           }
-          .hero-features > * { flex: 1 1 100% !important; }
+          .hero-features > * { flex: 1 1 210px !important; }
           .hero-stats { flex-wrap: wrap !important; gap: 0 !important; width: 100% !important; }
           .hero-stats > * { flex: 1 1 45% !important; border-left: none !important; padding: 10px !important; }
         }
 
-        @media (max-width: 480px) {
-          .hero-section { padding: 16px 12px 28px !important; }
-          .hero-stats > * { flex: 1 1 100% !important; border-bottom: 1px solid rgba(255,255,255,.06) !important; }
-          .hero-stats > *:last-child { border-bottom: none !important; }
-          .hero-book-wrapper {
-            max-width: 220px !important;
-          }
-          .hero-book-card {
-            width: 170px !important;
-          }
-          .hero-pedestal {
-            max-width: 230px !important;
-          }
+        @media (max-width: 560px) {
+          .hero-grid { column-gap: 12px; row-gap: 18px; }
+          .hero-features > * { flex: 1 1 100% !important; }
+        }
+
+        @media (max-width: 400px) {
+          .hero-section { padding: 16px 12px 26px !important; }
+          .hero-grid { grid-template-columns: minmax(0, 1fr) 42%; column-gap: 10px; }
+          .hero-title { font-size: clamp(1.18rem, 5.4vw, 1.5rem) !important; }
+          .hero-subtitle { font-size: 0.78rem !important; }
+          .hero-stats > * { padding: 9px 8px !important; }
         }
       `}</style>
     </section>
