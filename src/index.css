@@ -1009,14 +1009,52 @@ html.light .hero-bg {
 }
 
 /* ─────────────────── Subscription Page Mobile ─────────────────── */
-@media (max-width: 768px) {
-  /* Subscription plans grid */
+@media (max-width: 900px) {
+  .subscription-faq-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+  .subscription-faq-card {
+    position: relative !important;
+    top: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 24px 18px !important;
+    margin-top: 12px !important;
+  }
+  .subscription-hero-container {
+    flex-direction: column !important;
+    gap: 32px !important;
+    text-align: center !important;
+    align-items: center !important;
+  }
+  .subscription-hero-showcase {
+    width: 100% !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+  }
   .subscription-plans-grid {
     grid-template-columns: 1fr !important;
   }
-  /* Subscription comparison table */
-  .subscription-compare {
-    overflow-x: auto !important;
+  .subscription-guarantee-banner {
+    flex-direction: column !important;
+    text-align: center !important;
+    justify-content: center !important;
+    gap: 16px !important;
+  }
+  .subscription-guarantee-banner button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .subscription-testimonials-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .subscription-trust-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 

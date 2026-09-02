@@ -394,6 +394,7 @@ export default function Subscription() {
         />
 
         <div
+          className="subscription-hero-container"
           style={{
             maxWidth: '1200px',
             margin: '0 auto',
@@ -581,6 +582,7 @@ export default function Subscription() {
 
           {/* Right: 3D Book & Potted Plant Showcase */}
           <motion.div
+            className="subscription-hero-showcase"
             initial={{ opacity: 0, scale: 0.92, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -877,6 +879,7 @@ export default function Subscription() {
 
           {/* 4 Plan Cards Grid */}
           <div
+            className="subscription-plans-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
@@ -1152,6 +1155,7 @@ export default function Subscription() {
 
           {/* ══ 30-DAY MONEY BACK BANNER ════════════════════════ */}
           <div
+            className="subscription-guarantee-banner"
             style={{
               background: isDark
                 ? 'linear-gradient(135deg,rgba(99,102,241,.18),rgba(139,92,246,.12))'
@@ -1292,6 +1296,7 @@ export default function Subscription() {
             </button>
 
             <div
+              className="subscription-testimonials-grid"
               style={{
                 flex: 1,
                 display: 'grid',
@@ -1394,6 +1399,7 @@ export default function Subscription() {
       {/* ══ 5. FAQ + UPGRADE CTA CARD ════════════════════════════ */}
       <section style={{ padding: '64px 32px', background: 'var(--bg-primary)' }}>
         <div
+          className="subscription-faq-grid"
           style={{
             maxWidth: '1200px',
             margin: '0 auto',
@@ -1422,6 +1428,7 @@ export default function Subscription() {
           </div>
 
           <motion.div
+            className="subscription-faq-card"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -1504,6 +1511,7 @@ export default function Subscription() {
         }}
       >
         <div
+          className="subscription-trust-grid"
           style={{
             maxWidth: '1200px',
             margin: '0 auto',
