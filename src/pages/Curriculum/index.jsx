@@ -114,7 +114,7 @@ export default function Curriculum() {
   };
 
   return (
-    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh' }} className="page-container">
+    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh', overflowX: 'hidden' }} className="page-container">
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
 
         {/* BREADCRUMB */}
@@ -208,6 +208,7 @@ export default function Curriculum() {
 
         {/* ── 2-COLUMN MAIN CONTENT (VIDEO + PLAYLIST SIDEBAR) ── */}
         <div
+          className="curriculum-main-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'minmax(0, 1fr) minmax(310px, 340px)',
@@ -217,7 +218,7 @@ export default function Curriculum() {
         >
 
           {/* LEFT: VIDEO PLAYER & DETAILS */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div className="curriculum-left-col" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
             {/* VIDEO PLAYER */}
             <div
@@ -312,8 +313,8 @@ export default function Curriculum() {
                 padding: '20px 24px',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-                <div style={{ display: 'flex', gap: '20px' }}>
+              <div className="curriculum-tab-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+                <div className="curriculum-tabs-bar" style={{ display: 'flex', gap: '20px' }}>
                   {['overview', 'notes', 'qna'].map((t) => (
                     <button
                       key={t}
@@ -421,7 +422,7 @@ export default function Curriculum() {
               </div>
 
               {/* BOTTOM CARDS: MY NOTES & TOP DISCUSSION */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '20px' }}>
+              <div className="curriculum-bottom-cards" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '20px' }}>
                 
                 {/* My Notes */}
                 <div
@@ -486,6 +487,7 @@ export default function Curriculum() {
 
             {/* FLOATING "UP NEXT" BANNER */}
             <div
+              className="curriculum-up-next"
               style={{
                 padding: '14px 20px',
                 borderRadius: '12px',
@@ -494,6 +496,8 @@ export default function Curriculum() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '12px',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -529,7 +533,7 @@ export default function Curriculum() {
           </div>
 
           {/* RIGHT: COURSE CONTENT & RESOURCES SIDEBAR */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div className="curriculum-right-sidebar" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
             {/* CARD 1: COURSE CONTENT */}
             <div

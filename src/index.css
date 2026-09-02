@@ -1407,3 +1407,183 @@ html.light .hero-bg {
     font-size: 0.75rem !important;
   }
 }
+
+/* ─────────────────── Curriculum Page Mobile ─────────────────── */
+
+/* ≤900px: collapse 2-col to 1-col, sidebar below video */
+@media (max-width: 900px) {
+  .curriculum-main-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .curriculum-left-col {
+    order: 1 !important;
+  }
+  .curriculum-right-sidebar {
+    order: 2 !important;
+  }
+}
+
+/* ≤768px: tab row, bottom cards, up next */
+@media (max-width: 768px) {
+  /* Tab row — stack tabs + mark complete button vertically */
+  .curriculum-tab-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  .curriculum-tab-row > button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  /* Tabs — horizontal scroll */
+  .curriculum-tabs-bar {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    width: 100% !important;
+    gap: 8px !important;
+    padding-bottom: 4px !important;
+  }
+  .curriculum-tabs-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .curriculum-tabs-bar button {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    padding-bottom: 6px !important;
+  }
+
+  /* My Notes + Top Discussion: 1 column */
+  .curriculum-bottom-cards {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* UP NEXT banner: stack info + button */
+  .curriculum-up-next {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  .curriculum-up-next > button {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* Mark as Complete button — full width */
+  .curriculum-tab-row > div:last-child > button,
+  .curriculum-tab-row > button:last-child {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Overview spec box — full width below description */
+  .curriculum-left-col [style*="width: '200px'"] {
+    width: 100% !important;
+  }
+}
+
+/* ≤480px: tighten h1 heading */
+@media (max-width: 480px) {
+  .curriculum-left-col h1,
+  .page-container h1 {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* ─────────────────── Live Classes Page Mobile ─────────────────── */
+
+/* ≤1100px: collapse to 2-col, hide right sidebar */
+@media (max-width: 1100px) {
+  .live-portal-grid {
+    grid-template-columns: 200px 1fr !important;
+  }
+  .live-right-sidebar {
+    display: none !important;
+  }
+}
+
+/* ≤900px: single column, hide both sidebars */
+@media (max-width: 900px) {
+  .live-portal-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .live-left-sidebar {
+    display: none !important;
+  }
+  .live-right-sidebar {
+    display: none !important;
+  }
+  .live-center-col {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* ≤768px: tabs scroll, class cards, banner */
+@media (max-width: 768px) {
+  /* Tabs — no wrap, horizontal scroll */
+  .live-tabs-bar {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 12px !important;
+  }
+  .live-tabs-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .live-tabs-bar button {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Class cards — thumbnail + details stack, actions go full-width below */
+  .live-class-card {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  .live-class-card > div:first-child {
+    /* thumbnail */
+    width: 100% !important;
+    height: 100px !important;
+    border-radius: 10px !important;
+  }
+  .live-class-card-actions {
+    width: 100% !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+  }
+  .live-class-card-actions > span {
+    /* "Starts in X days" badge */
+    flex: 1 !important;
+    text-align: center !important;
+  }
+  .live-class-card-actions > div {
+    flex: 1 !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+    min-width: 200px !important;
+  }
+  .live-class-card-actions > div button {
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+
+  /* Bottom banner — stack vertically */
+  .live-banner-strip {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  .live-banner-strip button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}

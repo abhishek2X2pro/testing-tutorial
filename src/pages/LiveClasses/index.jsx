@@ -172,24 +172,30 @@ export default function LiveClasses() {
         </div>
 
         {/* ── 3-COLUMN MAIN PORTAL DASHBOARD LAYOUT ── */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '220px 1fr 280px',
-          gap: '24px',
-          alignItems: 'start',
-        }}>
+        <div
+          className="live-portal-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '220px 1fr 280px',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
 
           {/* ── COLUMN 1: LEFT USER PORTAL SIDEBAR ── */}
-          <div style={{
-            background: isDark ? '#0f172a' : '#ffffff',
-            border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0'}`,
-            borderRadius: '16px',
-            padding: '16px 12px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            boxShadow: '0 1px 3px rgba(16, 24, 40, 0.04)',
-          }}>
+          <div
+            className="live-left-sidebar"
+            style={{
+              background: isDark ? '#0f172a' : '#ffffff',
+              border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0'}`,
+              borderRadius: '16px',
+              padding: '16px 12px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px',
+              boxShadow: '0 1px 3px rgba(16, 24, 40, 0.04)',
+            }}
+          >
             {/* Menu List */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
               {sidebarMenuItems.map((item) => {
@@ -284,7 +290,7 @@ export default function LiveClasses() {
           </div>
 
           {/* ── COLUMN 2: CENTER LIVE CLASSES & SCHEDULE ── */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div className="live-center-col" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
             {/* Header Title & Top Action */}
             <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
@@ -312,10 +318,16 @@ export default function LiveClasses() {
             </div>
 
             {/* Tabs Row */}
-            <div style={{
-              display: 'flex', gap: '20px', borderBottom: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0'}`,
-              paddingBottom: '10px',
-            }}>
+            <div
+              className="live-tabs-bar"
+              style={{
+                display: 'flex', gap: '20px', borderBottom: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0'}`,
+                paddingBottom: '10px',
+                overflowX: 'auto',
+                WebkitOverflowScrolling: 'touch',
+                scrollbarWidth: 'none',
+              }}
+            >
               {[
                 { id: 'upcoming', label: 'Upcoming Classes (3)' },
                 { id: 'registered', label: 'Registered (1)' },
@@ -345,6 +357,7 @@ export default function LiveClasses() {
               {upcomingClasses.map((item) => (
                 <div
                   key={item.id}
+                  className="live-class-card"
                   style={{
                     background: isDark ? '#0f172a' : '#ffffff',
                     border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0'}`,
@@ -400,10 +413,13 @@ export default function LiveClasses() {
                   </div>
 
                   {/* Right Actions & Starts In Badge */}
-                  <div style={{
-                    display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'space-between',
-                    gap: '12px', flexShrink: 0, width: '130px',
-                  }}>
+                  <div
+                    className="live-class-card-actions"
+                    style={{
+                      display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'space-between',
+                      gap: '12px', flexShrink: 0, width: '130px',
+                    }}
+                  >
                     <span style={{
                       padding: '4px 12px', borderRadius: '8px',
                       background: '#f5f3ff', color: '#4f46e5',
@@ -444,13 +460,16 @@ export default function LiveClasses() {
             </div>
 
             {/* Bottom Banner: Interactive Live Sessions Guidelines */}
-            <div style={{
-              background: isDark ? 'linear-gradient(135deg, #1e1b4b, #2e1065)' : '#f5f3ff',
-              border: `1px solid ${isDark ? 'rgba(99,102,241,0.3)' : '#ddd6fe'}`,
-              borderRadius: '16px', padding: '16px 20px',
-              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-              gap: '16px', flexWrap: 'wrap',
-            }}>
+            <div
+              className="live-banner-strip"
+              style={{
+                background: isDark ? 'linear-gradient(135deg, #1e1b4b, #2e1065)' : '#f5f3ff',
+                border: `1px solid ${isDark ? 'rgba(99,102,241,0.3)' : '#ddd6fe'}`,
+                borderRadius: '16px', padding: '16px 20px',
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                gap: '16px', flexWrap: 'wrap',
+              }}
+            >
               <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                 <div style={{
                   width: '38px', height: '38px', borderRadius: '50%',
@@ -484,7 +503,7 @@ export default function LiveClasses() {
           </div>
 
           {/* ── COLUMN 3: RIGHT CALENDAR & PAST CLASSES WIDGETS ── */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div className="live-right-sidebar" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
             {/* WIDGET 1: Interactive Month Calendar */}
             <div style={{
