@@ -8,9 +8,9 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Menu, Search, Bell, Sun, Moon, LogIn, UserPlus, ChevronDown,
+  Menu, Search, Bell, Sun, Moon, LogIn, UserPlus, ChevronDown, ChevronRight,
   LogOut, User, BookOpen, Award, Heart, Settings, X, Sparkles, CheckCircle2,
-  Download, Folder, Video, ShoppingCart
+  Download, Folder, Video, ShoppingCart, Home, FileText, Radio, LayoutGrid
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
@@ -26,13 +26,14 @@ const dropDownMotion = {
 
 // Primary nav — labels match the reference exactly.
 const navLinks = [
-  { label: 'Home',         to: '/' },
-  { label: 'Books',        to: '/textbooks' },
-  { label: 'Courses',      to: '/courses' },
-  { label: 'Live Classes', to: '/live-classes' },
+  { label: 'Home',         to: '/',            icon: Home },
+  { label: 'Books',        to: '/textbooks',   icon: BookOpen },
+  { label: 'Courses',      to: '/courses',     icon: LayoutGrid },
+  { label: 'Live Classes', to: '/live-classes', icon: Radio },
   {
     label: 'Resources',
     to: '/resources',
+    icon: Folder,
     children: [
       { label: 'Notes & PDFs',       to: '/notes' },
       { label: 'Assignments',        to: '/assignments' },
@@ -42,7 +43,7 @@ const navLinks = [
       { label: 'Certificates',       to: '/certificates' },
     ],
   },
-  { label: 'Blog', to: '/resources' },
+  { label: 'Blog', to: '/resources', icon: FileText },
 ];
 
 function useClickOutside(ref, handler) {
@@ -533,84 +534,276 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* ── Mobile nav sheet ── */}
+      {/* ── MOBILE DRAWER OVERLAY ── */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.18 }}
-            className="lg:hidden"
-            style={{
-              position: 'fixed', top: 'var(--navbar-height)', left: 0, right: 0,
-              zIndex: 39, padding: '14px 20px 20px',
-              background: 'var(--bg-card)',
-              borderBottom: isDark ? '1px solid rgba(255,255,255,.08)' : '1px solid rgba(15,23,42,.08)',
-              boxShadow: '0 16px 40px rgba(15,23,42,.12)',
-              display: 'flex', flexDirection: 'column', gap: '4px',
-            }}
-          >
-            <form onSubmit={handleSearch} style={{ position: 'relative', marginBottom: '10px' }}>
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search for books, courses..."
-                style={{
-                  width: '100%', padding: '10px 40px 10px 14px', borderRadius: '10px',
-                  background: isDark ? 'rgba(255,255,255,.05)' : '#f8fafc',
-                  border: isDark ? '1px solid rgba(255,255,255,.1)' : '1px solid rgba(15,23,42,.1)',
-                  color: 'var(--text-primary)', fontSize: '0.85rem', outline: 'none',
-                  fontFamily: 'inherit', boxSizing: 'border-box',
-                }}
-              />
-              <Search
-                size={16}
-                style={{ position: 'absolute', right: '13px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }}
-              />
-            </form>
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.22 }}
+              onClick={() => setMobileOpen(false)}
+              style={{
+                position: 'fixed', inset: 0,
+                background: 'rgba(0,0,0,0.55)',
+                backdropFilter: 'blur(3px)',
+                zIndex: 38,
+              }}
+            />
 
-            {navLinks.map((item) => (
-              <div key={item.label}>
-                <Link
-                  to={item.to}
+            {/* Drawer Panel — slides in from right */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 320, damping: 34 }}
+              className="lg:hidden"
+              style={{
+                position: 'fixed',
+                top: 0, right: 0, bottom: 0,
+                width: 'min(320px, 88vw)',
+                zIndex: 50,
+                background: isDark ? '#0b1220' : '#ffffff',
+                borderLeft: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#e5eaf5'}`,
+                boxShadow: '-8px 0 40px rgba(0,0,0,0.25)',
+                display: 'flex',
+                flexDirection: 'column',
+                overflow: 'hidden',
+              }}
+            >
+              {/* ── Drawer Header ── */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '16px 20px',
+                  borderBottom: `1px solid ${isDark ? 'rgba(255,255,255,0.07)' : '#eef1f8'}`,
+                  flexShrink: 0,
+                }}
+              >
+                <Link to="/" onClick={() => setMobileOpen(false)} style={{ textDecoration: 'none' }}>
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-primary)' }}>
+                    DevOpsX
+                  </span>
+                  <span style={{ fontSize: '0.65rem', color: 'var(--text-muted)', display: 'block', marginTop: '-2px', fontWeight: 500 }}>Learn AI. Build Future.</span>
+                </Link>
+                <button
+                  onClick={() => setMobileOpen(false)}
                   style={{
-                    display: 'block',
-                    padding: '10px 12px', borderRadius: '9px',
-                    fontSize: '0.9rem',
-                    fontWeight: isActive(item.to) ? 700 : 500,
-                    color: isActive(item.to) ? accent : 'var(--text-secondary)',
-                    background: isActive(item.to)
-                      ? (isDark ? 'rgba(99,102,241,.14)' : 'rgba(79,70,229,.07)')
-                      : 'transparent',
-                    textDecoration: 'none',
+                    width: '34px', height: '34px', borderRadius: '8px',
+                    background: isDark ? 'rgba(255,255,255,0.07)' : '#f0f4fa',
+                    border: 'none', cursor: 'pointer',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: 'var(--text-secondary)',
                   }}
                 >
-                  {item.label}
-                </Link>
-                {item.children && (
-                  <div style={{ paddingLeft: '16px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                    {item.children.map((child) => (
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* ── Search Bar ── */}
+              <div style={{ padding: '14px 16px 10px', flexShrink: 0 }}>
+                <form onSubmit={handleSearch} style={{ position: 'relative' }}>
+                  <Search
+                    size={15}
+                    style={{
+                      position: 'absolute', left: '12px', top: '50%',
+                      transform: 'translateY(-50%)', color: 'var(--text-muted)',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                  <input
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Search books, courses..."
+                    style={{
+                      width: '100%', boxSizing: 'border-box',
+                      padding: '9px 14px 9px 36px',
+                      borderRadius: '10px',
+                      background: isDark ? 'rgba(255,255,255,0.06)' : '#f4f7fe',
+                      border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : '#dde5f5'}`,
+                      color: 'var(--text-primary)', fontSize: '0.84rem',
+                      outline: 'none', fontFamily: 'inherit',
+                    }}
+                  />
+                </form>
+              </div>
+
+              {/* ── Nav Links ── */}
+              <div style={{ flex: 1, overflowY: 'auto', padding: '6px 12px 12px' }}>
+
+                {/* Section label */}
+                <p style={{ fontSize: '0.65rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', padding: '8px 8px 6px', margin: 0 }}>
+                  Navigation
+                </p>
+
+                {navLinks.map((item) => {
+                  const NavIcon = item.icon;
+                  const active = isActive(item.to);
+                  return (
+                    <div key={item.label}>
                       <Link
-                        key={child.label}
-                        to={child.to}
+                        to={item.to}
+                        onClick={() => setMobileOpen(false)}
                         style={{
-                          display: 'block',
-                          padding: '7px 12px', borderRadius: '8px',
-                          fontSize: '0.82rem', fontWeight: 500,
-                          color: 'var(--text-muted)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '12px',
+                          padding: '11px 12px',
+                          borderRadius: '12px',
+                          marginBottom: '2px',
+                          fontSize: '0.9rem',
+                          fontWeight: active ? 700 : 500,
+                          color: active ? accent : 'var(--text-secondary)',
+                          background: active
+                            ? (isDark ? 'rgba(79,70,229,0.15)' : 'rgba(79,70,229,0.08)')
+                            : 'transparent',
                           textDecoration: 'none',
+                          transition: 'background 0.15s, color 0.15s',
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!active) {
+                            e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.05)' : '#f4f7fe';
+                            e.currentTarget.style.color = accent;
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!active) {
+                            e.currentTarget.style.background = 'transparent';
+                            e.currentTarget.style.color = 'var(--text-secondary)';
+                          }
                         }}
                       >
-                        {child.label}
+                        {/* Icon pill */}
+                        <div style={{
+                          width: '32px', height: '32px', borderRadius: '8px', flexShrink: 0,
+                          background: active
+                            ? 'linear-gradient(135deg, #4f46e5, #6366f1)'
+                            : (isDark ? 'rgba(255,255,255,0.07)' : '#eef1f8'),
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        }}>
+                          {NavIcon && <NavIcon size={15} color={active ? '#fff' : (isDark ? '#94a3b8' : '#64748b')} />}
+                        </div>
+                        <span style={{ flex: 1 }}>{item.label}</span>
+                        {item.children && <ChevronRight size={14} style={{ color: 'var(--text-muted)', opacity: 0.6 }} />}
                       </Link>
-                    ))}
-                  </div>
+
+                      {/* Resources sub-links — always visible inline */}
+                      {item.children && (
+                        <div
+                          style={{
+                            marginLeft: '20px',
+                            marginBottom: '6px',
+                            paddingLeft: '24px',
+                            borderLeft: `2px solid ${isDark ? 'rgba(79,70,229,0.25)' : 'rgba(79,70,229,0.18)'}`,
+                          }}
+                        >
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.label}
+                              to={child.to}
+                              onClick={() => setMobileOpen(false)}
+                              style={{
+                                display: 'block',
+                                padding: '7px 10px',
+                                borderRadius: '8px',
+                                fontSize: '0.8rem',
+                                fontWeight: 500,
+                                color: 'var(--text-muted)',
+                                textDecoration: 'none',
+                                transition: 'color 0.12s, background 0.12s',
+                              }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.color = accent;
+                                e.currentTarget.style.background = isDark ? 'rgba(79,70,229,0.1)' : 'rgba(79,70,229,0.06)';
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.color = 'var(--text-muted)';
+                                e.currentTarget.style.background = 'transparent';
+                              }}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* ── Footer CTA ── */}
+              <div
+                style={{
+                  padding: '14px 16px 20px',
+                  borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.07)' : '#eef1f8'}`,
+                  flexShrink: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                }}
+              >
+                {user ? (
+                  <>
+                    {/* Logged in — user info + logout */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
+                      <img src={user.avatar} alt={user.name} style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(79,70,229,0.35)' }} />
+                      <div>
+                        <p style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>{user.name}</p>
+                        <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', margin: 0 }}>{user.email}</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => { logout(); setMobileOpen(false); navigate('/'); }}
+                      style={{
+                        width: '100%', padding: '10px', borderRadius: '10px',
+                        background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)',
+                        color: '#ef4444', fontSize: '0.85rem', fontWeight: 700,
+                        cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+                        fontFamily: 'inherit',
+                      }}
+                    >
+                      <LogOut size={15} /> Sign Out
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/login"
+                      onClick={() => setMobileOpen(false)}
+                      style={{
+                        display: 'block', textAlign: 'center',
+                        padding: '10px', borderRadius: '10px',
+                        background: 'linear-gradient(135deg, #4f46e5, #6366f1)',
+                        color: '#fff', fontSize: '0.88rem', fontWeight: 700,
+                        textDecoration: 'none', boxShadow: '0 4px 14px rgba(79,70,229,0.3)',
+                      }}
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      to="/register"
+                      onClick={() => setMobileOpen(false)}
+                      style={{
+                        display: 'block', textAlign: 'center',
+                        padding: '10px', borderRadius: '10px',
+                        border: `1px solid ${isDark ? 'rgba(255,255,255,0.12)' : '#d5daf0'}`,
+                        background: 'transparent',
+                        color: 'var(--text-secondary)', fontSize: '0.88rem', fontWeight: 600,
+                        textDecoration: 'none',
+                      }}
+                    >
+                      Create Account
+                    </Link>
+                  </>
                 )}
               </div>
-            ))}
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
