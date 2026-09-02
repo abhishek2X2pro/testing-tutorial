@@ -1639,3 +1639,24 @@ html.light .hero-bg {
     height: 56px !important;
   }
 }
+
+/* ─────────────────── Contact Page Mobile ─────────────────── */
+
+/* ≤900px: stack info + form vertically */
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+/* ≤600px: stack name+email fields, tighten form padding */
+@media (max-width: 600px) {
+  .contact-form-row {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .contact-grid > div:last-child {
+    padding: 20px 16px !important;
+  }
+}
