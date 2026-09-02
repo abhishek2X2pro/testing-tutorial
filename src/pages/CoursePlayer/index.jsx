@@ -142,11 +142,12 @@ export default function CoursePlayer() {
   };
 
   return (
-    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh', padding: '16px 24px 64px' }}>
+    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh', padding: '16px 24px 64px', overflowX: 'hidden', boxSizing: 'border-box' }}>
       <div style={{ maxWidth: '1440px', margin: '0 auto' }}>
 
         {/* ── TOP HEADER / NAV BAR ── */}
         <div
+          className="course-player-header"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -156,7 +157,7 @@ export default function CoursePlayer() {
             gap: '12px',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div className="course-player-header-left" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <button
               onClick={() => navigate('/my-learning')}
               style={{
@@ -195,7 +196,7 @@ export default function CoursePlayer() {
           </div>
 
           {/* Progress & Next/Prev Controls */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div className="course-player-header-right" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div style={{ textAlign: 'right' }}>
                 <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#6366f1' }}>
@@ -268,6 +269,7 @@ export default function CoursePlayer() {
 
         {/* ── 2-COLUMN MAIN CONTENT (LEFT: VIDEO PLAYER | RIGHT: LECTURES PLAYLIST) ── */}
         <div
+          className="course-player-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'minmax(0, 1fr) 360px',
@@ -277,7 +279,7 @@ export default function CoursePlayer() {
         >
 
           {/* LEFT COLUMN: VIDEO PLAYER & LECTURE DETAILS */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+          <div className="course-player-left-col" style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
 
             {/* VIDEO PLAYER BOX */}
             <div
@@ -312,7 +314,7 @@ export default function CoursePlayer() {
                 gap: '16px',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+              <div className="course-player-video-infobar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
                 <div>
                   <h2
                     style={{
@@ -360,11 +362,15 @@ export default function CoursePlayer() {
 
               {/* TABS HEADER BAR (Overview | Resources & Code | Q&A | Notes) */}
               <div
+                className="course-player-tabs-bar"
                 style={{
                   display: 'flex',
                   gap: '8px',
                   borderBottom: `1px solid ${border}`,
                   paddingBottom: '10px',
+                  overflowX: 'auto',
+                  WebkitOverflowScrolling: 'touch',
+                  scrollbarWidth: 'none',
                 }}
               >
                 {[
@@ -536,6 +542,7 @@ export default function CoursePlayer() {
 
           {/* RIGHT COLUMN: LECTURES PLAYLIST SIDEBAR */}
           <div
+            className="course-player-right-sidebar"
             style={{
               background: cardBg,
               border: `1px solid ${border}`,

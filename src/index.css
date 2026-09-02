@@ -1323,3 +1323,87 @@ html.light .hero-bg {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ─────────────────── CoursePlayer Page Mobile ─────────────────── */
+
+/* ≤900px: stack video + playlist vertically */
+@media (max-width: 900px) {
+  .course-player-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  /* Playlist sidebar goes below video on mobile */
+  .course-player-left-col {
+    order: 1 !important;
+  }
+  .course-player-right-sidebar {
+    order: 2 !important;
+    /* Uncap the height on mobile so all sections visible */
+    max-height: none !important;
+  }
+  .course-player-right-sidebar > div:last-child {
+    max-height: 380px !important;
+    overflow-y: auto !important;
+  }
+}
+
+/* ≤768px: header layout */
+@media (max-width: 768px) {
+  .course-player-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+  .course-player-header-left {
+    width: 100% !important;
+    gap: 8px !important;
+  }
+  .course-player-header-left h1 {
+    font-size: 0.95rem !important;
+  }
+  .course-player-header-right {
+    width: 100% !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+  /* Tabs bar — horizontal scroll, no wrap */
+  .course-player-tabs-bar {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding-bottom: 2px !important;
+    gap: 4px !important;
+    border-bottom: none !important;
+    margin-bottom: -1px !important;
+  }
+  .course-player-tabs-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .course-player-tabs-bar button {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    padding: 8px 10px !important;
+    font-size: 0.76rem !important;
+  }
+  /* Video info bar — stack title above button */
+  .course-player-video-infobar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+  .course-player-video-infobar > button,
+  .course-player-video-infobar button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* ≤480px: tighten page padding */
+@media (max-width: 480px) {
+  .course-player-header-left > button {
+    padding: 7px 10px !important;
+    font-size: 0.75rem !important;
+  }
+}
