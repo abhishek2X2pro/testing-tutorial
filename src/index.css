@@ -1587,3 +1587,55 @@ html.light .hero-bg {
     justify-content: center !important;
   }
 }
+
+/* ─────────────────── About Page Mobile ─────────────────── */
+
+/* Hero — tighter padding on small screens */
+@media (max-width: 600px) {
+  .about-hero {
+    padding: 48px 16px 40px !important;
+  }
+}
+
+/* Stats — 2 columns on mobile */
+@media (max-width: 640px) {
+  .about-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+}
+
+/* Mission — stack text + value cards vertically */
+@media (max-width: 768px) {
+  .about-mission-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+  /* Value cards — become horizontal icon rows */
+  .about-values-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .about-values-grid > div {
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 14px !important;
+  }
+}
+
+/* Instructors — 2 columns on mobile */
+@media (max-width: 768px) {
+  .about-instructors-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  .about-instructors-grid > div {
+    padding: 16px 12px !important;
+    gap: 8px !important;
+  }
+  .about-instructors-grid img {
+    width: 56px !important;
+    height: 56px !important;
+  }
+}
