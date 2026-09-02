@@ -8,6 +8,7 @@ import { AuthProvider } from './context/AuthContext';
 import { SidebarProvider } from './context/SidebarContext';
 import { ThemeProvider } from './context/ThemeContext';
 import AppRouter from './routes/AppRouter';
+import ScrollToTop from './components/ui/ScrollToTop';
 
 export default function App() {
   return (
@@ -15,6 +16,8 @@ export default function App() {
       <ThemeProvider>
         <AuthProvider>
           <SidebarProvider>
+            {/* Scroll to top on every route change */}
+            <ScrollToTop />
             <AppRouter />
 
             {/* Global toast notifications */}
