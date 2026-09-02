@@ -142,7 +142,7 @@ export default function Checkout() {
 
   return (
     <div style={{ background: 'var(--bg-primary)', minHeight: '100vh' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto' }} className="page-container">
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }} className="page-container checkout-page-pad">
 
         {/* ── BREADCRUMB ── */}
         <div
@@ -235,7 +235,7 @@ export default function Checkout() {
         >
 
           {/* LEFT COLUMN: CART TABLE + FEATURE STRIP + TRUST STRIP (NO VERTICAL GAP) */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div className="checkout-left-col" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 
             {/* CART TABLE CARD */}
             <div
@@ -246,7 +246,71 @@ export default function Checkout() {
                 overflow: 'visible',
               }}
             >
-              {/* Scrollable wrapper on mobile */}
+              {/* ── MOBILE CARD ITEMS (≤768px) ── */}
+              {items.length === 0 ? null : (
+                <div style={{ display: 'contents' }}>
+                  {items.map((item) => (
+                    <div key={`m-${item.id}`} className="cart-item-card-mobile">
+                      <img
+                        src={item.cover}
+                        alt={item.title}
+                        className="cart-item-thumb"
+                        style={{ border: `1px solid ${border}` }}
+                      />
+                      <div className="cart-item-info">
+                        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px' }}>
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <h4 className="cart-item-title">{item.title}</h4>
+                            <p className="cart-item-author">{item.author}</p>
+                            <span
+                              style={{
+                                fontSize: '0.65rem',
+                                fontWeight: 700,
+                                color: '#6366f1',
+                                background: isDark ? 'rgba(99,102,241,.18)' : 'rgba(99,102,241,.1)',
+                                padding: '2px 8px',
+                                borderRadius: '4px',
+                                display: 'inline-block',
+                              }}
+                            >
+                              {item.type}
+                            </span>
+                          </div>
+                          <button
+                            onClick={() => removeItem(item.id)}
+                            style={{
+                              border: 'none',
+                              background: 'transparent',
+                              color: 'var(--text-muted)',
+                              cursor: 'pointer',
+                              padding: '2px',
+                              flexShrink: 0,
+                            }}
+                          >
+                            <Trash2 size={15} />
+                          </button>
+                        </div>
+                        <div className="cart-item-row">
+                          <div className="cart-item-price-block">
+                            <span className="price">₹{item.price.toLocaleString()}</span>
+                            {' '}
+                            <span className="original">₹{item.originalPrice.toLocaleString()}</span>
+                            {' '}
+                            <span className="discount">{item.discountPct}% OFF</span>
+                          </div>
+                          <div className="cart-qty-ctrl">
+                            <button onClick={() => updateQuantity(item.id, -1)}><Minus size={12} /></button>
+                            <span>{item.quantity}</span>
+                            <button onClick={() => updateQuantity(item.id, 1)}><Plus size={12} /></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Scrollable wrapper on desktop */}
               <div className="cart-table-wrapper" style={{ borderRadius: '16px', overflow: 'hidden' }}>
               {/* Table Header Bar */}
               <div
@@ -579,10 +643,11 @@ export default function Checkout() {
           </div>
 
           {/* RIGHT COLUMN: ORDER SUMMARY + COUPON BOX */}
-          <div className="checkout-order-summary" style={{ display: 'flex', flexDirection: 'column', gap: '16px', position: 'sticky', top: '80px' }}>
+          <div className="checkout-order-summary" style={{ display: 'flex', flexDirection: 'column', gap: '16px', position: 'sticky', top: '80px', minWidth: 0 }}>
 
             {/* ORDER SUMMARY CARD */}
             <div
+              className="checkout-order-card"
               style={{
                 background: 'var(--bg-card)',
                 border: `1.5px solid ${border}`,
@@ -654,6 +719,7 @@ export default function Checkout() {
               {/* Savings Banner Box */}
               {totalSavings > 0 && (
                 <div
+                  className="checkout-savings-banner"
                   style={{
                     padding: '9px 12px',
                     borderRadius: '8px',
@@ -667,9 +733,12 @@ export default function Checkout() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '6px',
+                    wordBreak: 'break-word',
+                    overflowWrap: 'anywhere',
                   }}
                 >
-                  <Tag size={13} /> You are saving ₹{totalSavings.toLocaleString()} on this order!
+                  <Tag size={13} style={{ flexShrink: 0 }} />
+                  <span>You are saving ₹{totalSavings.toLocaleString()} on this order!</span>
                 </div>
               )}
 
