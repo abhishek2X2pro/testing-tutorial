@@ -191,24 +191,30 @@ export default function Resources() {
         </div>
 
         {/* ── 3-COLUMN MAIN PORTAL DASHBOARD LAYOUT ── */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '220px 1fr 280px',
-          gap: '24px',
-          alignItems: 'start',
-        }}>
+        <div
+          className="resources-portal-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '220px 1fr 280px',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
 
           {/* ── COLUMN 1: LEFT USER PORTAL SIDEBAR ── */}
-          <div style={{
-            background: isDark ? '#0f172a' : '#ffffff',
-            border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0'}`,
-            borderRadius: '16px',
-            padding: '16px 12px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            boxShadow: '0 1px 3px rgba(16, 24, 40, 0.04)',
-          }}>
+          <div
+            className="resources-left-sidebar"
+            style={{
+              background: isDark ? '#0f172a' : '#ffffff',
+              border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0'}`,
+              borderRadius: '16px',
+              padding: '16px 12px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px',
+              boxShadow: '0 1px 3px rgba(16, 24, 40, 0.04)',
+            }}
+          >
             {/* Menu List */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
               {sidebarMenuItems.map((item) => {
@@ -301,7 +307,7 @@ export default function Resources() {
           </div>
 
           {/* ── COLUMN 2: CENTER RESOURCES CONTENT ── */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div className="resources-center-col" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
             {/* Header Title */}
             <div>
@@ -314,8 +320,8 @@ export default function Resources() {
             </div>
 
             {/* Search Bar + 3 Dropdown Filters */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-              <div style={{ position: 'relative', flex: 1, minWidth: '240px' }}>
+            <div className="resources-filters-row" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+              <div className="resources-search-bar" style={{ position: 'relative', flex: 1, minWidth: '240px' }}>
                 <Search size={15} color="#98a2b3" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
                 <input
                   type="text"
@@ -382,12 +388,15 @@ export default function Resources() {
             </div>
 
             {/* Horizontal Resource Category Cards Strip (7 Cards) */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(7, 1fr)',
-              gap: '10px',
-              overflowX: 'auto',
-            }}>
+            <div
+              className="resources-category-strip"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(7, 1fr)',
+                gap: '10px',
+                overflowX: 'auto',
+              }}
+            >
               {categoryStrip.map((cat) => (
                 <div
                   key={cat.id}
@@ -444,7 +453,7 @@ export default function Resources() {
               </div>
 
               {/* 4 Cards Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '14px' }}>
+              <div className="resources-popular-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '14px' }}>
                 {popularResources.map((res) => (
                   <div
                     key={res.id}
@@ -514,12 +523,15 @@ export default function Resources() {
               </div>
 
               {/* Table Header */}
-              <div style={{
-                display: 'grid', gridTemplateColumns: '2.5fr 1.2fr 1fr 1fr 1fr 120px',
-                padding: '10px 20px', borderBottom: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0'}`,
-                background: isDark ? 'rgba(255,255,255,0.02)' : '#f9fafb',
-                fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em',
-              }}>
+              <div
+                className="resources-table-header"
+                style={{
+                  display: 'grid', gridTemplateColumns: '2.5fr 1.2fr 1fr 1fr 1fr 120px',
+                  padding: '10px 20px', borderBottom: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0'}`,
+                  background: isDark ? 'rgba(255,255,255,0.02)' : '#f9fafb',
+                  fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em',
+                }}
+              >
                 <div>Resource Name</div>
                 <div>Category</div>
                 <div>Type</div>
@@ -533,6 +545,7 @@ export default function Resources() {
                 {recentResources.map((item) => (
                   <div
                     key={item.id}
+                    className="resources-table-row"
                     style={{
                       display: 'grid', gridTemplateColumns: '2.5fr 1.2fr 1fr 1fr 1fr 120px',
                       alignItems: 'center', padding: '12px 20px',
@@ -624,7 +637,7 @@ export default function Resources() {
           </div>
 
           {/* ── COLUMN 3: RIGHT CATEGORIES, QUICK LINKS & SUPPORT WIDGETS ── */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div className="resources-right-sidebar" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
             {/* WIDGET 1: Resource Categories Card */}
             <div style={{

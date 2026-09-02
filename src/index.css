@@ -1224,3 +1224,102 @@ html.light .hero-bg {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ─────────────────── Resources Page Mobile ─────────────────── */
+
+/* ≤1100px: collapse to 2-col, hide right sidebar */
+@media (max-width: 1100px) {
+  .resources-portal-grid {
+    grid-template-columns: 200px 1fr !important;
+  }
+  .resources-right-sidebar {
+    display: none !important;
+  }
+}
+
+/* ≤900px: single column, hide both sidebars */
+@media (max-width: 900px) {
+  .resources-portal-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .resources-left-sidebar {
+    display: none !important;
+  }
+  .resources-right-sidebar {
+    display: none !important;
+  }
+  .resources-center-col {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  /* Filters row — stack vertically on mobile */
+  .resources-filters-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  .resources-search-bar {
+    min-width: unset !important;
+    width: 100% !important;
+    flex: unset !important;
+  }
+  .resources-filters-row select {
+    width: 100% !important;
+    padding: 10px 12px !important;
+    font-size: 0.85rem !important;
+    border-radius: 10px !important;
+  }
+}
+
+/* ≤768px: category scroll, popular 2-col, table cards */
+@media (max-width: 768px) {
+  /* Category strip — horizontal scroll */
+  .resources-category-strip {
+    grid-template-columns: repeat(7, minmax(88px, 1fr)) !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding-bottom: 6px !important;
+    gap: 8px !important;
+  }
+  .resources-category-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Popular grid — 2 columns */
+  .resources-popular-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  /* Recently Added table → mobile card layout */
+  .resources-table-header {
+    display: none !important;
+  }
+  .resources-table-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    padding: 14px 16px !important;
+  }
+  .resources-table-row > div:first-child {
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
+  }
+  .resources-table-row > div:not(:first-child):not(:last-child) {
+    font-size: 0.75rem !important;
+    color: var(--text-muted);
+  }
+  .resources-table-row > div:last-child {
+    justify-content: flex-start !important;
+    margin-top: 4px !important;
+  }
+}
+
+/* ≤480px: popular grid single column */
+@media (max-width: 480px) {
+  .resources-popular-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
