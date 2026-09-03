@@ -140,7 +140,7 @@ export default function Navbar() {
         {/* Browse Categories Dropdown */}
         <Link
           to="/categories"
-          className="hidden sm:flex"
+          className="nav-browse"
           style={{
             display: 'flex', alignItems: 'center', gap: '4px',
             padding: '6px 12px', borderRadius: '8px',
@@ -154,8 +154,8 @@ export default function Navbar() {
 
         {/* ── Primary nav ── */}
         <nav
-          className="hidden lg:flex"
-          style={{ alignItems: 'center', gap: '20px', marginLeft: '12px' }}
+          className="nav-links"
+          style={{ display: 'flex', alignItems: 'center', gap: '20px', marginLeft: '12px' }}
         >
           {navLinks.map((item) => {
             const active = isActive(item.to);
@@ -258,7 +258,7 @@ export default function Navbar() {
         </nav>
 
         {/* Center: Desktop Search Input Bar */}
-        <div className="hidden lg:flex" style={{ flex: 1, maxWidth: '320px', margin: '0 12px' }}>
+        <div className="nav-search" style={{ flex: 1, maxWidth: '320px', margin: '0 12px' }}>
           <SearchBar size="md" className="w-full" placeholder="Search for books, courses..." />
         </div>
 
@@ -282,8 +282,8 @@ export default function Navbar() {
             }}
           >
             {isDark
-              ? <><Sun size={14} color="#fbbf24" /><span className="hidden sm:block" style={{ fontSize: '0.72rem', fontWeight: 700, color: '#fbbf24' }}>Light</span></>
-              : <><Moon size={14} color="#3b82f6" /><span className="hidden sm:block" style={{ fontSize: '0.72rem', fontWeight: 700, color: '#3b82f6' }}>Dark</span></>}
+              ? <><Sun size={14} color="#fbbf24" /><span className="nav-theme-label" style={{ fontSize: '0.72rem', fontWeight: 700, color: '#fbbf24' }}>Light</span></>
+              : <><Moon size={14} color="#3b82f6" /><span className="nav-theme-label" style={{ fontSize: '0.72rem', fontWeight: 700, color: '#3b82f6' }}>Dark</span></>}
           </button>
 
           {/* Cart Icon */}
@@ -389,7 +389,7 @@ export default function Navbar() {
                     style={{ width: '28px', height: '28px', borderRadius: '50%', objectFit: 'cover' }}
                   />
                   <span
-                    className="hidden sm:block"
+                    className="nav-username"
                     style={{ color: 'var(--text-primary)', fontSize: '0.8rem', fontWeight: 600 }}
                   >
                     {user.name.split(' ')[0]}
@@ -520,7 +520,7 @@ export default function Navbar() {
           {/* Mobile menu toggle */}
           <button
             onClick={() => setMobileOpen((p) => !p)}
-            className="lg:hidden"
+            className="nav-mobile-btn"
             aria-label="Menu"
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center',

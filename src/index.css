@@ -1701,3 +1701,27 @@ html.light .hero-bg {
     padding: 20px 16px !important;
   }
 }
+
+/* ─────────────────── Navbar Responsive Visibility ─────────────────── */
+
+/* Desktop defaults — show nav items */
+.nav-browse      { display: flex; }
+.nav-links       { display: flex; }
+.nav-search      { display: flex; }
+.nav-theme-label { display: inline; }
+.nav-username    { display: inline; }
+.nav-mobile-btn  { display: none; }
+
+/* ≤1024px: hide full nav links & search bar */
+@media (max-width: 1024px) {
+  .nav-links  { display: none !important; }
+  .nav-search { display: none !important; }
+}
+
+/* ≤768px: also hide Browse button */
+@media (max-width: 768px) {
+  .nav-browse       { display: none !important; }
+  .nav-theme-label  { display: none !important; }
+  .nav-username     { display: none !important; }
+  .nav-mobile-btn   { display: flex !important; }
+}
