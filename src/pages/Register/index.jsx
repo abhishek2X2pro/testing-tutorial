@@ -115,7 +115,7 @@ export default function Register() {
 
   return (
     <PageWrapper>
-      <div className="auth-layout" style={{ maxWidth: '1280px', margin: '0 auto', width: '100%', display: 'flex', gap: '24px', alignItems: 'start' }}>
+      <div className="auth-layout" style={{ maxWidth: '1280px', margin: '0 auto', width: '100%', display: 'flex', gap: '24px', alignItems: 'start', overflowX: 'hidden', boxSizing: 'border-box' }}>
 
         {/* LEFT SIDEBAR */}
         <div className="auth-sidebar" style={{ width: '200px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>

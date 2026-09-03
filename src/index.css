@@ -1660,3 +1660,44 @@ html.light .hero-bg {
     padding: 20px 16px !important;
   }
 }
+
+/* ─────────────────── Login & Register Pages Mobile ─────────────────── */
+
+/* ≤900px: hide left sidebar, full-width layout */
+@media (max-width: 900px) {
+  .auth-layout {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  .auth-sidebar {
+    display: none !important;
+  }
+}
+
+/* ≤768px: collapse auth card from 2-col to 1-col, hide features panel */
+@media (max-width: 768px) {
+  .auth-card-split {
+    grid-template-columns: 1fr !important;
+  }
+  /* Hide the left "features" column — show only the form */
+  .auth-card-split > div:first-child {
+    display: none !important;
+  }
+  /* Form column — remove border, reduce padding */
+  .auth-card-split > div:last-child {
+    padding: 24px 20px !important;
+    border-left: none !important;
+  }
+  /* Ensure the outer container doesn't add extra horizontal space */
+  .auth-layout {
+    padding: 0 !important;
+    overflow-x: hidden !important;
+  }
+}
+
+/* ≤480px: tighten form padding further on very small phones */
+@media (max-width: 480px) {
+  .auth-card-split > div:last-child {
+    padding: 20px 16px !important;
+  }
+}
