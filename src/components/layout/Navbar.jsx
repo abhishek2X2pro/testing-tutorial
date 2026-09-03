@@ -133,7 +133,7 @@ export default function Navbar() {
         }}
       >
         {/* ── Brand ── */}
-        <Link to="/" style={{ textDecoration: 'none', flexShrink: 0 }}>
+        <Link to="/" style={{ textDecoration: 'none', flexShrink: 0 }} className="nav-brand">
           <BrandLogo size="md" />
         </Link>
 

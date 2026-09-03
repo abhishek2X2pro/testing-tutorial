@@ -75,6 +75,7 @@ export default function BrandLogo({
       {!iconOnly && (
         <span style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
           <span
+            className="nav-brand-text"
             style={{
               fontFamily: 'var(--font-display)',
               fontWeight: 800,
@@ -88,6 +89,7 @@ export default function BrandLogo({
           </span>
           {tagline && (
             <span
+              className="nav-brand-tagline"
               style={{
                 fontSize: s.tagSize,
                 fontWeight: 500,
