@@ -156,8 +156,8 @@ export default function TextBooks() {
           </div>
 
           {/* Search Input & Sort Dropdown */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-            <div style={{ position: 'relative', width: '260px' }}>
+          <div className="books-controls" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+            <div className="books-search" style={{ position: 'relative', width: '260px' }}>
               <input
                 type="text"
                 value={search}
@@ -168,6 +168,7 @@ export default function TextBooks() {
                 placeholder="Search textbooks by title or author..."
                 style={{
                   width: '100%',
+                  boxSizing: 'border-box',
                   padding: '9px 12px 9px 36px',
                   borderRadius: '8px',
                   border: `1px solid ${border}`,
@@ -175,12 +176,13 @@ export default function TextBooks() {
                   color: 'var(--text-primary)',
                   fontSize: '0.82rem',
                   outline: 'none',
+                  fontFamily: 'inherit',
                 }}
               />
               <Search
                 size={15}
                 color="var(--text-muted)"
-                style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }}
+                style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}
               />
             </div>
 
@@ -197,6 +199,7 @@ export default function TextBooks() {
                 fontWeight: 600,
                 outline: 'none',
                 cursor: 'pointer',
+                fontFamily: 'inherit',
               }}
             >
               {SORT_OPTIONS.map((o) => (
@@ -210,6 +213,7 @@ export default function TextBooks() {
 
         {/* ── TOP CATEGORY PILLS BAR ── */}
         <div
+          className="books-cats"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -306,10 +310,11 @@ export default function TextBooks() {
           </div>
         ) : (
           <div
+            className="books-grid"
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-              gap: '24px',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+              gap: '20px',
               marginBottom: '40px',
             }}
           >
