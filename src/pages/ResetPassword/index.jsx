@@ -117,7 +117,7 @@ export default function ResetPassword() {
       <div style={{ maxWidth: '1280px', margin: '0 auto', width: '100%', display: 'flex', gap: '24px', alignItems: 'start' }}>
 
         {/* LEFT SIDEBAR */}
-        <div style={{ width: '200px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <div className="auth-sidebar" style={{ width: '200px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
           {SIDEBAR_MENU.map((item) => {
             const Icon = item.icon;
             return (

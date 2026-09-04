@@ -73,7 +73,7 @@ function Toggle({ checked, onChange }) {
 
 function PrefRow({ icon: Icon, iconBg, iconColor, title, desc, right }) {
   return (
-    <div style={{
+    <div className="stack-row" style={{
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       gap: '16px', padding: '14px 0',
       borderBottom: '1px solid var(--border-row)',
@@ -315,7 +315,7 @@ export default function SettingsPage() {
                   />
 
                   {/* Email Digest */}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', padding: '14px 0' }}>
+                  <div className="stack-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', padding: '14px 0' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                       <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#ffe4e6', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                         <Mail size={18} color="#e11d48" />
@@ -352,7 +352,7 @@ export default function SettingsPage() {
                   />
 
                   {/* Weekly Goal */}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', padding: '14px 0' }}>
+                  <div className="stack-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', padding: '14px 0' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                       <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#fef3c7', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                         <Trophy size={18} color="#b45309" />

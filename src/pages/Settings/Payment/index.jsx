@@ -225,6 +225,7 @@ export default function PaymentMethods() {
                 {cards.map((c, i) => (
                   <div
                     key={c.id}
+                    className="pay-card-row"
                     style={{
                       display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px',
                       padding: '16px 0',
@@ -238,7 +239,7 @@ export default function PaymentMethods() {
                     </div>
 
                     {/* Card Details */}
-                    <div style={{ flex: 1 }}>
+                    <div className="pay-card-info" style={{ flex: 1 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
                         <span style={{ fontWeight: 700, fontSize: '0.88rem', color: 'var(--text-primary)' }}>
                           {c.type === 'visa' ? 'Visa' : 'Mastercard'} •••• {c.last4}

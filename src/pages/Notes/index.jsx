@@ -310,7 +310,7 @@ export default function Notes() {
               paddingBottom: '12px',
             }}>
               {/* Underlined Tab Switcher */}
-              <div style={{ display: 'flex', gap: '16px' }}>
+              <div className="tab-strip" style={{ display: 'flex', gap: '16px' }}>
                 {[
                   { id: 'all', label: 'All Notes (18)' },
                   { id: 'pinned', label: 'Pinned (4)' },

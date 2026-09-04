@@ -353,7 +353,7 @@ export default function GradeSelect() {
                       return (
                         <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem' }}>
                           <DIcon size={13} color={grade.accent} style={{ flexShrink: 0 }} />
-                          <span style={{ fontWeight: 600, color: isDark ? 'rgba(148,163,184,.7)' : '#64748b' }}>{d.label}:</span>
+                          <span style={{ fontWeight: 600, color: isDark ? 'rgba(148,163,184,.7)' : '#64748b', whiteSpace: 'nowrap' }}>{d.label}:</span>
                           <span style={{ fontWeight: 700, color: isDark ? '#e2e8f0' : '#1e293b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{d.val}</span>
                         </div>
                       );

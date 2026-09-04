@@ -191,7 +191,7 @@ export default function ReferEarn() {
               <h3 style={{ color: 'var(--text-primary)', fontSize: '0.95rem', fontWeight: 700, margin: '0 0 4px' }}>Your Referral Link</h3>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', margin: '0 0 14px' }}>Share your unique link with friends</p>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+              <div className="stack-row" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
                 <div style={{
                   flex: 1, display: 'flex', alignItems: 'center', gap: '10px',
                   padding: '10px 14px', borderRadius: '8px',

@@ -279,7 +279,7 @@ export default function SecuritySettings() {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                 {ACTIVE_SESSIONS.map((session, i) => (
-                  <div key={i} style={{
+                  <div key={i} className="stack-row" style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                     padding: '14px 0',
                     borderBottom: i < ACTIVE_SESSIONS.length - 1 ? `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : '#f2f4f7'}` : 'none',

@@ -34,7 +34,7 @@ export default function OrderSuccess() {
       <div style={{ maxWidth: '1100px', margin: '0 auto', width: '100%', display: 'flex', flexDirection: 'column', gap: '28px' }}>
 
         {/* ── STEP NAVIGATION BAR (Cart > Checkout > Payment > Success) ── */}
-        <div style={{
+        <div className="tab-strip" style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px',
           padding: '14px', borderRadius: '12px', background: '#ffffff',
           border: '1px solid #eaecf0', fontSize: '0.85rem', color: '#667085',

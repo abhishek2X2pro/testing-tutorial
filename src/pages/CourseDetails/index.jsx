@@ -636,6 +636,7 @@ export default function CourseDetails() {
           <div>
             {/* Tabs Header */}
             <div
+              className="tab-strip"
               style={{
                 display: 'flex',
                 gap: '24px',
@@ -671,7 +672,7 @@ export default function CourseDetails() {
             </div>
 
             {/* Tab Content */}
-            <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start' }}>
+            <div className="stack-row" style={{ display: 'flex', gap: '32px', alignItems: 'flex-start' }}>
               {/* Main Column */}
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '28px' }}>
                 {/* What you'll learn (2-column checkmark box) */}

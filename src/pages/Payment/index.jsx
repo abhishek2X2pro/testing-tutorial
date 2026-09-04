@@ -35,7 +35,7 @@ export default function Payment() {
       <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
         {/* ── STEP NAVIGATION BAR (Cart > Checkout > Payment > Success) ── */}
-        <div style={{
+        <div className="tab-strip" style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px',
           padding: '16px', borderRadius: '12px', background: '#ffffff',
           border: '1px solid #dde5f5', fontSize: '0.85rem', color: '#667085',
@@ -106,7 +106,7 @@ export default function Payment() {
                       <span style={{ fontSize: '0.72rem', color: '#667085' }}>Visa, Mastercard, RuPay & more</span>
                     </div>
                   </div>
-                  <div style={{ display: 'flex', gap: '6px' }}>
+                  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                     <span style={{ padding: '2px 6px', borderRadius: '4px', background: '#1a1f71', color: '#fff', fontSize: '0.65rem', fontWeight: 800 }}>VISA</span>
                     <span style={{ padding: '2px 6px', borderRadius: '4px', background: '#eb001b', color: '#fff', fontSize: '0.65rem', fontWeight: 800 }}>Mastercard</span>
                     <span style={{ padding: '2px 6px', borderRadius: '4px', background: '#0072b8', color: '#fff', fontSize: '0.65rem', fontWeight: 800 }}>RuPay</span>
@@ -243,7 +243,7 @@ export default function Payment() {
                   </div>
 
                   {/* Security Guarantee Bar */}
-                  <div style={{ padding: '12px', borderRadius: '8px', background: '#f9fafb', border: '1px solid #eaecf0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.74rem', color: '#667085' }}>
+                  <div className="stack-row" style={{ padding: '12px', borderRadius: '8px', background: '#f9fafb', border: '1px solid #eaecf0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.74rem', color: '#667085' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                       <Lock size={14} color="#2563eb" />
                       <span>Your payment is 100% secure</span>

@@ -368,7 +368,7 @@ export default function Achievements() {
             </div>
 
             {/* Tabs Row */}
-            <div style={{
+            <div className="tab-strip" style={{
               display: 'flex', gap: '16px', borderBottom: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0'}`,
               paddingBottom: '10px',
             }}>
@@ -408,6 +408,7 @@ export default function Achievements() {
               {filteredAchievements.map((item) => (
                 <div
                   key={item.id}
+                  className="stack-row"
                   style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                     padding: '12px 0', borderBottom: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : '#f2f4f7'}`,

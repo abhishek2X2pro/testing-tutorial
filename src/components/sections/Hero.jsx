@@ -411,6 +411,7 @@ export default function Hero() {
           {/* CTAs */}
           <motion.div
             variants={itemVar}
+            className="hero-ctas"
             style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', margin: '26px 0 0' }}
           >
             <Link
@@ -636,10 +637,12 @@ export default function Hero() {
           }
 
           .hero-book-wrapper { max-width: min(100%, 280px) !important; }
-          .hero-book-card { width: 100% !important; max-width: 240px !important; }
+          /* Leave room for the page-block edge that sticks out 11px on the
+             right, so the book never touches the screen edge. */
+          .hero-book-card { width: calc(100% - 14px) !important; max-width: 236px !important; }
           .hero-book-float { margin-bottom: 24px !important; }
           .hero-pedestal {
-            width: 112% !important;
+            width: 100% !important;
             max-width: none !important;
             height: 58px !important;
           }
@@ -659,6 +662,10 @@ export default function Hero() {
         @media (max-width: 560px) {
           .hero-grid { column-gap: 12px; row-gap: 18px; }
           .hero-features > * { flex: 1 1 100% !important; }
+          /* Two half-width buttons on separate lines read as broken; give
+             them the full column instead. */
+          .hero-ctas { flex-direction: column !important; gap: 10px !important; }
+          .hero-ctas > a { justify-content: center !important; }
         }
 
         @media (max-width: 400px) {

@@ -1,0 +1,306 @@
+/* ============================================================
+   DevOpsX Learning — Global Mobile Responsive Layer
+   ------------------------------------------------------------
+   WHY THIS FILE EXISTS
+   The pages build their layouts with inline `style={{ ... }}`
+   objects (129 inline `gridTemplateColumns` across 55 files).
+   An inline style beats any stylesheet rule, so the class-based
+   media queries in index.css could never actually take effect —
+   which is why mobile kept breaking no matter how many times the
+   individual pages were patched.
+
+   This layer overrides those inline styles from one place.
+
+   TWO RULES THIS FILE FOLLOWS, ALWAYS:
+   1. Every declaration lives inside a `max-width` media query, so
+      the desktop / web view is left byte-for-byte untouched.
+   2. Collapsed columns use `minmax(0, 1fr)`, never plain `1fr`.
+      `1fr` is short for `minmax(auto, 1fr)`, and `auto` floors the
+      track at its content's min-content width — so a wide child
+      still pushes the column off-screen. `minmax(0, 1fr)` is what
+      actually lets a column shrink.
+
+   ESCAPE HATCH
+   Add `keep-grid` to any element's className to opt it out of the
+   automatic single-column collapse.
+   ============================================================ */
+
+/* ───────────────────────── ≤ 900px ─────────────────────────
+   Phones and small tablets: the main mobile layer.           */
+@media (max-width: 900px) {
+
+  /* ── 1. Nothing may be pushed past the right edge ───────── */
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  #root {
+    max-width: 100%;
+  }
+
+  /* ── 2. Let flex and grid children shrink.
+        Without `min-width: 0`, a grid/flex child refuses to go
+        below its min-content width and blows the track out past
+        the screen. This single rule is why `1fr !important`
+        alone never fixed anything.
+
+        Elements that opt into `white-space: nowrap` are excluded:
+        their text cannot reflow, so shrinking their box would make
+        the text spill out and overlap whatever sits next to it.  */
+  [style*="display: grid"] > *,
+  [style*="display: flex"] > *:not([style*="white-space: nowrap"]),
+  .grid > *,
+  .flex > *:not([style*="white-space: nowrap"]) {
+    min-width: 0;
+  }
+
+  /* ── 2a. …but never squeeze a text run narrower than its longest
+        word. `min-width: min-content` is exactly one word wide, so
+        the item can still shrink and reflow, yet a label can never
+        be chopped in half ("Cour / ses", "Abo / ut").
+
+        `!important` is needed here only to outrank rule 2 above,
+        whose `:not(...)` gives it the higher specificity.         */
+  [style*="display: flex"] > a[href],
+  [style*="display: flex"] > button,
+  [style*="display: flex"] > span,
+  .flex > a[href],
+  .flex > button,
+  .flex > span {
+    min-width: min-content !important;
+  }
+
+  /* ── 2b. A horizontal scroller's items keep their natural width,
+        otherwise there is nothing left to scroll and the labels
+        collapse on top of each other.                          */
+  [style*="overflow-x: auto"] > *,
+  [style*="overflow-x: scroll"] > *,
+  .books-cats > * {
+    flex-shrink: 0;
+  }
+
+  /* ── 3. Hard multi-column grids collapse to one column.
+        Fluid `auto-fit` / `auto-fill` grids are handled in 4.  */
+  [style*="grid-template-columns"]:not([style*="auto-fit"]):not([style*="auto-fill"]):not(.keep-grid):not(.books-grid):not(.textbooks-grid) {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* ── 4. Fluid grids must never demand more width than exists.
+        `min(100%, 190px)` lets the floor drop to the container
+        width on narrow screens instead of forcing a second
+        column off-screen.                                     */
+  [style*="auto-fit"]:not(.keep-grid):not(.books-grid):not(.textbooks-grid),
+  [style*="auto-fill"]:not(.keep-grid):not(.books-grid):not(.textbooks-grid) {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)) !important;
+  }
+
+  /* ── 5. Named grids defined in index.css that still use the
+        unshrinkable plain `1fr`.                              */
+  .settings-inner-grid,
+  .settings-layout,
+  .course-details-grid,
+  .orders-grid,
+  .curriculum-grid,
+  .resources-grid,
+  .checkout-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* ── 5b. Rows of standalone controls (buttons, pills, chips) wrap
+        onto the next line rather than running off the edge.
+        Deliberately NOT applied to every flex row: a wrapping row
+        moves an item to a new line *before* it shrinks, which would
+        drop the text of an icon+text pair onto its own line. Those
+        rows are handled by rule 2 instead, which lets the text
+        reflow inside its own box.                              */
+  [style*="display: flex"][style*="flex-wrap: wrap"] {
+    flex-wrap: wrap;
+  }
+
+  .settings-row [style*="display: flex"]:not([style*="flex-direction: column"]):not([style*="overflow"]) {
+    flex-wrap: wrap;
+  }
+
+  /* ── 5c. An inline `min-width` on a flex/grid child is a desktop
+        assumption; on a narrow screen it is exactly what forces
+        the row past the edge.                                  */
+  [style*="display: flex"] > [style*="min-width"],
+  [style*="display: grid"] > [style*="min-width"] {
+    min-width: 0 !important;
+  }
+
+  /* ── 5d. Tab strips swipe sideways instead of wrapping or being
+        cut off — the same treatment the category pills already
+        get on the books page.                                  */
+  .tab-strip {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-strip > * {
+    flex-shrink: 0;
+  }
+
+  /* ── 6. Desktop sidebars stop sticking and just stack. ───── */
+  [style*="position: sticky"] {
+    position: static !important;
+    top: auto !important;
+  }
+
+  /* ── 7. Media never exceeds its container.
+        No `!important`, so explicitly sized avatars and icons
+        keep their inline dimensions.                          */
+  img,
+  svg,
+  video,
+  iframe,
+  canvas,
+  table {
+    max-width: 100%;
+  }
+
+  img,
+  video {
+    height: auto;
+  }
+
+  /* ── 8. Long words, emails and URLs wrap instead of forcing
+        their container wider than the screen.                 */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  span,
+  div,
+  a,
+  li,
+  td,
+  th,
+  label,
+  button {
+    overflow-wrap: break-word;
+  }
+
+  /* ── 9. Decorative blobs must never generate layout width. */
+  [style*="border-radius: 50%"][style*="filter: blur"],
+  [style*="position: absolute"][style*="border-radius: 50%"] {
+    pointer-events: none;
+  }
+}
+
+/* ───────────────────────── ≤ 760px ─────────────────────────
+   Settings pages put a fixed-width label beside its control
+   ("Font Size" ─ [Small|Medium|Large]). On a phone the label
+   eats the row and the control gets squeezed off the edge, so
+   the two stack instead.                                      */
+@media (max-width: 760px) {
+
+  .settings-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  .settings-row-label {
+    flex: 1 1 auto !important;
+  }
+
+  /* A saved-card row packs a logo, the card number, the holder name, a
+     toggle and a menu into one line. On a phone the fixed-width items eat
+     the row and crush the card number to a few pixels, so it wraps: logo +
+     number on the first line, the rest on the second. */
+  .pay-card-row {
+    flex-wrap: wrap !important;
+  }
+
+  .pay-card-info {
+    flex: 1 1 150px !important;
+  }
+}
+
+/* ───────────────────────── ≤ 620px ─────────────────────────
+   Phones: tighten spacing that was designed for desktop.     */
+@media (max-width: 620px) {
+
+  /* Truncating a value to a single line with an ellipsis is a
+     desktop convenience; in a narrow column it can push the value
+     entirely off-screen, so nothing is left to read. Let it wrap.
+
+     `overflow` is deliberately left as-is: making it visible would let the
+     text paint on top of whatever sits beside it. Keeping it hidden while
+     the text reflows lets the box grow downwards instead.               */
+  [style*="text-overflow: ellipsis"][style*="white-space: nowrap"] {
+    white-space: normal !important;
+    text-overflow: clip !important;
+  }
+
+
+  /* Page gutters — desktop uses 24–32px, too much on a phone. */
+  .page-container,
+  .page-wrapper {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  /* Oversized display headings scale down with the viewport. */
+  h1 {
+    font-size: clamp(1.45rem, 6.4vw, 2.1rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  h2 {
+    font-size: clamp(1.2rem, 5.2vw, 1.65rem) !important;
+    line-height: 1.25 !important;
+  }
+}
+
+/* ───────────────────────── ≤ 700px ─────────────────────────
+   `stack-row` — opt-in for a desktop row whose two halves cannot
+   both fit on a phone. Without it, the rigid half (a select, a
+   button cluster, a fixed-width sidebar) keeps its width and
+   crushes the text column beside it down to 50–120px, which
+   reads as one word per line.
+
+   Applied by hand rather than globally: a blanket rule would also
+   catch icon+text rows, where wrapping drops the text onto its own
+   line even though it would have fitted.                       */
+@media (max-width: 700px) {
+
+  .stack-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  .stack-row > * {
+    width: 100% !important;
+    flex-shrink: 1 !important;
+  }
+
+  /* An icon leading the row stays its own size. */
+  .stack-row > svg,
+  .stack-row > .stack-row-icon {
+    width: auto !important;
+  }
+}
+
+/* ───────────────────────── ≤ 380px ─────────────────────────
+   Small phones.                                              */
+@media (max-width: 380px) {
+
+  .page-container,
+  .page-wrapper {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}

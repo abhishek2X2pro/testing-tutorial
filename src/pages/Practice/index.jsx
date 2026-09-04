@@ -69,6 +69,7 @@ export default function Practice() {
         {filtered.map((q, i) => (
           <motion.div
             key={q.id}
+            className="stack-row"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.03 }}

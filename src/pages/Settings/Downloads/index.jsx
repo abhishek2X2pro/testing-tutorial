@@ -119,7 +119,7 @@ export default function DownloadSettings() {
 
   function Row({ children, noBorder }) {
     return (
-      <div style={{
+      <div className="settings-row" style={{
         display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
         gap: '32px', padding: '22px 0',
         ...(noBorder ? {} : divider),
@@ -131,7 +131,7 @@ export default function DownloadSettings() {
 
   function RowLabel({ title, desc }) {
     return (
-      <div style={{ flex: '0 0 260px' }}>
+      <div className="settings-row-label" style={{ flex: '0 0 260px' }}>
         <h4 style={{ color: 'var(--text-primary)', fontSize: '0.9rem', fontWeight: 700, margin: '0 0 4px' }}>{title}</h4>
         <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: 1.5, margin: 0 }}>{desc}</p>
       </div>

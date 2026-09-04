@@ -99,12 +99,12 @@ export default function Appearance() {
   // Row layout helper
   function SectionRow({ title, desc, children, noBorder }) {
     return (
-      <div style={{
+      <div className="settings-row" style={{
         display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
         gap: '32px', padding: '24px 0',
         borderBottom: noBorder ? 'none' : divider,
       }}>
-        <div style={{ flex: '0 0 240px' }}>
+        <div className="settings-row-label" style={{ flex: '0 0 240px' }}>
           <h4 style={{ color: 'var(--text-primary)', fontSize: '0.9rem', fontWeight: 700, margin: '0 0 4px' }}>{title}</h4>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.76rem', lineHeight: 1.5, margin: 0 }}>{desc}</p>
         </div>
