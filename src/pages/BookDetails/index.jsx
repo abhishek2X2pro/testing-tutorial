@@ -770,11 +770,11 @@ export default function BookDetails() {
           </div>
         </div>
 
-        {/* ── BOTTOM TRUST FOOTER BANNER (4 SEPARATE DISTINCT CARD BOXES) ── */}
+        {/* ── BOTTOM TRUST FOOTER BANNER (4 SEPARATE EVEN CARD BOXES) ── */}
         <div className="trust-banner-grid keep-grid">
           <div
             style={{
-              padding: '16px 12px',
+              padding: '16px 10px',
               borderRadius: '12px',
               background: '#ffffff',
               border: '1px solid #eaecf0',
@@ -784,17 +784,19 @@ export default function BookDetails() {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '4px',
+              height: '100%',
+              minHeight: '115px',
+              boxSizing: 'border-box',
             }}
           >
-            <div style={{ fontSize: '1.25rem', marginBottom: '2px' }}>📦</div>
-            <strong style={{ color: '#101828', fontSize: '0.82rem', display: 'block', fontWeight: 700 }}>100% Original Books</strong>
-            <span style={{ fontSize: '0.7rem', color: '#667085', lineHeight: 1.3 }}>Sourced from trusted publishers</span>
+            <div style={{ fontSize: '1.3rem', marginBottom: '4px' }}>📦</div>
+            <strong style={{ color: '#101828', fontSize: '0.8rem', display: 'block', fontWeight: 700, margin: '0 0 2px' }}>100% Original Books</strong>
+            <span style={{ fontSize: '0.68rem', color: '#667085', lineHeight: 1.3 }}>Sourced from trusted publishers</span>
           </div>
 
           <div
             style={{
-              padding: '16px 12px',
+              padding: '16px 10px',
               borderRadius: '12px',
               background: '#ffffff',
               border: '1px solid #eaecf0',
@@ -804,17 +806,19 @@ export default function BookDetails() {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '4px',
+              height: '100%',
+              minHeight: '115px',
+              boxSizing: 'border-box',
             }}
           >
-            <div style={{ fontSize: '1.25rem', marginBottom: '2px' }}>🚚</div>
-            <strong style={{ color: '#101828', fontSize: '0.82rem', display: 'block', fontWeight: 700 }}>Free Shipping</strong>
-            <span style={{ fontSize: '0.7rem', color: '#667085', lineHeight: 1.3 }}>On all orders</span>
+            <div style={{ fontSize: '1.3rem', marginBottom: '4px' }}>🚚</div>
+            <strong style={{ color: '#101828', fontSize: '0.8rem', display: 'block', fontWeight: 700, margin: '0 0 2px' }}>Free Shipping</strong>
+            <span style={{ fontSize: '0.68rem', color: '#667085', lineHeight: 1.3 }}>On all orders</span>
           </div>
 
           <div
             style={{
-              padding: '16px 12px',
+              padding: '16px 10px',
               borderRadius: '12px',
               background: '#ffffff',
               border: '1px solid #eaecf0',
@@ -824,17 +828,19 @@ export default function BookDetails() {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '4px',
+              height: '100%',
+              minHeight: '115px',
+              boxSizing: 'border-box',
             }}
           >
-            <div style={{ fontSize: '1.25rem', marginBottom: '2px' }}>🔄</div>
-            <strong style={{ color: '#101828', fontSize: '0.82rem', display: 'block', fontWeight: 700 }}>7 Days Return</strong>
-            <span style={{ fontSize: '0.7rem', color: '#667085', lineHeight: 1.3 }}>No questions asked</span>
+            <div style={{ fontSize: '1.3rem', marginBottom: '4px' }}>🔄</div>
+            <strong style={{ color: '#101828', fontSize: '0.8rem', display: 'block', fontWeight: 700, margin: '0 0 2px' }}>7 Days Return</strong>
+            <span style={{ fontSize: '0.68rem', color: '#667085', lineHeight: 1.3 }}>No questions asked</span>
           </div>
 
           <div
             style={{
-              padding: '16px 12px',
+              padding: '16px 10px',
               borderRadius: '12px',
               background: '#ffffff',
               border: '1px solid #eaecf0',
@@ -844,12 +850,14 @@ export default function BookDetails() {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '4px',
+              height: '100%',
+              minHeight: '115px',
+              boxSizing: 'border-box',
             }}
           >
-            <div style={{ fontSize: '1.25rem', marginBottom: '2px' }}>🛡️</div>
-            <strong style={{ color: '#101828', fontSize: '0.82rem', display: 'block', fontWeight: 700 }}>Secure Payment</strong>
-            <span style={{ fontSize: '0.7rem', color: '#667085', lineHeight: 1.3 }}>100% protected</span>
+            <div style={{ fontSize: '1.3rem', marginBottom: '4px' }}>🛡️</div>
+            <strong style={{ color: '#101828', fontSize: '0.8rem', display: 'block', fontWeight: 700, margin: '0 0 2px' }}>Secure Payment</strong>
+            <span style={{ fontSize: '0.68rem', color: '#667085', lineHeight: 1.3 }}>100% protected</span>
           </div>
         </div>
 
