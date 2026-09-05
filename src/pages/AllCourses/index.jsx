@@ -354,7 +354,12 @@ export default function AllCourses() {
             <button
               disabled={page === 1}
               onClick={() => setPage((p) => Math.max(p - 1, 1))}
+              className="pagination-btn"
               style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
                 padding: '8px 14px',
                 borderRadius: '8px',
                 border: `1px solid ${border}`,
@@ -364,19 +369,25 @@ export default function AllCourses() {
                 fontWeight: 700,
                 cursor: page === 1 ? 'not-allowed' : 'pointer',
                 opacity: page === 1 ? 0.5 : 1,
+                whiteSpace: 'nowrap',
               }}
             >
               <ChevronLeft size={16} /> Previous
             </button>
 
-            <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-primary)', padding: '0 12px' }}>
+            <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-primary)', padding: '0 12px', whiteSpace: 'nowrap' }}>
               Page {page} of {totalPages}
             </span>
 
             <button
               disabled={page === totalPages}
               onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
+              className="pagination-btn"
               style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
                 padding: '8px 14px',
                 borderRadius: '8px',
                 border: `1.5px solid ${border}`,
@@ -386,6 +397,7 @@ export default function AllCourses() {
                 fontWeight: 700,
                 cursor: page === totalPages ? 'not-allowed' : 'pointer',
                 opacity: page === totalPages ? 0.5 : 1,
+                whiteSpace: 'nowrap',
               }}
             >
               Next <ChevronRight size={16} />

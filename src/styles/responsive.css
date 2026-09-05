@@ -140,6 +140,19 @@
     display: none !important;
   }
 
+  /* ── 2b3. Pagination buttons: arrow & text locked in 1 single horizontal line ── */
+  .pagination-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    white-space: nowrap !important;
+  }
+
+  .pagination-btn svg {
+    flex-shrink: 0 !important;
+  }
+
   /* ── 2c. A horizontal scroller's items keep their natural width,
         otherwise there is nothing left to scroll and the labels
         collapse on top of each other.                          */
