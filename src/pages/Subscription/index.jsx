@@ -669,44 +669,31 @@ export default function Subscription() {
                     background: 'linear-gradient(180deg,#6366f1,#8b5cf6)',
                   }}
                 />
-              </div>
-              {/* Author badge */}
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '-12px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  background: 'rgba(10,15,30,.88)',
-                  border: '1px solid rgba(255,255,255,.15)',
-                  color: '#fff',
-                  fontSize: '0.65rem',
-                  fontWeight: 700,
-                  padding: '4px 14px',
-                  borderRadius: '999px',
-                  whiteSpace: 'nowrap',
-                  backdropFilter: 'blur(8px)',
-                }}
-              >
-                Shailendra Kumar
+
+                {/* Author badge — inside the book cover */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '12px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    background: 'rgba(10,15,30,.88)',
+                    border: '1px solid rgba(255,255,255,.15)',
+                    color: '#fff',
+                    fontSize: '0.65rem',
+                    fontWeight: 700,
+                    padding: '4px 14px',
+                    borderRadius: '999px',
+                    whiteSpace: 'nowrap',
+                    backdropFilter: 'blur(8px)',
+                    zIndex: 2,
+                  }}
+                >
+                  Shailendra Kumar
+                </div>
               </div>
             </motion.div>
 
-            {/* Potted Plant 🪴 */}
-            <div style={{ position: 'relative', width: '130px', zIndex: 1 }}>
-              <img
-                src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=300&auto=format&fit=crop"
-                alt="Potted plant"
-                style={{
-                  width: '100%',
-                  height: '180px',
-                  objectFit: 'cover',
-                  borderRadius: '16px',
-                  boxShadow: '0 8px 24px rgba(0,0,0,.15)',
-                  display: 'block',
-                }}
-              />
-            </div>
           </motion.div>
         </div>
       </section>
