@@ -387,49 +387,90 @@ export default function Resources() {
               </select>
             </div>
 
-            {/* Horizontal Resource Category Cards Strip (7 Cards) */}
+            {/* Resource Category Cards (2-Column Grid on Mobile, 7-Column on Desktop) */}
             <div
-              className="resources-category-strip"
+              className="resources-category-strip keep-grid"
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(7, 1fr)',
-                gap: '10px',
-                overflowX: 'auto',
+                gap: '12px',
               }}
             >
-              {categoryStrip.map((cat) => (
-                <div
-                  key={cat.id}
-                  onClick={() => setSelectedCategory(cat.id)}
-                  style={{
-                    background: isDark ? '#0f172a' : '#ffffff',
-                    border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0'}`,
-                    borderRadius: '12px', padding: '12px 10px',
-                    display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
-                    gap: '6px', cursor: 'pointer', transition: 'all 0.15s ease',
-                    boxShadow: '0 1px 2px rgba(16,24,40,0.03)',
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#4f46e5'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0'; e.currentTarget.style.transform = 'none'; }}
-                >
-                  <div style={{
-                    width: '32px', height: '32px', borderRadius: '8px',
-                    background: cat.bg, color: cat.color,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '1rem',
-                  }}>
-                    {cat.icon}
+              {categoryStrip.map((cat) => {
+                const isSelected = selectedCategory === cat.id;
+                return (
+                  <div
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.id)}
+                    style={{
+                      background: isSelected
+                        ? (isDark ? 'rgba(79, 70, 229, 0.2)' : '#eef2ff')
+                        : (isDark ? '#0f172a' : '#ffffff'),
+                      border: `1.5px solid ${isSelected ? '#4f46e5' : (isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0')}`,
+                      borderRadius: '14px',
+                      padding: '12px 14px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease',
+                      boxShadow: isSelected ? '0 4px 12px rgba(79,70,229,0.15)' : '0 1px 3px rgba(16,24,40,0.04)',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isSelected) {
+                        e.currentTarget.style.borderColor = '#4f46e5';
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isSelected) {
+                        e.currentTarget.style.borderColor = isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0';
+                        e.currentTarget.style.transform = 'none';
+                      }
+                    }}
+                  >
+                    {/* Icon filled color box */}
+                    <div
+                      style={{
+                        width: '44px',
+                        height: '44px',
+                        borderRadius: '12px',
+                        background: cat.bg,
+                        color: cat.color,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '1.3rem',
+                        flexShrink: 0,
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
+                      }}
+                    >
+                      {cat.icon}
+                    </div>
+
+                    {/* Label & Count beside Icon */}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <strong
+                        style={{
+                          color: 'var(--text-primary)',
+                          fontSize: '0.86rem',
+                          display: 'block',
+                          fontWeight: 700,
+                          lineHeight: 1.25,
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {cat.label}
+                      </strong>
+                      <span style={{ fontSize: '0.72rem', color: isSelected ? '#4f46e5' : 'var(--text-muted)', fontWeight: 600 }}>
+                        {cat.count} files
+                      </span>
+                    </div>
                   </div>
-                  <div>
-                    <strong style={{ color: 'var(--text-primary)', fontSize: '0.74rem', display: 'block', fontWeight: 700, lineHeight: 1.2 }}>
-                      {cat.label}
-                    </strong>
-                    <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>
-                      {cat.count}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Popular This Week Grid */}

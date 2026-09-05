@@ -377,7 +377,8 @@ export default function CourseDetails() {
               <button
                 onClick={handleEnroll}
                 style={{
-                  padding: '10px 20px',
+                  flex: '1 1 120px',
+                  padding: '10px 18px',
                   borderRadius: '8px',
                   border: 'none',
                   background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
@@ -386,7 +387,7 @@ export default function CourseDetails() {
                   fontWeight: 700,
                   cursor: 'pointer',
                   whiteSpace: 'nowrap',
-                  flexShrink: 0,
+                  textAlign: 'center',
                   boxShadow: '0 4px 14px rgba(99,102,241,.35)',
                   transition: 'all .15s',
                 }}
@@ -397,6 +398,7 @@ export default function CourseDetails() {
               <button
                 onClick={handleAddToCart}
                 style={{
+                  flex: '1 1 120px',
                   padding: '10px 16px',
                   borderRadius: '8px',
                   background: isDark ? 'rgba(99,102,241,.12)' : '#eef2ff',
@@ -406,14 +408,15 @@ export default function CourseDetails() {
                   fontWeight: 700,
                   cursor: 'pointer',
                   whiteSpace: 'nowrap',
-                  flexShrink: 0,
-                  display: 'flex',
+                  textAlign: 'center',
+                  display: 'inline-flex',
                   alignItems: 'center',
+                  justifyContent: 'center',
                   gap: '6px',
                   transition: 'all .15s',
                 }}
               >
-                <ShoppingCart size={15} /> Add to Cart
+                <ShoppingCart size={15} style={{ flexShrink: 0 }} /> Add to Cart
               </button>
 
               <button
@@ -424,17 +427,17 @@ export default function CourseDetails() {
                   background: 'transparent',
                   border: `1px solid ${border}`,
                   color: wishlisted ? '#ef4444' : 'var(--text-secondary)',
-                  display: 'flex',
+                  display: 'inline-flex',
                   alignItems: 'center',
+                  justifyContent: 'center',
                   gap: '6px',
                   fontSize: '0.78rem',
                   fontWeight: 600,
                   whiteSpace: 'nowrap',
-                  flexShrink: 0,
                   cursor: 'pointer',
                 }}
               >
-                <Heart size={14} fill={wishlisted ? '#ef4444' : 'none'} /> Wishlist
+                <Heart size={14} fill={wishlisted ? '#ef4444' : 'none'} style={{ flexShrink: 0 }} /> Wishlist
               </button>
 
               <button

@@ -300,13 +300,21 @@ export default function BookDetails() {
             </div>
 
             {/* Action Buttons Stack (Buy Now, Add to Cart, Wishlist) */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '4px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '4px', flexWrap: 'wrap' }}>
               <button
                 onClick={handleBuyNow}
                 style={{
-                  flex: 1.2, padding: '12px 24px', borderRadius: '8px', border: 'none',
-                  background: 'linear-gradient(135deg, #1d4ed8, #2563eb)', color: '#ffffff',
-                  fontSize: '0.88rem', fontWeight: 700, cursor: 'pointer',
+                  flex: '1 1 120px',
+                  padding: '11px 18px',
+                  borderRadius: '8px',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #1d4ed8, #2563eb)',
+                  color: '#ffffff',
+                  fontSize: '0.84rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  textAlign: 'center',
                   boxShadow: '0 4px 14px rgba(37,99,235,.35)',
                   transition: 'all 0.15s',
                 }}
@@ -319,26 +327,48 @@ export default function BookDetails() {
               <button
                 onClick={handleAddToCart}
                 style={{
-                  flex: 1, padding: '11px 18px', borderRadius: '8px',
-                  background: '#eff6ff', border: '1.5px solid #bfdbfe',
-                  color: '#1d4ed8', fontSize: '0.86rem', fontWeight: 700,
-                  cursor: 'pointer', transition: 'all 0.15s',
+                  flex: '1 1 120px',
+                  padding: '11px 16px',
+                  borderRadius: '8px',
+                  background: '#eff6ff',
+                  border: '1.5px solid #bfdbfe',
+                  color: '#1d4ed8',
+                  fontSize: '0.84rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  textAlign: 'center',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  transition: 'all 0.15s',
                 }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = '#dbeafe'; e.currentTarget.style.borderColor = '#2563eb'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = '#eff6ff'; e.currentTarget.style.borderColor = '#bfdbfe'; }}
               >
-                Add to Cart
+                <ShoppingCart size={15} style={{ flexShrink: 0 }} /> Add to Cart
               </button>
 
               <button
                 onClick={handleToggleWishlist}
                 style={{
-                  padding: '11px 14px', borderRadius: '8px', background: 'transparent',
-                  border: 'none', color: isWishlisted ? '#ef4444' : '#344054',
-                  display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.82rem', fontWeight: 600, cursor: 'pointer',
+                  padding: '11px 12px',
+                  borderRadius: '8px',
+                  background: 'transparent',
+                  border: '1px solid #eaecf0',
+                  color: isWishlisted ? '#ef4444' : '#344054',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '5px',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  whiteSpace: 'nowrap',
+                  cursor: 'pointer',
                 }}
               >
-                <Heart size={16} fill={isWishlisted ? '#ef4444' : 'none'} color={isWishlisted ? '#ef4444' : 'currentColor'} />
+                <Heart size={15} fill={isWishlisted ? '#ef4444' : 'none'} color={isWishlisted ? '#ef4444' : 'currentColor'} style={{ flexShrink: 0 }} />
                 <span>Wishlist</span>
               </button>
             </div>
@@ -740,30 +770,86 @@ export default function BookDetails() {
           </div>
         </div>
 
-        {/* ── BOTTOM TRUST FOOTER BANNER ── */}
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px',
-          padding: '20px', borderRadius: '12px', background: '#ffffff',
-          border: '1px solid #eaecf0', textAlign: 'center', margin: '12px 0 20px',
-        }}>
-          <div>
-            <strong style={{ color: '#101828', fontSize: '0.82rem', display: 'block', fontWeight: 600 }}>📦 100% Original Books</strong>
-            <span style={{ fontSize: '0.72rem', color: '#667085' }}>Sourced from trusted publishers</span>
+        {/* ── BOTTOM TRUST FOOTER BANNER (4 SEPARATE DISTINCT CARD BOXES) ── */}
+        <div className="trust-banner-grid keep-grid">
+          <div
+            style={{
+              padding: '16px 12px',
+              borderRadius: '12px',
+              background: '#ffffff',
+              border: '1px solid #eaecf0',
+              textAlign: 'center',
+              boxShadow: '0 1px 3px rgba(16,24,40,0.04)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '4px',
+            }}
+          >
+            <div style={{ fontSize: '1.25rem', marginBottom: '2px' }}>📦</div>
+            <strong style={{ color: '#101828', fontSize: '0.82rem', display: 'block', fontWeight: 700 }}>100% Original Books</strong>
+            <span style={{ fontSize: '0.7rem', color: '#667085', lineHeight: 1.3 }}>Sourced from trusted publishers</span>
           </div>
 
-          <div>
-            <strong style={{ color: '#101828', fontSize: '0.82rem', display: 'block', fontWeight: 600 }}>🚚 Free Shipping</strong>
-            <span style={{ fontSize: '0.72rem', color: '#667085' }}>On all orders</span>
+          <div
+            style={{
+              padding: '16px 12px',
+              borderRadius: '12px',
+              background: '#ffffff',
+              border: '1px solid #eaecf0',
+              textAlign: 'center',
+              boxShadow: '0 1px 3px rgba(16,24,40,0.04)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '4px',
+            }}
+          >
+            <div style={{ fontSize: '1.25rem', marginBottom: '2px' }}>🚚</div>
+            <strong style={{ color: '#101828', fontSize: '0.82rem', display: 'block', fontWeight: 700 }}>Free Shipping</strong>
+            <span style={{ fontSize: '0.7rem', color: '#667085', lineHeight: 1.3 }}>On all orders</span>
           </div>
 
-          <div>
-            <strong style={{ color: '#101828', fontSize: '0.82rem', display: 'block', fontWeight: 600 }}>🔄 7 Days Return</strong>
-            <span style={{ fontSize: '0.72rem', color: '#667085' }}>No questions asked</span>
+          <div
+            style={{
+              padding: '16px 12px',
+              borderRadius: '12px',
+              background: '#ffffff',
+              border: '1px solid #eaecf0',
+              textAlign: 'center',
+              boxShadow: '0 1px 3px rgba(16,24,40,0.04)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '4px',
+            }}
+          >
+            <div style={{ fontSize: '1.25rem', marginBottom: '2px' }}>🔄</div>
+            <strong style={{ color: '#101828', fontSize: '0.82rem', display: 'block', fontWeight: 700 }}>7 Days Return</strong>
+            <span style={{ fontSize: '0.7rem', color: '#667085', lineHeight: 1.3 }}>No questions asked</span>
           </div>
 
-          <div>
-            <strong style={{ color: '#101828', fontSize: '0.82rem', display: 'block', fontWeight: 600 }}>🛡️ Secure Payment</strong>
-            <span style={{ fontSize: '0.72rem', color: '#667085' }}>100% protected</span>
+          <div
+            style={{
+              padding: '16px 12px',
+              borderRadius: '12px',
+              background: '#ffffff',
+              border: '1px solid #eaecf0',
+              textAlign: 'center',
+              boxShadow: '0 1px 3px rgba(16,24,40,0.04)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '4px',
+            }}
+          >
+            <div style={{ fontSize: '1.25rem', marginBottom: '2px' }}>🛡️</div>
+            <strong style={{ color: '#101828', fontSize: '0.82rem', display: 'block', fontWeight: 700 }}>Secure Payment</strong>
+            <span style={{ fontSize: '0.7rem', color: '#667085', lineHeight: 1.3 }}>100% protected</span>
           </div>
         </div>
 

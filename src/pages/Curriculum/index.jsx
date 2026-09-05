@@ -357,33 +357,37 @@ export default function Curriculum() {
               </div>
 
               {/* OVERVIEW CONTENT + SPEC BOX */}
-              <div style={{ display: 'flex', gap: '28px', flexWrap: 'wrap' }}>
-                <div style={{ flex: 1, minWidth: '260px' }}>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.84rem', lineHeight: 1.6, margin: '0 0 16px' }}>
+              <div className="stack-row" style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
+                <div style={{ flex: 1, minWidth: 0, width: '100%' }}>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.86rem', lineHeight: 1.65, margin: '0 0 16px' }}>
                     In this lecture, we will understand Linear Regression and how it works in Python using Scikit-learn.
                     We will build a simple model and evaluate its performance.
                   </p>
 
-                  <h4 style={{ fontSize: '0.82rem', fontWeight: 800, color: 'var(--text-primary)', margin: '0 0 10px' }}>
+                  <h4 style={{ fontSize: '0.84rem', fontWeight: 800, color: 'var(--text-primary)', margin: '0 0 12px' }}>
                     What you'll learn in this lecture:
                   </h4>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                    <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <CheckCircle2 size={14} color="#6366f1" /> What is Linear Regression
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', lineHeight: 1.45 }}>
+                      <CheckCircle2 size={16} color="#6366f1" style={{ flexShrink: 0, marginTop: '2px' }} />
+                      <span style={{ flex: 1 }}>What is Linear Regression</span>
                     </li>
-                    <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <CheckCircle2 size={14} color="#6366f1" /> Implement Linear Regression in Python
+                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', lineHeight: 1.45 }}>
+                      <CheckCircle2 size={16} color="#6366f1" style={{ flexShrink: 0, marginTop: '2px' }} />
+                      <span style={{ flex: 1 }}>Implement Linear Regression in Python</span>
                     </li>
-                    <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <CheckCircle2 size={14} color="#6366f1" /> Model Evaluation using Metrics
+                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', lineHeight: 1.45 }}>
+                      <CheckCircle2 size={16} color="#6366f1" style={{ flexShrink: 0, marginTop: '2px' }} />
+                      <span style={{ flex: 1 }}>Model Evaluation using Metrics</span>
                     </li>
                   </ul>
                 </div>
 
                 {/* Right Spec Box */}
                 <div
+                  className="curriculum-spec-box"
                   style={{
-                    width: '200px',
+                    width: '220px',
                     padding: '16px',
                     borderRadius: '12px',
                     background: isDark ? 'rgba(255,255,255,.02)' : '#f8fafc',
@@ -396,26 +400,26 @@ export default function Curriculum() {
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <Clock size={16} color="#6366f1" />
+                    <Clock size={16} color="#6366f1" style={{ flexShrink: 0 }} />
                     <div>
-                      <span style={{ color: 'var(--text-muted)', display: 'block' }}>Duration</span>
-                      <strong style={{ color: 'var(--text-primary)' }}>8 min 15 sec</strong>
+                      <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.7rem' }}>Duration</span>
+                      <strong style={{ color: 'var(--text-primary)', fontWeight: 700 }}>8 min 15 sec</strong>
                     </div>
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <Play size={16} color="#6366f1" />
+                    <Play size={16} color="#6366f1" style={{ flexShrink: 0 }} />
                     <div>
-                      <span style={{ color: 'var(--text-muted)', display: 'block' }}>Watched</span>
-                      <strong style={{ color: 'var(--text-primary)' }}>60%</strong>
+                      <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.7rem' }}>Watched</span>
+                      <strong style={{ color: 'var(--text-primary)', fontWeight: 700 }}>60%</strong>
                     </div>
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <Award size={16} color="#6366f1" />
+                    <Award size={16} color="#6366f1" style={{ flexShrink: 0 }} />
                     <div>
-                      <span style={{ color: 'var(--text-muted)', display: 'block' }}>Last watched</span>
-                      <strong style={{ color: 'var(--text-primary)' }}>May 26, 2024</strong>
+                      <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.7rem' }}>Last watched</span>
+                      <strong style={{ color: 'var(--text-primary)', fontWeight: 700 }}>May 26, 2024</strong>
                     </div>
                   </div>
                 </div>

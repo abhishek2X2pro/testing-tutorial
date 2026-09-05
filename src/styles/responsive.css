@@ -69,7 +69,12 @@
   .flex > a[href],
   .flex > button,
   .flex > span {
-    min-width: min-content !important;
+    min-width: max-content !important;
+    white-space: nowrap;
+  }
+
+  button {
+    white-space: nowrap;
   }
 
   /* ── 2b. A horizontal scroller's items keep their natural width,
@@ -291,6 +296,34 @@
   .stack-row > svg,
   .stack-row > .stack-row-icon {
     width: auto !important;
+  }
+
+  .curriculum-spec-box {
+    width: 100% !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+.trust-banner-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin: 16px 0 24px;
+}
+
+@media (max-width: 768px) {
+  .trust-banner-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .resources-category-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
   }
 }
 
