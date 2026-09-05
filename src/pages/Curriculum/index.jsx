@@ -399,27 +399,27 @@ export default function Curriculum() {
                     flexShrink: 0,
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <div className="curriculum-spec-item" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Clock size={16} color="#6366f1" style={{ flexShrink: 0 }} />
                     <div>
-                      <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.7rem' }}>Duration</span>
-                      <strong style={{ color: 'var(--text-primary)', fontWeight: 700 }}>8 min 15 sec</strong>
+                      <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.68rem', lineHeight: 1.2 }}>Duration</span>
+                      <strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.78rem', lineHeight: 1.3 }}>8 min 15 sec</strong>
                     </div>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <div className="curriculum-spec-item" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Play size={16} color="#6366f1" style={{ flexShrink: 0 }} />
                     <div>
-                      <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.7rem' }}>Watched</span>
-                      <strong style={{ color: 'var(--text-primary)', fontWeight: 700 }}>60%</strong>
+                      <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.68rem', lineHeight: 1.2 }}>Watched</span>
+                      <strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.78rem', lineHeight: 1.3 }}>60%</strong>
                     </div>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <div className="curriculum-spec-item" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Award size={16} color="#6366f1" style={{ flexShrink: 0 }} />
                     <div>
-                      <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.7rem' }}>Last watched</span>
-                      <strong style={{ color: 'var(--text-primary)', fontWeight: 700 }}>May 26, 2024</strong>
+                      <span style={{ color: 'var(--text-muted)', display: 'block', fontSize: '0.68rem', lineHeight: 1.2 }}>Last watched</span>
+                      <strong style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.78rem', lineHeight: 1.3 }}>May 26, 2024</strong>
                     </div>
                   </div>
                 </div>

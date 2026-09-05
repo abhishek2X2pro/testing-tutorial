@@ -325,11 +325,29 @@
 
   .curriculum-spec-box {
     width: 100% !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    flex-wrap: wrap !important;
-    gap: 12px !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    padding: 12px 10px !important;
     box-sizing: border-box !important;
+    align-items: center !important;
+  }
+
+  .curriculum-spec-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    min-width: 0 !important;
+  }
+
+  .curriculum-spec-item span {
+    font-size: 0.64rem !important;
+    white-space: nowrap !important;
+  }
+
+  .curriculum-spec-item strong {
+    font-size: 0.74rem !important;
+    white-space: nowrap !important;
   }
 }
 
