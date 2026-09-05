@@ -802,6 +802,7 @@ function FAQItem({ faq, index }) {
       }}
     >
       <button
+        className="faq-row-button"
         onClick={() => setOpen((p) => !p)}
         aria-expanded={open}
         style={{
@@ -812,7 +813,10 @@ function FAQItem({ faq, index }) {
           fontFamily: 'inherit',
         }}
       >
-        <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.79rem', lineHeight: 1.4 }}>
+        <span
+          className="faq-question-text"
+          style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.79rem', lineHeight: 1.4, flex: 1, minWidth: 0 }}
+        >
           {faq.question}
         </span>
         <ChevronDown

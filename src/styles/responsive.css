@@ -77,7 +77,14 @@
     white-space: nowrap;
   }
 
-  /* ── 2b. A horizontal scroller's items keep their natural width,
+  /* ── 2b. FAQ Accordion questions must reflow cleanly on mobile ── */
+  .faq-row-button,
+  .faq-question-text {
+    min-width: 0 !important;
+    white-space: normal !important;
+  }
+
+  /* ── 2c. A horizontal scroller's items keep their natural width,
         otherwise there is nothing left to scroll and the labels
         collapse on top of each other.                          */
   [style*="overflow-x: auto"] > *,

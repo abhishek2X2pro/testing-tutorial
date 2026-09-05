@@ -272,26 +272,35 @@ function FAQRow({ item }) {
       }}
     >
       <button
+        className="faq-row-button"
         onClick={() => setOpen((p) => !p)}
         style={{
           width: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '15px 20px',
+          padding: '14px 16px',
           background: 'none',
           border: 'none',
           cursor: 'pointer',
           textAlign: 'left',
           gap: '12px',
+          whiteSpace: 'normal',
+          boxSizing: 'border-box',
         }}
       >
         <span
+          className="faq-question-text"
           style={{
+            flex: 1,
+            minWidth: 0,
             color: 'var(--text-primary)',
             fontWeight: 600,
-            fontSize: '0.875rem',
-            lineHeight: 1.4,
+            fontSize: '0.86rem',
+            lineHeight: 1.45,
+            whiteSpace: 'normal',
+            overflowWrap: 'break-word',
+            wordBreak: 'break-word',
           }}
         >
           {item.q}
@@ -314,9 +323,9 @@ function FAQRow({ item }) {
           }}
         >
           {open ? (
-            <Minus size={12} color="#fff" />
+            <Minus size={12} color="#fff" style={{ flexShrink: 0 }} />
           ) : (
-            <Plus size={12} color={isDark ? '#a5b4fc' : '#6366f1'} />
+            <Plus size={12} color={isDark ? '#a5b4fc' : '#6366f1'} style={{ flexShrink: 0 }} />
           )}
         </div>
       </button>
