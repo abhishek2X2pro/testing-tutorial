@@ -393,7 +393,7 @@ export default function Resources() {
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(7, 1fr)',
-                gap: '12px',
+                gap: '10px',
               }}
             >
               {categoryStrip.map((cat) => {
@@ -407,13 +407,16 @@ export default function Resources() {
                         ? (isDark ? 'rgba(79, 70, 229, 0.2)' : '#eef2ff')
                         : (isDark ? '#0f172a' : '#ffffff'),
                       border: `1.5px solid ${isSelected ? '#4f46e5' : (isDark ? 'rgba(255,255,255,0.08)' : '#eaecf0')}`,
-                      borderRadius: '14px',
-                      padding: '12px 14px',
+                      borderRadius: '12px',
+                      padding: '10px 10px',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '12px',
+                      gap: '8px',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease',
+                      height: '100%',
+                      minHeight: '62px',
+                      boxSizing: 'border-box',
                       boxShadow: isSelected ? '0 4px 12px rgba(79,70,229,0.15)' : '0 1px 3px rgba(16,24,40,0.04)',
                     }}
                     onMouseEnter={(e) => {
@@ -432,15 +435,15 @@ export default function Resources() {
                     {/* Icon filled color box */}
                     <div
                       style={{
-                        width: '44px',
-                        height: '44px',
-                        borderRadius: '12px',
+                        width: '38px',
+                        height: '38px',
+                        borderRadius: '10px',
                         background: cat.bg,
                         color: cat.color,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontSize: '1.3rem',
+                        fontSize: '1.15rem',
                         flexShrink: 0,
                         boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
                       }}
@@ -449,11 +452,11 @@ export default function Resources() {
                     </div>
 
                     {/* Label & Count beside Icon */}
-                    <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ flex: 1, minWidth: 0, overflow: 'hidden' }}>
                       <strong
                         style={{
                           color: 'var(--text-primary)',
-                          fontSize: '0.86rem',
+                          fontSize: '0.78rem',
                           display: 'block',
                           fontWeight: 700,
                           lineHeight: 1.25,
@@ -464,7 +467,7 @@ export default function Resources() {
                       >
                         {cat.label}
                       </strong>
-                      <span style={{ fontSize: '0.72rem', color: isSelected ? '#4f46e5' : 'var(--text-muted)', fontWeight: 600 }}>
+                      <span style={{ fontSize: '0.68rem', color: isSelected ? '#4f46e5' : 'var(--text-muted)', fontWeight: 600, display: 'block', whiteSpace: 'nowrap' }}>
                         {cat.count} files
                       </span>
                     </div>
