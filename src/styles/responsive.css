@@ -102,12 +102,51 @@
     box-sizing: border-box !important;
   }
 
+  /* ── 2b2. Course/Book page search & sort controls side-by-side on mobile ── */
+  .courses-header-controls,
+  .books-controls {
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    align-items: center !important;
+  }
+
+  .courses-search-wrapper,
+  .books-search {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  .courses-sort-select,
+  .books-controls select {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .category-pills-bar {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .category-pills-bar::-webkit-scrollbar {
+    display: none !important;
+  }
+
   /* ── 2c. A horizontal scroller's items keep their natural width,
         otherwise there is nothing left to scroll and the labels
         collapse on top of each other.                          */
   [style*="overflow-x: auto"] > *,
   [style*="overflow-x: scroll"] > *,
-  .books-cats > * {
+  .books-cats > *,
+  .category-pills-bar > * {
     flex-shrink: 0;
   }
 
