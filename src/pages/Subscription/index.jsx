@@ -1148,48 +1148,48 @@ export default function Subscription() {
                 ? 'linear-gradient(135deg,rgba(99,102,241,.18),rgba(139,92,246,.12))'
                 : 'linear-gradient(135deg,#f3f4f6,#eef2ff)',
               border: '1.5px solid rgba(99,102,241,.25)',
-              borderRadius: '18px',
-              padding: '24px 32px',
+              borderRadius: '20px',
+              padding: '28px 24px',
               display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '20px',
+              textAlign: 'center',
+              gap: '16px',
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <div
+            <div
+              style={{
+                width: '52px',
+                height: '52px',
+                borderRadius: '14px',
+                background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#fff',
+                boxShadow: '0 8px 24px rgba(99,102,241,.35)',
+                margin: '0 auto',
+              }}
+            >
+              <Shield size={26} color="#fff" />
+            </div>
+
+            <div style={{ maxWidth: '460px' }}>
+              <h4
                 style={{
-                  width: '46px',
-                  height: '46px',
-                  borderRadius: '12px',
-                  background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#fff',
-                  boxShadow: '0 6px 18px rgba(99,102,241,.35)',
-                  flexShrink: 0,
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '1.15rem',
+                  fontWeight: 800,
+                  color: 'var(--text-primary)',
+                  margin: '0 0 6px',
+                  letterSpacing: '-0.01em',
                 }}
               >
-                <Shield size={22} color="#fff" />
-              </div>
-              <div>
-                <h4
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1rem',
-                    fontWeight: 800,
-                    color: 'var(--text-primary)',
-                    margin: '0 0 2px',
-                  }}
-                >
-                  30-Day Money Back Guarantee
-                </h4>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', margin: 0 }}>
-                  Not satisfied? Get a full refund within 30 days, no questions asked.
-                </p>
-              </div>
+                30-Day Money Back Guarantee
+              </h4>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', margin: 0, lineHeight: 1.5 }}>
+                Not satisfied? Get a full refund within 30 days, no questions asked.
+              </p>
             </div>
 
             <button
@@ -1197,20 +1197,23 @@ export default function Subscription() {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 gap: '8px',
-                padding: '12px 24px',
-                borderRadius: '10px',
+                width: '100%',
+                maxWidth: '320px',
+                padding: '13px 24px',
+                borderRadius: '12px',
                 background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
                 color: '#fff',
-                fontSize: '0.85rem',
+                fontSize: '0.875rem',
                 fontWeight: 700,
                 border: 'none',
                 cursor: 'pointer',
-                boxShadow: '0 6px 18px rgba(99,102,241,.35)',
+                boxShadow: '0 8px 24px rgba(99,102,241,.35)',
                 transition: 'all .15s',
               }}
             >
-              Start Your Learning Journey <ArrowRight size={15} />
+              Start Your Learning Journey <ArrowRight size={16} />
             </button>
           </div>
         </div>
