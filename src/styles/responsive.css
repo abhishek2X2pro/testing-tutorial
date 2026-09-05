@@ -153,6 +153,15 @@
     flex-shrink: 0 !important;
   }
 
+  /* ── 2b4. Book & Course key spec boxes: 2x2 symmetrical grid on mobile ── */
+  .book-specs-grid,
+  .course-specs-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px 10px !important;
+    align-items: start !important;
+  }
+
   /* ── 2c. A horizontal scroller's items keep their natural width,
         otherwise there is nothing left to scroll and the labels
         collapse on top of each other.                          */

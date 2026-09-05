@@ -311,6 +311,7 @@ export default function CourseDetails() {
 
             {/* Specs Grid */}
             <div
+              className="course-specs-grid"
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(3, 1fr)',

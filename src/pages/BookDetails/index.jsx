@@ -240,11 +240,14 @@ export default function BookDetails() {
             </div>
 
             {/* Key Spec Badges Box (Language, Pages, Edition, ISBN) */}
-            <div style={{
-              display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px',
-              padding: '12px 14px', borderRadius: '8px', background: '#ffffff',
-              border: '1px solid #eaecf0', margin: '2px 0',
-            }}>
+            <div
+              className="book-specs-grid"
+              style={{
+                display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px',
+                padding: '12px 14px', borderRadius: '8px', background: '#ffffff',
+                border: '1px solid #eaecf0', margin: '2px 0',
+              }}
+            >
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#667085', fontSize: '0.7rem', fontWeight: 500 }}>
                   <Globe size={12} /> Language
