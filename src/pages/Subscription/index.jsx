@@ -508,23 +508,39 @@ export default function Subscription() {
               ))}
             </ul>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '18px' }}>
+            <div
+              className="subscription-hero-btn-row"
+              style={{
+                display: 'flex',
+                gap: '12px',
+                marginBottom: '18px',
+                width: '100%',
+                boxSizing: 'border-box',
+              }}
+            >
               <a
+                className="hero-action-btn"
                 href="#sub-plans"
                 onClick={scrollToPlans}
                 style={{
+                  flex: '1 1 0',
+                  minWidth: 0,
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  padding: '13px 28px',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  padding: '13px 16px',
                   borderRadius: '10px',
                   background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
                   color: '#fff',
-                  fontSize: '0.9rem',
+                  fontSize: '0.88rem',
                   fontWeight: 700,
                   textDecoration: 'none',
                   boxShadow: '0 8px 24px rgba(99,102,241,.35)',
                   transition: 'all .2s',
+                  textAlign: 'center',
+                  whiteSpace: 'nowrap',
+                  boxSizing: 'border-box',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-2px)';
@@ -538,22 +554,28 @@ export default function Subscription() {
                 Start Subscription
               </a>
               <button
+                className="hero-action-btn"
                 onClick={() => toast.success('Playing free preview video...')}
                 style={{
+                  flex: '1 1 0',
+                  minWidth: 0,
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  padding: '13px 22px',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  padding: '13px 14px',
                   borderRadius: '10px',
                   background: 'var(--bg-card)',
                   border: `1.5px solid ${
                     isDark ? 'rgba(255,255,255,.12)' : 'rgba(99,102,241,.25)'
                   }`,
                   color: 'var(--text-primary)',
-                  fontSize: '0.9rem',
+                  fontSize: '0.88rem',
                   fontWeight: 700,
                   cursor: 'pointer',
                   transition: 'all .2s',
+                  whiteSpace: 'nowrap',
+                  boxSizing: 'border-box',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = '#6366f1';
@@ -568,13 +590,14 @@ export default function Subscription() {
               >
                 <div
                   style={{
-                    width: '26px',
-                    height: '26px',
+                    width: '22px',
+                    height: '22px',
                     borderRadius: '50%',
                     background: '#6366f1',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    flexShrink: 0,
                   }}
                 >
                   <Play size={10} color="#fff" fill="#fff" />

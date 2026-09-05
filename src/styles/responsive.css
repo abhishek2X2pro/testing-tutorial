@@ -84,6 +84,24 @@
     white-space: normal !important;
   }
 
+  /* ── 2b1. Subscription hero buttons stay side-by-side and equal width ── */
+  .subscription-hero-btn-row {
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .subscription-hero-btn-row > a,
+  .subscription-hero-btn-row > button,
+  .subscription-hero-btn-row > .hero-action-btn {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    padding: 12px 6px !important;
+    font-size: clamp(0.74rem, 3.1vw, 0.84rem) !important;
+    box-sizing: border-box !important;
+  }
+
   /* ── 2c. A horizontal scroller's items keep their natural width,
         otherwise there is nothing left to scroll and the labels
         collapse on top of each other.                          */
