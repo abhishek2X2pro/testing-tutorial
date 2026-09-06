@@ -77,9 +77,16 @@ export default function BookDetails() {
   const chapters = [
     { title: '1. Introduction to Artificial Intelligence', page: '18' },
     { title: '2. History and Evolution of AI', page: '24' },
-    { title: '3. How AI Works?', page: '26' },
-    { title: '4. Machine Learning Basics', page: '28' },
+    { title: '3. How AI Works & Core Principles', page: '26' },
+    { title: '4. Machine Learning Basics & Fundamentals', page: '28' },
     { title: '5. Supervised vs Unsupervised Learning', page: '34' },
+    { title: '6. Neural Networks & Deep Learning Essentials', page: '48' },
+    { title: '7. Natural Language Processing & ChatGPT', page: '64' },
+    { title: '8. Computer Vision & Image Recognition', page: '82' },
+    { title: '9. Prompt Engineering Techniques', page: '104' },
+    { title: '10. Building Real-World AI Projects', page: '130' },
+    { title: '11. Model Evaluation, Tuning & Metrics', page: '165' },
+    { title: '12. Ethics, Safety & Future of AI', page: '198' },
   ];
 
   // Student reviews mock data
@@ -488,10 +495,14 @@ export default function BookDetails() {
         }}>
 
           {/* Tab Navigation Header Bar */}
-          <div style={{
-            display: 'flex', borderBottom: '1px solid #eaecf0',
-            background: '#ffffff', padding: '0 24px', overflowX: 'auto',
-          }}>
+          <div
+            className="tab-strip"
+            style={{
+              display: 'flex', borderBottom: '1px solid #eaecf0',
+              background: '#ffffff', padding: '0 24px', overflowX: 'auto',
+              scrollbarWidth: 'none',
+            }}
+          >
             {[
               { id: 'about', label: 'About this book' },
               { id: 'toc', label: 'Table of contents' },
@@ -503,7 +514,7 @@ export default function BookDetails() {
                 onClick={() => setActiveTab(tab.id)}
                 style={{
                   padding: '16px 20px', background: 'none', border: 'none',
-                  borderBottom: activeTab === tab.id ? '2px solid #2563eb' : '2px solid transparent',
+                  borderBottom: activeTab === tab.id ? '2.5px solid #2563eb' : '2.5px solid transparent',
                   color: activeTab === tab.id ? '#2563eb' : '#667085',
                   fontSize: '0.85rem', fontWeight: activeTab === tab.id ? 700 : 500,
                   cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all 0.15s',
@@ -514,94 +525,142 @@ export default function BookDetails() {
             ))}
           </div>
 
-          {/* Content Grid Area below Tabs */}
+          {/* Content Area below Tabs */}
           <div style={{ padding: '28px' }}>
-            <div style={{
-              display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '32px', alignItems: 'start',
-            }}>
+            {activeTab === 'about' && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <div>
+                  <h3 style={{ color: '#101828', fontSize: '1.05rem', fontWeight: 700, margin: '0 0 8px' }}>
+                    About this book
+                  </h3>
+                  <p style={{ color: '#475467', fontSize: '0.88rem', lineHeight: 1.65, margin: 0 }}>
+                    {book.description || 'This book is perfect for anyone who wants to understand the basics of Artificial Intelligence. It explains complex AI concepts in simple language with practical examples, projects, and exercises.'}
+                  </p>
+                </div>
 
-              {/* COLUMN 1: About this book & Bullet Checklist */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                <p style={{ color: '#475467', fontSize: '0.86rem', lineHeight: 1.6, margin: 0 }}>
-                  This book is perfect for anyone who wants to understand the basics of Artificial Intelligence. It explains complex AI concepts in simple language with practical examples, projects, and exercises.
-                </p>
+                <div>
+                  <h4 style={{ color: '#101828', fontSize: '0.92rem', fontWeight: 700, margin: '0 0 12px' }}>
+                    What you will learn from this book:
+                  </h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '10px' }}>
+                    {[
+                      'Understand AI concepts in simple, clear language',
+                      'Master ChatGPT and Advanced Prompt Engineering',
+                      'Explore Machine Learning and Deep Learning models',
+                      'Build 5+ real-world AI projects from scratch',
+                      'Prepare for future high-paying AI career opportunities',
+                      'Gain hands-on experience with Scikit-Learn & Python',
+                    ].map((pt, i) => (
+                      <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.84rem', color: '#344054', background: '#f8fafc', padding: '10px 14px', borderRadius: '8px', border: '1px solid #eaecf0' }}>
+                        <span style={{ color: '#2563eb', fontWeight: 800 }}>✓</span>
+                        <span>{pt}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '4px' }}>
-                  {[
-                    'Understand AI concepts in simple language',
-                    'Learn ChatGPT and Prompt Engineering',
-                    'Explore Machine Learning and Deep Learning',
-                    'Build real-world AI projects',
-                    'Prepare for future AI career opportunities',
-                  ].map((pt, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.82rem', color: '#344054' }}>
-                      <span style={{ color: '#101828', fontWeight: 700 }}>✓</span>
-                      <span>{pt}</span>
-                    </div>
-                  ))}
+                <div style={{ display: 'flex', gap: '16px', marginTop: '4px', flexWrap: 'wrap' }}>
+                  <button
+                    onClick={() => setActiveTab('toc')}
+                    style={{ border: 'none', background: 'none', color: '#2563eb', fontWeight: 600, fontSize: '0.84rem', cursor: 'pointer', padding: 0 }}
+                  >
+                    View Table of Contents (12 Chapters) →
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('preview')}
+                    style={{ border: 'none', background: 'none', color: '#2563eb', fontWeight: 600, fontSize: '0.84rem', cursor: 'pointer', padding: 0 }}
+                  >
+                    Preview Sample Book Pages →
+                  </button>
                 </div>
               </div>
+            )}
 
-              {/* COLUMN 2: Table of contents */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <h3 style={{ color: '#101828', fontSize: '0.92rem', fontWeight: 700, margin: 0 }}>
-                    Table of contents
+            {activeTab === 'toc' && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
+                  <h3 style={{ color: '#101828', fontSize: '1.05rem', fontWeight: 700, margin: 0 }}>
+                    Table of Contents
                   </h3>
-                  <span style={{ fontSize: '0.72rem', color: '#667085', cursor: 'pointer' }}>
-                    View all (20 chapters)
+                  <span style={{ fontSize: '0.78rem', color: '#667085', background: '#f2f4f7', padding: '4px 10px', borderRadius: '6px', fontWeight: 600 }}>
+                    12 Chapters • 320 Pages
                   </span>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '10px', marginTop: '4px' }}>
                   {chapters.map((ch, idx) => (
                     <div
                       key={idx}
                       style={{
                         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                        fontSize: '0.8rem', color: '#344054', fontWeight: 400,
+                        fontSize: '0.84rem', color: '#344054', background: '#f8fafc',
+                        padding: '11px 14px', borderRadius: '8px', border: '1px solid #eaecf0',
                       }}
                     >
-                      <span style={{ color: '#344054' }}>{ch.title}</span>
-                      <span style={{ flex: 1, borderBottom: '1px dotted #d0d5dd', margin: '0 8px', height: '14px' }} />
-                      <span style={{ color: '#667085' }}>{ch.page}</span>
+                      <span style={{ color: '#101828', fontWeight: 500 }}>{ch.title}</span>
+                      <span style={{ color: '#667085', fontSize: '0.78rem', fontWeight: 600, flexShrink: 0, marginLeft: '8px' }}>P. {ch.page}</span>
                     </div>
                   ))}
-                  <div style={{ color: '#667085', fontSize: '0.8rem', letterSpacing: '0.1em' }}>...</div>
                 </div>
               </div>
+            )}
 
-              {/* COLUMN 3: Preview this book & Download Sample PDF */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                <h3 style={{ color: '#101828', fontSize: '0.92rem', fontWeight: 700, margin: 0 }}>
-                  Preview this book
+            {activeTab === 'preview' && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+                  <div>
+                    <h3 style={{ color: '#101828', fontSize: '1.05rem', fontWeight: 700, margin: '0 0 4px' }}>
+                      Preview Book Pages
+                    </h3>
+                    <p style={{ color: '#667085', fontSize: '0.82rem', margin: 0 }}>
+                      Take a look at sample chapters and diagrams included in this book.
+                    </p>
+                  </div>
+                  <button
+                    onClick={handleDownloadSample}
+                    style={{
+                      display: 'inline-flex', alignItems: 'center', gap: '8px',
+                      padding: '10px 18px', borderRadius: '8px', background: '#2563eb',
+                      border: 'none', color: '#ffffff',
+                      fontSize: '0.84rem', fontWeight: 600, cursor: 'pointer',
+                    }}
+                  >
+                    <Download size={15} /> Download Free Sample PDF
+                  </button>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '12px' }}>
+                  {sampleThumbnails.map((thumb, idx) => (
+                    <div key={idx} style={{ aspectRatio: '3/4', borderRadius: '8px', overflow: 'hidden', border: '1px solid #eaecf0', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
+                      <img src={thumb} alt={`Page preview ${idx+1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'learn' && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                <h3 style={{ color: '#101828', fontSize: '1.05rem', fontWeight: 700, margin: 0 }}>
+                  What You Will Get With This Purchase
                 </h3>
 
-                <div style={{ display: 'flex', gap: '8px' }}>
-                  {sampleThumbnails.map((thumb, idx) => (
-                    <div key={idx} style={{ flex: 1, aspectRatio: '3/4', borderRadius: '6px', overflow: 'hidden', border: '1px solid #eaecf0' }}>
-                      <img src={thumb} alt="Preview page" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px' }}>
+                  {[
+                    { icon: '📖', title: 'Complete eBook (PDF & ePub)', desc: 'Instant download access on all your devices with no DRM restrictions.' },
+                    { icon: '💻', title: 'Source Code Repository', desc: 'All Python notebooks, code snippets, and exercise solutions included.' },
+                    { icon: '🔄', title: 'Free Lifetime Updates', desc: 'Get all future editions, bug fixes, and new bonus chapters at zero extra cost.' },
+                    { icon: '📜', title: 'Verifiable Certificate', desc: 'Official completion certificate to add to your LinkedIn profile & resume.' },
+                  ].map((item, idx) => (
+                    <div key={idx} style={{ padding: '16px', borderRadius: '10px', background: '#f8fafc', border: '1px solid #eaecf0' }}>
+                      <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>{item.icon}</div>
+                      <h4 style={{ color: '#101828', fontSize: '0.88rem', fontWeight: 700, margin: '0 0 4px' }}>{item.title}</h4>
+                      <p style={{ color: '#475467', fontSize: '0.8rem', lineHeight: 1.5, margin: 0 }}>{item.desc}</p>
                     </div>
                   ))}
                 </div>
-
-                <button
-                  onClick={handleDownloadSample}
-                  style={{
-                    marginTop: '4px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-                    padding: '10px 16px', borderRadius: '8px', background: '#ffffff',
-                    border: '1px solid #d0d5dd', color: '#344054',
-                    fontSize: '0.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.15s',
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = '#f9fafb'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = '#ffffff'; }}
-                >
-                  <Download size={14} /> Download Sample PDF
-                </button>
               </div>
-
-            </div>
+            )}
           </div>
         </div>
 
@@ -777,7 +836,7 @@ export default function BookDetails() {
         <div className="trust-banner-grid keep-grid">
           <div
             style={{
-              padding: '16px 10px',
+              padding: '14px 8px',
               borderRadius: '12px',
               background: '#ffffff',
               border: '1px solid #eaecf0',
@@ -790,16 +849,18 @@ export default function BookDetails() {
               height: '100%',
               minHeight: '115px',
               boxSizing: 'border-box',
+              overflow: 'hidden',
+              minWidth: 0,
             }}
           >
             <div style={{ fontSize: '1.3rem', marginBottom: '4px' }}>📦</div>
-            <strong style={{ color: '#101828', fontSize: '0.8rem', display: 'block', fontWeight: 700, margin: '0 0 2px' }}>100% Original Books</strong>
-            <span style={{ fontSize: '0.68rem', color: '#667085', lineHeight: 1.3 }}>Sourced from trusted publishers</span>
+            <strong style={{ color: '#101828', fontSize: '0.8rem', display: 'block', fontWeight: 700, margin: '0 0 2px', whiteSpace: 'normal', wordBreak: 'break-word' }}>100% Original Books</strong>
+            <span style={{ fontSize: '0.68rem', color: '#667085', lineHeight: 1.3, whiteSpace: 'normal', wordBreak: 'break-word', display: 'block' }}>Sourced from trusted publishers</span>
           </div>
 
           <div
             style={{
-              padding: '16px 10px',
+              padding: '14px 8px',
               borderRadius: '12px',
               background: '#ffffff',
               border: '1px solid #eaecf0',
@@ -812,16 +873,18 @@ export default function BookDetails() {
               height: '100%',
               minHeight: '115px',
               boxSizing: 'border-box',
+              overflow: 'hidden',
+              minWidth: 0,
             }}
           >
             <div style={{ fontSize: '1.3rem', marginBottom: '4px' }}>🚚</div>
-            <strong style={{ color: '#101828', fontSize: '0.8rem', display: 'block', fontWeight: 700, margin: '0 0 2px' }}>Free Shipping</strong>
-            <span style={{ fontSize: '0.68rem', color: '#667085', lineHeight: 1.3 }}>On all orders</span>
+            <strong style={{ color: '#101828', fontSize: '0.8rem', display: 'block', fontWeight: 700, margin: '0 0 2px', whiteSpace: 'normal', wordBreak: 'break-word' }}>Free Shipping</strong>
+            <span style={{ fontSize: '0.68rem', color: '#667085', lineHeight: 1.3, whiteSpace: 'normal', wordBreak: 'break-word', display: 'block' }}>On all orders</span>
           </div>
 
           <div
             style={{
-              padding: '16px 10px',
+              padding: '14px 8px',
               borderRadius: '12px',
               background: '#ffffff',
               border: '1px solid #eaecf0',
@@ -834,16 +897,18 @@ export default function BookDetails() {
               height: '100%',
               minHeight: '115px',
               boxSizing: 'border-box',
+              overflow: 'hidden',
+              minWidth: 0,
             }}
           >
             <div style={{ fontSize: '1.3rem', marginBottom: '4px' }}>🔄</div>
-            <strong style={{ color: '#101828', fontSize: '0.8rem', display: 'block', fontWeight: 700, margin: '0 0 2px' }}>7 Days Return</strong>
-            <span style={{ fontSize: '0.68rem', color: '#667085', lineHeight: 1.3 }}>No questions asked</span>
+            <strong style={{ color: '#101828', fontSize: '0.8rem', display: 'block', fontWeight: 700, margin: '0 0 2px', whiteSpace: 'normal', wordBreak: 'break-word' }}>7 Days Return</strong>
+            <span style={{ fontSize: '0.68rem', color: '#667085', lineHeight: 1.3, whiteSpace: 'normal', wordBreak: 'break-word', display: 'block' }}>No questions asked</span>
           </div>
 
           <div
             style={{
-              padding: '16px 10px',
+              padding: '14px 8px',
               borderRadius: '12px',
               background: '#ffffff',
               border: '1px solid #eaecf0',
@@ -856,11 +921,13 @@ export default function BookDetails() {
               height: '100%',
               minHeight: '115px',
               boxSizing: 'border-box',
+              overflow: 'hidden',
+              minWidth: 0,
             }}
           >
             <div style={{ fontSize: '1.3rem', marginBottom: '4px' }}>🛡️</div>
-            <strong style={{ color: '#101828', fontSize: '0.8rem', display: 'block', fontWeight: 700, margin: '0 0 2px' }}>Secure Payment</strong>
-            <span style={{ fontSize: '0.68rem', color: '#667085', lineHeight: 1.3 }}>100% protected</span>
+            <strong style={{ color: '#101828', fontSize: '0.8rem', display: 'block', fontWeight: 700, margin: '0 0 2px', whiteSpace: 'normal', wordBreak: 'break-word' }}>Secure Payment</strong>
+            <span style={{ fontSize: '0.68rem', color: '#667085', lineHeight: 1.3, whiteSpace: 'normal', wordBreak: 'break-word', display: 'block' }}>100% protected</span>
           </div>
         </div>
 

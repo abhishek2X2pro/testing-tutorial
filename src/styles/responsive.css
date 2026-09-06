@@ -63,12 +63,14 @@
 
         `!important` is needed here only to outrank rule 2 above,
         whose `:not(...)` gives it the higher specificity.         */
+  /* ── 2a. …but never squeeze interactive controls (buttons, links)
+        narrower than their content. Buttons and links keep max-content.
+        Spans are excluded so body text/subtitles inside flex containers
+        can wrap naturally without overflowing.                    */
   [style*="display: flex"] > a[href],
   [style*="display: flex"] > button,
-  [style*="display: flex"] > span,
   .flex > a[href],
-  .flex > button,
-  .flex > span {
+  .flex > button {
     min-width: max-content !important;
     white-space: nowrap;
   }
@@ -418,6 +420,23 @@
   gap: 14px;
   margin: 16px 0 24px;
   align-items: stretch;
+}
+
+.trust-banner-grid > div {
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  overflow: hidden !important;
+}
+
+.trust-banner-grid > div strong,
+.trust-banner-grid > div span {
+  white-space: normal !important;
+  min-width: 0 !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  text-align: center !important;
 }
 
 @media (max-width: 768px) {
