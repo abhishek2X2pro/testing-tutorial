@@ -2,6 +2,16 @@
 // Books Data — DevOpsX Learning Platform
 // ============================================================
 
+// ── Attaching a book's PDF ───────────────────────────────────
+// 1. Drop the file into  public/books/  e.g. public/books/ai-for-beginners.pdf
+// 2. Set this book's `pdfUrl` to the path from the site root:
+//        pdfUrl: '/books/ai-for-beginners.pdf'
+// 3. It is then readable in-app at  /textbooks/<id>/read
+// `pdfUrl: null` means no file is attached yet; the reader says so
+// instead of showing an empty page.
+// When the files later move to cloud storage, only this string changes
+// (to the full https URL) — no other code needs touching.
+// ─────────────────────────────────────────────────────────────
 export const books = [
   {
     id: 1,
@@ -19,6 +29,7 @@ export const books = [
     pages: 320, year: 2024, format: 'PDF',
     description: 'A comprehensive introduction to AI concepts, tools, and real-world applications.',
     downloadUrl: '#', readUrl: '#',
+    pdfUrl: null,
     whatYoullLearn: ['AI fundamentals', 'Machine Learning basics', 'Neural networks', 'Real-world projects'],
     exploreMoreContent: ['Ebook', 'Courses', 'Assignments'],
   },
@@ -38,6 +49,7 @@ export const books = [
     pages: 410, year: 2024, format: 'PDF',
     description: 'Hands-on machine learning with Python, scikit-learn and real datasets.',
     downloadUrl: '#', readUrl: '#',
+    pdfUrl: null,
     whatYoullLearn: ['Python ML libraries', 'Supervised learning', 'Model evaluation', 'Feature engineering'],
     exploreMoreContent: ['Ebook', 'Courses'],
   },
@@ -57,6 +69,7 @@ export const books = [
     pages: 380, year: 2024, format: 'PDF',
     description: 'Master deep neural networks, CNNs, RNNs and transformers from scratch.',
     downloadUrl: '#', readUrl: '#',
+    pdfUrl: null,
     whatYoullLearn: ['Neural networks', 'CNNs', 'RNNs', 'Transfer learning'],
     exploreMoreContent: ['Ebook', 'Courses'],
   },
@@ -76,6 +89,7 @@ export const books = [
     pages: 240, year: 2024, format: 'PDF',
     description: 'Complete guide to mastering ChatGPT, prompt engineering and productivity hacks.',
     downloadUrl: '#', readUrl: '#',
+    pdfUrl: null,
     whatYoullLearn: ['Prompt engineering', 'ChatGPT APIs', 'Productivity', 'Business use cases'],
     exploreMoreContent: ['Ebook', 'Courses'],
   },
@@ -95,6 +109,7 @@ export const books = [
     pages: 360, year: 2024, format: 'PDF',
     description: 'Learn data science end-to-end with Python, Pandas, and visualization tools.',
     downloadUrl: '#', readUrl: '#',
+    pdfUrl: null,
     whatYoullLearn: ['Data wrangling', 'EDA', 'Visualization', 'ML integration'],
     exploreMoreContent: ['Ebook', 'Courses'],
   },
@@ -114,6 +129,7 @@ export const books = [
     pages: 300, year: 2024, format: 'PDF',
     description: 'Learn Python from scratch with a focus on AI and data science applications.',
     downloadUrl: '#', readUrl: '#',
+    pdfUrl: null,
     whatYoullLearn: ['Python basics', 'Data structures', 'Functions', 'Libraries'],
     exploreMoreContent: ['Ebook', 'Courses'],
   },
@@ -133,6 +149,7 @@ export const books = [
     pages: 350, year: 2024, format: 'PDF',
     description: 'Build real-world computer vision applications with OpenCV and deep learning.',
     downloadUrl: '#', readUrl: '#',
+    pdfUrl: null,
     whatYoullLearn: ['Image processing', 'Object detection', 'Face recognition', 'CNNs'],
     exploreMoreContent: ['Ebook', 'Courses'],
   },
@@ -152,6 +169,7 @@ export const books = [
     pages: 400, year: 2024, format: 'PDF',
     description: 'Complete NLP guide from tokenization to transformer models and fine-tuning.',
     downloadUrl: '#', readUrl: '#',
+    pdfUrl: null,
     whatYoullLearn: ['Text preprocessing', 'Transformers', 'BERT', 'Sentiment analysis'],
     exploreMoreContent: ['Ebook', 'Courses'],
   },
@@ -171,6 +189,7 @@ export const books = [
     pages: 280, year: 2024, format: 'PDF',
     description: 'Essential statistics and probability concepts for data science and machine learning.',
     downloadUrl: '#', readUrl: '#',
+    pdfUrl: null,
     whatYoullLearn: ['Probability', 'Distributions', 'Hypothesis testing', 'Regression'],
     exploreMoreContent: ['Ebook', 'Courses'],
   },
@@ -190,6 +209,7 @@ export const books = [
     pages: 340, year: 2024, format: 'PDF',
     description: 'Understand and build generative AI models including GANs, VAEs and diffusion models.',
     downloadUrl: '#', readUrl: '#',
+    pdfUrl: null,
     whatYoullLearn: ['GANs', 'Diffusion models', 'LLMs', 'Fine-tuning'],
     exploreMoreContent: ['Ebook', 'Courses'],
   },
@@ -209,6 +229,7 @@ export const books = [
     pages: 320, year: 2024, format: 'PDF',
     description: 'Linear algebra, calculus, and probability fundamentals every ML practitioner needs.',
     downloadUrl: '#', readUrl: '#',
+    pdfUrl: null,
     whatYoullLearn: ['Linear algebra', 'Calculus', 'Probability', 'Optimization'],
     exploreMoreContent: ['Ebook', 'Courses'],
   },
@@ -228,8 +249,33 @@ export const books = [
     pages: 200, year: 2024, format: 'PDF',
     description: 'A non-technical guide to understanding AI and applying it in business and daily life.',
     downloadUrl: '#', readUrl: '#',
+    pdfUrl: null,
     whatYoullLearn: ['AI concepts', 'Business AI', 'Ethical AI', 'AI tools'],
     exploreMoreContent: ['Ebook', 'Courses'],
+  },
+  {
+    // Real book with an attached PDF. Title, author and page count were read
+    // from the file itself. `price` is a placeholder — set it to the real
+    // figure, or leave it at 0 if the book is being given away.
+    id: 13,
+    title: 'Artificial Intelligence Text Book for Kids',
+    author: 'Shailendra Kumar',
+    category: 'AI for Everyone',
+    // The real cover, rendered from page 1 of the PDF itself.
+    cover: '/books/ai-for-kids-cover.png',
+    price: 0,
+    originalPrice: 0,
+    rating: 5,
+    ratingsCount: 0,
+    tags: ['AI', 'Kids', 'Beginner'],
+    isFeatured: true, isNew: true,
+    level: 'Beginner', language: 'English',
+    pages: 116, year: 2024, format: 'PDF',
+    description: "A Kid's Guide to Smart Machines — explore the magic of technology with a fun, easy introduction to Artificial Intelligence for curious young learners.",
+    downloadUrl: '/books/kids-text-book.pdf', readUrl: '/textbooks/13/read',
+    pdfUrl: '/books/kids-text-book.pdf',
+    whatYoullLearn: ['What AI is', 'How machines learn', 'AI around us', 'Fun AI activities'],
+    exploreMoreContent: ['Ebook'],
   },
 ];
 

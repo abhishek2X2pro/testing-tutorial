@@ -63,10 +63,14 @@ export default function BookDetails() {
   };
 
   const handleDownloadSample = () => {
-    toast.success(`Downloading Sample PDF for "${book.title}"...`);
-    if (book.downloadUrl && book.downloadUrl !== '#') {
-      window.open(book.downloadUrl, '_blank');
+    // Prefer the attached PDF; fall back to the legacy downloadUrl field.
+    const file = book.pdfUrl || (book.downloadUrl !== '#' ? book.downloadUrl : null);
+    if (!file) {
+      toast.error('No PDF has been uploaded for this book yet.');
+      return;
     }
+    toast.success(`Opening PDF for "${book.title}"...`);
+    window.open(file, '_blank', 'noopener');
   };
 
   // Calculate discount percentage
@@ -308,6 +312,35 @@ export default function BookDetails() {
                 {discountPercent}% OFF
               </span>
             </div>
+
+            {/* Read in-app — only offered once a PDF is actually attached */}
+            {book.pdfUrl && (
+              <button
+                onClick={() => navigate(`/textbooks/${book.id}/read`)}
+                style={{
+                  width: '100%',
+                  marginTop: '4px',
+                  padding: '12px 18px',
+                  borderRadius: '8px',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #059669, #10b981)',
+                  color: '#ffffff',
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  boxShadow: '0 4px 14px rgba(5,150,105,.32)',
+                  transition: 'all 0.15s',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.92'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'none'; }}
+              >
+                <BookOpen size={16} /> Read Now
+              </button>
+            )}
 
             {/* Action Buttons Stack (Buy Now, Add to Cart, Wishlist) */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '4px', flexWrap: 'wrap' }}>
