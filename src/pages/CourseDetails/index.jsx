@@ -9,6 +9,7 @@ import {
   ChevronRight,
   Star,
   Play,
+  PlayCircle,
   ShoppingCart,
   Heart,
   Share2,
@@ -372,6 +373,34 @@ export default function CourseDetails() {
                 </strong>
               </div>
             </div>
+
+            {/* Straight into the lectures. Without this the player page was
+                reachable only by typing its URL. */}
+            <button
+              onClick={() => navigate(`/courses/${course.slug}/learn`)}
+              style={{
+                width: '100%',
+                marginTop: '4px',
+                padding: '12px 18px',
+                borderRadius: '8px',
+                border: 'none',
+                background: 'linear-gradient(135deg,#059669,#10b981)',
+                color: '#fff',
+                fontSize: '0.88rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                boxShadow: '0 4px 14px rgba(5,150,105,.32)',
+                transition: 'all .15s',
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.92'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'none'; }}
+            >
+              <PlayCircle size={17} /> Watch Lectures
+            </button>
 
             {/* Action Buttons Row */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '4px', flexWrap: 'wrap' }}>

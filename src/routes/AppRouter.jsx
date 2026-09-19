@@ -16,6 +16,7 @@ const BookDetails = lazy(() => import('../pages/BookDetails/index'));
 // Lazy on purpose: this route pulls in PDF.js, which must not weigh down
 // the main bundle for everyone who never opens a book.
 const BookReader = lazy(() => import('../pages/BookReader/index'));
+const CoursePlayer = lazy(() => import('../pages/CoursePlayer/index'));
 const Notes = lazy(() => import('../pages/Notes/index'));
 const Assignments = lazy(() => import('../pages/Assignments/index'));
 const Practice = lazy(() => import('../pages/Practice/index'));
@@ -91,6 +92,9 @@ export default function AppRouter() {
           <Route path="/courses" element={<AllCourses />} />
           <Route path="/courses/:slug" element={<CourseDetails />} />
           <Route path="/curriculum" element={<Curriculum />} />
+          {/* Lecture player — the page existed but had no route, so it was unreachable. */}
+          <Route path="/courses/:slug/learn" element={<CoursePlayer />} />
+          <Route path="/player/:slug" element={<CoursePlayer />} />
           <Route path="/curriculum/:slug" element={<Curriculum />} />
           <Route path="/learn/:slug" element={<Curriculum />} />
           <Route path="/textbooks" element={<TextBooks />} />

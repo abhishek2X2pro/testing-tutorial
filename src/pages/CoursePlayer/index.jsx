@@ -28,9 +28,44 @@ import {
 } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { courses } from '../../data/courses';
+import LessonVideo from '../../components/ui/LessonVideo';
 import { toast } from 'react-hot-toast';
 
+// ─────────────────────────────────────────────────────────────
+// PASTE THE VIDEO LINK HERE
+// ─────────────────────────────────────────────────────────────
+// Works with any of these — paste the whole link, nothing to extract:
+//
+//   Google Drive : 'https://drive.google.com/file/d/1AbC.../view?usp=sharing'
+//   YouTube      : 'https://youtu.be/Nftif8BrGMo'
+//
+// If it is a Drive link, the file MUST be shared as
+// "Anyone with the link → Viewer", otherwise visitors get a Google
+// sign-in wall instead of the video.
+//
+// Drive also enforces a daily view quota; once tripped the video is
+// unavailable for ~24h. Fine for a demo, not for real traffic — swap
+// this string for an unlisted YouTube link when there is time.
+const FEATURED_VIDEO_URL = 'https://drive.google.com/file/d/1w8IER1NWzLtWRx1kZh60dQU1607y7K_C/view?usp=drivesdk';
+// ─────────────────────────────────────────────────────────────
+
 const MOCK_SECTIONS = [
+  {
+    id: 's0',
+    title: 'Section 0: AI for Kids — Video Lessons',
+    duration: '—',
+    completedCount: 0,
+    totalCount: 1,
+    lessons: [
+      {
+        id: 'l0',
+        title: 'Chapter 1 — Artificial Intelligence for Kids',
+        duration: '—',
+        videoUrl: FEATURED_VIDEO_URL,
+        completed: false,
+      },
+    ],
+  },
   {
     id: 's1',
     title: 'Section 1: Introduction & Environment Setup',
@@ -96,8 +131,9 @@ export default function CoursePlayer() {
   const course = courses.find((c) => c.slug === slug) || courses[0];
 
   const [sections, setSections] = useState(MOCK_SECTIONS);
-  const [activeLesson, setActiveLesson] = useState(MOCK_SECTIONS[1].lessons[2]); // Lesson 6 active
-  const [openSections, setOpenSections] = useState({ s1: true, s2: true, s3: true });
+  // Open on the featured video so it is the first thing a visitor sees.
+  const [activeLesson, setActiveLesson] = useState(MOCK_SECTIONS[0].lessons[0]);
+  const [openSections, setOpenSections] = useState({ s0: true, s1: true, s2: true, s3: true });
   const [activeTab, setActiveTab] = useState('overview');
 
   const border = isDark ? 'rgba(255,255,255,.08)' : '#eaecf0';
@@ -294,12 +330,7 @@ export default function CoursePlayer() {
                 border: `1px solid ${border}`,
               }}
             >
-              <iframe
-                src={`https://www.youtube.com/embed/${activeLesson.youtubeId}?autoplay=1&rel=0`}
-                style={{ width: '100%', height: '100%', border: 'none' }}
-                allow="autoplay; encrypted-media; fullscreen"
-                title={activeLesson.title}
-              />
+              <LessonVideo lesson={activeLesson} title={activeLesson.title} />
             </div>
 
             {/* ACTION & TITLE BAR BELOW VIDEO */}
