@@ -178,7 +178,7 @@ export default function CoursePlayer() {
   };
 
   return (
-    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh', padding: '16px 24px 64px', overflowX: 'hidden', boxSizing: 'border-box' }}>
+    <div className="course-player-page-wrapper" style={{ background: 'var(--bg-primary)', minHeight: '100vh', padding: '16px 24px 64px', overflowX: 'hidden', boxSizing: 'border-box' }}>
       <div style={{ maxWidth: '1440px', margin: '0 auto' }}>
 
         {/* ── TOP HEADER / NAV BAR ── */}
@@ -315,7 +315,7 @@ export default function CoursePlayer() {
         >
 
           {/* LEFT COLUMN: VIDEO PLAYER & LECTURE DETAILS */}
-          <div className="course-player-left-col" style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+          <div className="course-player-left-col" style={{ display: 'flex', flexDirection: 'column', gap: '18px', minWidth: 0 }}>
 
             {/* VIDEO PLAYER BOX */}
             <div

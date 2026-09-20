@@ -452,6 +452,104 @@
   }
 }
 
+/* ───────────────────────── Course Player Mobile ─────────────────────────
+   Video player + sidebar playlist full mobile responsiveness.             */
+
+@media (max-width: 900px) {
+
+  /* Outer page padding tighten karo */
+  .course-player-page-wrapper {
+    padding: 10px 12px 48px !important;
+  }
+
+  /* ── Header: previous/next + progress stack vertically ── */
+  .course-player-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+
+  .course-player-header-left {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .course-player-header-right {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    justify-content: space-between !important;
+  }
+
+  /* ── 2-col grid → single column (video on top, playlist below) ── */
+  .course-player-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* ── Right sidebar (playlist) becomes full-width below video ── */
+  .course-player-right-sidebar {
+    max-height: 420px !important;
+    overflow-y: auto !important;
+    border-radius: 12px !important;
+  }
+
+  /* ── Playlist scroll area — prevent double scrollbars ── */
+  .course-player-right-sidebar > div[style*="max-height"] {
+    max-height: 340px !important;
+  }
+
+  /* ── Video info/action bar below video ── */
+  .course-player-video-infobar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  .course-player-video-infobar > button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* ── Tabs bar: horizontal scroll so tabs don't wrap ── */
+  .course-player-tabs-bar {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 8px !important;
+  }
+
+  .course-player-tabs-bar::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .course-player-tabs-bar > button {
+    flex-shrink: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* Tighter page padding on small phones */
+  .course-player-page-wrapper {
+    padding: 8px 8px 40px !important;
+  }
+
+  /* Playlist sidebar shorter so video stays prominent */
+  .course-player-right-sidebar {
+    max-height: 320px !important;
+  }
+
+  /* Header back-button + title stay compact */
+  .course-player-header-left h1 {
+    font-size: 0.95rem !important;
+  }
+
+  /* Left column gap tighten */
+  .course-player-left-col {
+    gap: 12px !important;
+  }
+}
+
 /* ───────────────────────── ≤ 380px ─────────────────────────
    Small phones.                                              */
 @media (max-width: 380px) {
