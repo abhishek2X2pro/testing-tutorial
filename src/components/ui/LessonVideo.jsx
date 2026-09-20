@@ -112,14 +112,15 @@ export default function LessonVideo({ lesson, autoPlay = true, title }) {
   }
 
   if (video.kind === 'drive') {
-    // Drive's /preview endpoint adds its own toolbar (~56px) at the top.
-    // We push the iframe UP by 56px (fixed pixels, not %, so it works on
-    // every device width) and add the same 56px back to the height.
-    // overflow:hidden on VideoWrapper clips the toolbar above the top edge.
+    // Drive's /preview has a toolbar (~72px) at the top and a control bar
+    // (~20px) at the bottom. We extend the iframe beyond both edges and let
+    // overflow:hidden on VideoWrapper clip them away, leaving only the
+    // video content visible in the 16:9 box.
     const driveStyle = {
       ...ABSOLUTE_FILL,
-      top: '-56px',
-      height: 'calc(100% + 56px)',
+      top: '-72px',
+      bottom: '-20px',
+      height: 'calc(100% + 92px)',
     };
     return (
       <VideoWrapper>
