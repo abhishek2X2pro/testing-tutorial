@@ -112,15 +112,21 @@ export default function LessonVideo({ lesson, autoPlay = true, title }) {
   }
 
   if (video.kind === 'drive') {
-    // Drive's /preview has a toolbar (~72px) at the top and a control bar
-    // (~20px) at the bottom. We extend the iframe beyond both edges and let
-    // overflow:hidden on VideoWrapper clip them away, leaving only the
-    // video content visible in the 16:9 box.
+    // Drive's /preview layout (approximate heights):
+    //   ┌─ toolbar ─────────── ~72px ─┐
+    //   │  video content              │
+    //   └─ controls bar ───── ~48px ─┘
+    //
+    // CSS note: when top + height + bottom are all set on an absolute element,
+    // the browser IGNORES bottom. Only top + height are used. So we control
+    // how much is clipped at the bottom purely via height.
+    //   top    = -72px  →  hides Drive's top toolbar
+    //   height = 100% + 120px  →  iframe bottom extends 48px below container
+    //   overflow:hidden on VideoWrapper clips both the 72px above and 48px below
     const driveStyle = {
       ...ABSOLUTE_FILL,
       top: '-72px',
-      bottom: '-20px',
-      height: 'calc(100% + 92px)',
+      height: 'calc(100% + 120px)',
     };
     return (
       <VideoWrapper>
