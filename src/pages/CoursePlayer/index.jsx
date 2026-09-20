@@ -320,14 +320,11 @@ export default function CoursePlayer() {
             {/* VIDEO PLAYER BOX */}
             <div
               style={{
-                position: 'relative',
-                width: '100%',
-                aspectRatio: '16/9',
                 borderRadius: '16px',
                 overflow: 'hidden',
-                background: '#0a0f1d',
                 boxShadow: '0 12px 36px rgba(0,0,0,.35)',
                 border: `1px solid ${border}`,
+                background: '#0a0f1d',
               }}
             >
               <LessonVideo lesson={activeLesson} title={activeLesson.title} />
