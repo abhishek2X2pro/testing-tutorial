@@ -319,6 +319,7 @@ export default function CoursePlayer() {
 
             {/* VIDEO PLAYER BOX */}
             <div
+              className="course-player-video-box"
               style={{
                 borderRadius: '16px',
                 overflow: 'hidden',

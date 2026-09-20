@@ -112,14 +112,26 @@ export default function LessonVideo({ lesson, autoPlay = true, title }) {
   }
 
   if (video.kind === 'drive') {
-    // Drive only serves /preview in an iframe, and only when the file is
-    // shared as "Anyone with the link". A private file renders as a
-    // sign-in wall, not an error — so that setting is easy to forget.
+    // Drive's /preview endpoint adds its own toolbar (~50–60 px) at the top.
+    // We extend the iframe above the container and clip with overflow:hidden
+    // so only the video content is visible, not Drive's chrome.
+    //
+    // How the maths works:
+    //   wrapper  = 16/9  (56.25 % padding-bottom)
+    //   iframe   = top:-10%;  height:110%
+    //   visible slice = iframe height from 10 % downwards = 100 % of wrapper
+    //   → the video fills the box; the Drive toolbar is clipped above it.
+    const driveStyle = {
+      ...ABSOLUTE_FILL,
+      top: '-10%',
+      height: '110%',
+    };
     return (
       <VideoWrapper>
         <iframe
           src={`https://drive.google.com/file/d/${video.id}/preview`}
-          style={ABSOLUTE_FILL}
+          style={driveStyle}
+          scrolling="no"
           allow="autoplay; fullscreen"
           allowFullScreen
           title={title || lesson.title || 'Lesson video'}
