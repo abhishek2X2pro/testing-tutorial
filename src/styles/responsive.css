@@ -459,21 +459,16 @@
 
   /* Outer page padding tighten karo */
   .course-player-page-wrapper {
-    padding: 10px 0 48px !important;
-  }
-
-  /* Max width container remove karo on mobile — let it be full width */
-  .course-player-page-wrapper > div {
-    padding: 0 12px !important;
+    padding: 10px 12px 48px !important;
   }
 
   /* ── Video box: full-width edge-to-edge on mobile ── */
+  /* Negative margin escapes the 12px page padding so video is screen-wide */
   .course-player-video-box {
     border-radius: 0 !important;
     border-left: none !important;
     border-right: none !important;
     box-shadow: none !important;
-    /* Negative margin to escape the 12px page padding */
     margin-left: -12px !important;
     margin-right: -12px !important;
     width: calc(100% + 24px) !important;
