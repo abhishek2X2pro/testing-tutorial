@@ -20,7 +20,8 @@
 // data — prefer it once there is time to upload.
 // ============================================================
 
-import { AlertCircle } from 'lucide-react';
+import { useState } from 'react';
+import { AlertCircle, Play } from 'lucide-react';
 
 // Pulls the file id out of any of Drive's link shapes:
 //   /file/d/<id>/view   ·   ?id=<id>   ·   /open?id=<id>
@@ -59,11 +60,6 @@ export function resolveVideo(lesson) {
 }
 
 // ── Shared absolute-fill style ────────────────────────────────────────────
-// Using position:absolute + inset:0 instead of width/height:100% because
-// height:100% does NOT resolve when the parent's height comes from
-// aspect-ratio (it needs an *explicit* height on the parent). The wrapper
-// below gives an explicit height via the padding-bottom 16:9 trick, so the
-// absolute child always fills it perfectly on every screen size.
 const ABSOLUTE_FILL = {
   position: 'absolute',
   top: 0,
@@ -74,18 +70,23 @@ const ABSOLUTE_FILL = {
   display: 'block',
 };
 
-// 16:9 aspect-ratio wrapper — works on every browser without relying on the
-// CSS `aspect-ratio` property resolving for child percentages.
-function VideoWrapper({ children }) {
+// 16:9 wrapper with optional poster thumbnail shown while iframe loads.
+// Uses padding-bottom trick so height:100% resolves correctly in the child.
+function VideoWrapper({ children, poster }) {
   return (
     <div
       style={{
         position: 'relative',
         width: '100%',
-        paddingBottom: '56.25%', /* 9/16 = 0.5625 */
+        paddingBottom: '56.25%', /* 9/16 */
         height: 0,
         overflow: 'hidden',
         background: '#0a0f1d',
+        ...(poster && {
+          backgroundImage: `url(${poster})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+        }),
         borderRadius: 'inherit',
       }}
     >
@@ -94,8 +95,60 @@ function VideoWrapper({ children }) {
   );
 }
 
+// ── Drive loading overlay ────────────────────────────────────────────────
+// Shown until the Drive iframe fires its onLoad event.
+// Gives users a visible thumbnail + spinner instead of a blank black screen.
+function DriveLoadingOverlay({ poster, onDismiss }) {
+  return (
+    <div
+      onClick={onDismiss}
+      style={{
+        ...ABSOLUTE_FILL,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: poster
+          ? `linear-gradient(rgba(10,15,29,.55), rgba(10,15,29,.55)) center/cover, url(${poster}) center/cover no-repeat`
+          : 'linear-gradient(135deg,#0f172a 0%,#1e293b 100%)',
+        cursor: 'pointer',
+        zIndex: 2,
+      }}
+    >
+      {/* Play button */}
+      <div
+        style={{
+          width: 64,
+          height: 64,
+          borderRadius: '50%',
+          background: 'rgba(99,102,241,0.92)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 24px rgba(99,102,241,.6)',
+          marginBottom: 12,
+          transition: 'transform .15s',
+        }}
+      >
+        <Play size={28} color="#fff" fill="#fff" style={{ marginLeft: 4 }} />
+      </div>
+      <span style={{
+        color: '#e2e8f0',
+        fontSize: '0.8rem',
+        fontWeight: 600,
+        textShadow: '0 1px 4px rgba(0,0,0,.6)',
+        letterSpacing: '0.02em',
+      }}>
+        Tap to load video
+      </span>
+    </div>
+  );
+}
+
 export default function LessonVideo({ lesson, autoPlay = true, title }) {
   const video = resolveVideo(lesson);
+  const [driveLoaded, setDriveLoaded] = useState(false);
+  const [driveActive, setDriveActive] = useState(false);
 
   if (video.kind === 'youtube') {
     return (
@@ -113,26 +166,44 @@ export default function LessonVideo({ lesson, autoPlay = true, title }) {
 
   if (video.kind === 'drive') {
     // Drive's /preview layout (measured):
-    //   ┌─ toolbar ─────────── ~52px ─┐  ← clip with top: -52px
-    //   │  video content   ✅          │
-    //   └─ controls bar ───── ~48px ─┘  ← clip with extra height
+    //   ┌─ toolbar ──────────── ~52px ─┐  ← clip: top: -52px
+    //   │  video content   ✅           │
+    //   └─ controls bar ────── ~60px ─┘  ← clip: 112px total - 52px top = 60px bottom
     //
-    //   height = 100% + 100px  (52px top clip + 48px bottom clip)
+    // CSS: top + height control the clip; 'bottom' is ignored when all three set.
     const driveStyle = {
       ...ABSOLUTE_FILL,
       top: '-52px',
-      height: 'calc(100% + 100px)',
+      height: 'calc(100% + 112px)', // 52px top + 60px bottom = 112px total
+      // Fade in once iframe signals it has loaded
+      opacity: driveLoaded ? 1 : 0,
+      transition: 'opacity 0.4s ease',
     };
+
+    const poster = lesson.thumbnail || lesson.poster || null;
+
     return (
-      <VideoWrapper>
-        <iframe
-          src={`https://drive.google.com/file/d/${video.id}/preview`}
-          style={driveStyle}
-          scrolling="no"
-          allow="autoplay; fullscreen"
-          allowFullScreen
-          title={title || lesson.title || 'Lesson video'}
-        />
+      <VideoWrapper poster={!driveActive ? poster : null}>
+        {/* Loading overlay — click to activate the iframe */}
+        {!driveActive && (
+          <DriveLoadingOverlay
+            poster={poster}
+            onDismiss={() => setDriveActive(true)}
+          />
+        )}
+
+        {/* Drive iframe — only rendered after user taps the overlay */}
+        {driveActive && (
+          <iframe
+            src={`https://drive.google.com/file/d/${video.id}/preview`}
+            style={driveStyle}
+            scrolling="no"
+            allow="autoplay; fullscreen"
+            allowFullScreen
+            title={title || lesson.title || 'Lesson video'}
+            onLoad={() => setDriveLoaded(true)}
+          />
+        )}
       </VideoWrapper>
     );
   }

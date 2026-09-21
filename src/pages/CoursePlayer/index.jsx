@@ -62,6 +62,7 @@ const MOCK_SECTIONS = [
         title: 'Chapter 1 — Artificial Intelligence for Kids',
         duration: '—',
         videoUrl: FEATURED_VIDEO_URL,
+        thumbnail: '/books/ai-for-kids-cover.png',
         completed: false,
       },
     ],
