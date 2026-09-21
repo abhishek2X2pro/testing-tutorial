@@ -34,6 +34,21 @@ export function resolveVideo(lesson) {
   return { kind: 'file', src: url };
 }
 
+// ── Drive chrome heights (px) ───────────────────────────────────────────
+// Drive's /preview renders a toolbar at the top and a control bar at the
+// bottom.  We make the wrapper TALLER by exactly these amounts so the
+// iframe fills it naturally, then paint solid-colour mask divs on top of
+// those chrome strips.  No iframe offset is needed or used.
+//
+//  VideoWrapper height = 56.25% (16:9 video) + TOP_PX + BOT_PX
+//  ┌─ TOP_MASK (zIndex 8) ──── TOP_PX px ─┐
+//  │                                       │
+//  │   iframe (Drive player — ABSOLUTE_FILL) - video content visible here
+//  │                                       │
+//  └─ BOT_MASK (zIndex 8) ──── BOT_PX px ─┘
+const TOP_PX = 52;   // Drive toolbar
+const BOT_PX = 60;   // Drive control bar
+
 const ABSOLUTE_FILL = {
   position: 'absolute',
   top: 0,
@@ -44,14 +59,19 @@ const ABSOLUTE_FILL = {
   display: 'block',
 };
 
-// ── 16:9 wrapper ──────────────────────────────────────────────────────────
-function VideoWrapper({ children, poster }) {
+// ── 16:9 wrapper ─────────────────────────────────────────────────────────
+// For Drive we expand the wrapper by TOP_PX + BOT_PX so the iframe has
+// room to show its full layout; the masks then cover those chrome strips.
+function VideoWrapper({ children, poster, isDrive }) {
+  const extraPx = isDrive ? TOP_PX + BOT_PX : 0;
   return (
     <div
       style={{
         position: 'relative',
         width: '100%',
-        paddingBottom: '56.25%',
+        // calc(56.25% + Npx) mixes % of width with fixed px — works in all
+        // browsers and gives exactly the right height on every screen size.
+        paddingBottom: extraPx ? `calc(56.25% + ${extraPx}px)` : '56.25%',
         height: 0,
         overflow: 'hidden',
         background: '#0a0f1d',
@@ -68,55 +88,10 @@ function VideoWrapper({ children, poster }) {
   );
 }
 
-// ── Click-to-load overlay for Drive ───────────────────────────────────────
-function DriveLoadingOverlay({ poster, onDismiss }) {
-  return (
-    <div
-      onClick={onDismiss}
-      style={{
-        ...ABSOLUTE_FILL,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: poster
-          ? `linear-gradient(rgba(10,15,29,.5),rgba(10,15,29,.5)),url(${poster}) center/cover no-repeat`
-          : 'linear-gradient(135deg,#0f172a,#1e293b)',
-        cursor: 'pointer',
-        zIndex: 10,
-      }}
-    >
-      <div style={{
-        width: 64, height: 64, borderRadius: '50%',
-        background: 'rgba(99,102,241,.92)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        boxShadow: '0 4px 24px rgba(99,102,241,.6)',
-        marginBottom: 12,
-      }}>
-        <Play size={28} color="#fff" fill="#fff" style={{ marginLeft: 4 }} />
-      </div>
-      <span style={{
-        color: '#e2e8f0', fontSize: '0.8rem', fontWeight: 600,
-        textShadow: '0 1px 4px rgba(0,0,0,.6)',
-      }}>
-        Tap to play video
-      </span>
-    </div>
-  );
-}
-
-// ── Chrome-masking strips ────────────────────────────────────────────────
-// Drive's /preview renders:
-//   top:    a toolbar  (~52 px)
-//   middle: video content
-//   bottom: control bar (~60 px)
-//
-// We can't clip INSIDE the cross-origin iframe, but we CAN paint sibling
-// divs with a higher z-index on top of those chrome strips.
-// pointerEvents:'none' so the video area below remains clickable (play/pause).
-const TOP_MASK_H    = 52;   // px — Drive toolbar height
-const BOTTOM_MASK_H = 60;   // px — Drive control bar height
-
+// ── Drive chrome masks ───────────────────────────────────────────────────
+// Sibling divs with a higher z-index than the iframe paint over Drive's
+// toolbar (top) and control bar (bottom), hiding them visually.
+// pointerEvents:none so the video content below stays clickable.
 function DriveMask() {
   const base = {
     position: 'absolute',
@@ -128,17 +103,53 @@ function DriveMask() {
   };
   return (
     <>
-      <div style={{ ...base, top: 0,    height: TOP_MASK_H }} />
-      <div style={{ ...base, bottom: 0, height: BOTTOM_MASK_H }} />
+      <div style={{ ...base, top: 0,    height: TOP_PX }} />
+      <div style={{ ...base, bottom: 0, height: BOT_PX }} />
     </>
+  );
+}
+
+// ── Click-to-load thumbnail overlay ─────────────────────────────────────
+function DriveLoadingOverlay({ poster, onDismiss }) {
+  return (
+    <div
+      onClick={onDismiss}
+      style={{
+        ...ABSOLUTE_FILL,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: poster
+          ? `linear-gradient(rgba(10,15,29,.45),rgba(10,15,29,.45)),url(${poster}) center/cover no-repeat`
+          : 'linear-gradient(135deg,#0f172a,#1e293b)',
+        cursor: 'pointer',
+        zIndex: 10,
+      }}
+    >
+      <div style={{
+        width: 68, height: 68, borderRadius: '50%',
+        background: 'rgba(99,102,241,.92)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        boxShadow: '0 6px 28px rgba(99,102,241,.55)',
+        marginBottom: 14,
+      }}>
+        <Play size={30} color="#fff" fill="#fff" style={{ marginLeft: 5 }} />
+      </div>
+      <span style={{
+        color: '#e2e8f0', fontSize: '0.82rem', fontWeight: 700,
+        textShadow: '0 1px 6px rgba(0,0,0,.7)', letterSpacing: '0.03em',
+      }}>
+        Tap to play video
+      </span>
+    </div>
   );
 }
 
 // ── Main component ────────────────────────────────────────────────────────
 export default function LessonVideo({ lesson, autoPlay = true, title }) {
   const video = resolveVideo(lesson);
-  const [driveActive,  setDriveActive]  = useState(false);
-  const [driveLoaded,  setDriveLoaded]  = useState(false);
+  const [driveActive, setDriveActive] = useState(false);
 
   /* ── YouTube ── */
   if (video.kind === 'youtube') {
@@ -159,23 +170,11 @@ export default function LessonVideo({ lesson, autoPlay = true, title }) {
   if (video.kind === 'drive') {
     const poster = lesson.thumbnail || lesson.poster || null;
 
-    // The iframe is offset so Drive's chrome is pushed OUTSIDE the container:
-    //   top: -52px  → toolbar starts above the visible area
-    //   height: +112px (52 top + 60 bottom) → controls extend below it
-    // overflow:hidden on VideoWrapper clips those edges.
-    // The DriveMask adds solid-colour strips on TOP of those edges as a
-    // belt-and-braces fallback (handles any remaining Drive chrome pixels).
-    const iframeStyle = {
-      ...ABSOLUTE_FILL,
-      top: `-${TOP_MASK_H}px`,
-      height: `calc(100% + ${TOP_MASK_H + BOTTOM_MASK_H}px)`,
-      opacity: driveLoaded ? 1 : 0,
-      transition: 'opacity .4s',
-    };
-
     return (
-      <VideoWrapper poster={!driveActive ? poster : undefined}>
-        {/* 1 — Loading overlay: click to activate */}
+      // isDrive=true → wrapper height = calc(56.25% + 112px) to fit Drive chrome
+      <VideoWrapper isDrive poster={!driveActive ? poster : undefined}>
+
+        {/* Thumbnail overlay shown until user taps */}
         {!driveActive && (
           <DriveLoadingOverlay
             poster={poster}
@@ -183,21 +182,20 @@ export default function LessonVideo({ lesson, autoPlay = true, title }) {
           />
         )}
 
-        {/* 2 — Drive iframe (only mounted after user taps) */}
+        {/* Drive iframe — mounted on first tap, full opacity immediately */}
         {driveActive && (
           <iframe
             src={`https://drive.google.com/file/d/${video.id}/preview`}
-            style={iframeStyle}
+            style={ABSOLUTE_FILL}   // fills the full expanded wrapper
             scrolling="no"
             allow="autoplay; fullscreen"
             allowFullScreen
             title={title || lesson.title || 'Lesson video'}
-            onLoad={() => setDriveLoaded(true)}
           />
         )}
 
-        {/* 3 — Chrome masks (painted above the iframe via z-index) */}
-        {driveActive && driveLoaded && <DriveMask />}
+        {/* Mask strips sit above the iframe and cover Drive's chrome */}
+        <DriveMask />
       </VideoWrapper>
     );
   }
